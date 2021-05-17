@@ -1,0 +1,26 @@
+﻿<div class="p-4">
+    <div class="container">
+        <h1>Hi {{user.firstName}} !</h1>
+        <style>
+            body {
+                background: rgb(39, 39, 39);
+            }
+          
+            h1 {
+                position: static;
+                top: 10%;
+                left: 10%;
+          
+                font-size: 60px;
+                font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
+                background: linear-gradient(
+                    to right, #f32170, #ff6b08,
+                     #cf23cf, #eedd44);
+                -webkit-text-fill-color: transparent;
+                -webkit-background-clip: text;
+            }
+        </style>
+        <p> You're logged in Libr!!</p>
+        <p><a routerLink="/users">Manage Users</a></p>
+    </div>
+</div>
