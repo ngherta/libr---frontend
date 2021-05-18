@@ -9,5 +9,5 @@
     role: string;
     phone: string;
     token: string;
-    
+
 }
