@@ -40,10 +40,10 @@
 
 <!--          Telephone number-->
           <div class="form-group">
-            <label for="telephone">Telephone number</label>
-            <input type="text" formControlName="telephone" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.telephone.errors }" />
-            <div *ngIf="submitted && f.telephone.errors" class="invalid-feedback">
-              <div *ngIf="f.telephone.errors.required">Telephone is required</div>
+            <label for="phone">Telephone number</label>
+            <input type="text" formControlName="phone" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.phone.errors }" />
+            <div *ngIf="submitted && f.phone.errors" class="invalid-feedback">
+              <div *ngIf="f.phone.errors.required">Telephone is required</div>
             </div>
           </div>
 
