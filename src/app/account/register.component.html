@@ -59,14 +59,12 @@
 
 <!--       My code ---   Confirm password-->
           <div class="form-group">
-            <label for="password">Confirm your password</label>
-            <input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
-            <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
-              <div *ngIf="f.password.errors.required">Password is required</div>
-              <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
-            </div>
+            <label for="confirmPass">Confirm your password</label>
+              <input type="password" formControlName="confirmPass" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.confirmPass.errors }" />
+              <div *ngIf="submitted && f.confirmPass.errors" class="invalid-feedback">
+                <div *ngIf="f.confirmPass.hasError('checkIfMatchingPasswords')">Passwords don't match</div>
+              </div>
           </div>
-
 <!--          My code-->
             <div class="form-group">
                 <button [disabled]="loading" class="btn btn-primary">
