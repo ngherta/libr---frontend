@@ -30,13 +30,13 @@ export class ListComponent implements OnInit {
       });
   }
 
-  deleteUser(email: string) {
-    const user = this.users.find(x => x.email === email);
+  deleteUser(id: string) {
+    const user = this.users.find(x => x.id === id);
     // user.isDeleting = true;
-    this.accountService.delete(email)
+    this.accountService.delete(id)
       .pipe(first())
       .subscribe(() => {
-        this.users = this.users.filter(x => x.email !== email);
+        this.users = this.users.filter(x => x.id !== id);
       });
   }
 }
