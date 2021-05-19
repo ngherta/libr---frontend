@@ -2,8 +2,8 @@
 import {first} from 'rxjs/operators';
 
 import {AccountService} from '@app/_services';
-import {Subject} from "rxjs";
-import {User} from "@app/_models";
+import {Subject} from 'rxjs';
+import {User} from '@app/_models';
 
 @Component({templateUrl: 'list.component.html'})
 export class ListComponent implements OnInit {
@@ -30,13 +30,13 @@ export class ListComponent implements OnInit {
       });
   }
 
-  deleteUser(id: string) {
-    const user = this.users.find(x => x.id === id);
+  deleteUser(email: string) {
+    const user = this.users.find(x => x.email === email);
     // user.isDeleting = true;
-    this.accountService.delete(id)
+    this.accountService.delete(email)
       .pipe(first())
       .subscribe(() => {
-        this.users = this.users.filter(x => x.id !== id)
+        this.users = this.users.filter(x => x.email !== email);
       });
   }
 }

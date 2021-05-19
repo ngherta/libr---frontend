@@ -72,11 +72,11 @@ export class AccountService {
       }));
   }
 
-  delete(id: string) {
-    return this.http.delete(`${environment.apiUrl}/users/${id}`)
+  delete(email: string) {
+    return this.http.delete(`${environment.apiUrl}/users/${email}`)
       .pipe(map(x => {
         // auto logout if the logged in user deleted their own record
-        if (id == this.userValue.id) {
+        if (email == this.userValue.email) {
           this.logout();
         }
         return x;

@@ -8,7 +8,7 @@ export class Book {
     description: string;
     industryIdentifiers: { [key: string]: string; } = {};
     pageCount: number;
-    categories: Array<string>
+    categories: Array<string>;
     averageRating: number;
     ratingsCount: number;
     maturityRating: string;
