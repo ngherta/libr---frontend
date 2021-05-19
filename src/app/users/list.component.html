@@ -3,20 +3,26 @@
 <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-striped">
   <thead>
   <tr>
-    <th style="width: 30%">First name</th>
-    <th style="width: 30%">Telephone</th>
-    <th style="width: 30%">Email</th>
+    <th style="width: 5%">ID</th>
+    <th style="width: 17%">First name</th>
+    <th style="width: 17%">Last name</th>
+    <th style="width: 17%">Email</th>
+    <th style="width: 17%">Telephone</th>
+    <th style="width: 17%">Age</th>
     <th style="width: 10%">Button</th>
   </tr>
   </thead>
   <tbody>
   <tr *ngFor="let user of users">
+    <td>{{user.id}}</td>
     <td>{{user.firstName}}</td>
-    <td>{{user.phone}}</td>
+    <td>{{user.lastName}}</td>
     <td>{{user.email}}</td>
+    <td>{{user.phone}}</td>
+    <td>{{user.age}}</td>
     <td style="white-space: nowrap">
       <a routerLink="edit/{{user.id}}" class="btn btn-sm btn-primary mr-1">Edit</a>
-      <button (click)="deleteUser(user.email)" class="btn btn-sm btn-danger btn-delete-user" >
+      <button (click)="deleteUser(user.id)" class="btn btn-sm btn-danger btn-delete-user" >
         <span *ngIf="user.isDeleting" class="spinner-border spinner-border-sm"></span>
         <span *ngIf="!user.isDeleting">Delete</span>
       </button>
