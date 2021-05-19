@@ -26,23 +26,9 @@ export class RegisterComponent implements OnInit {
             email: ['', Validators.email],
             age: ['', Validators.required],
             phone: ['', Validators.required],
-            password: ['', [Validators.required, Validators.minLength(6)]],
-            confirmPass: ['', Validators.required]
-        }, {validator: this.checkIfMatchingPasswords('password', 'confirmPass')});
+            password: ['', [Validators.required, Validators.minLength(6)]]
+        });
     }
-
-  checkIfMatchingPasswords(passwordKey: string, passwordConfirmationKey: string) {
-    return (group: FormGroup) => {
-      const passwordInput = group.controls[passwordKey];
-      const passwordConfirmationInput = group.controls[passwordConfirmationKey];
-      if (passwordInput.value !== passwordConfirmationInput.value) {
-        return passwordConfirmationInput.setErrors({notEquivalent: true});
-      }
-      else {
-        return passwordConfirmationInput.setErrors(null);
-      }
-    };
-  }
 
     // convenience getter for easy access to form fields
     get f() { return this.form.controls; }
