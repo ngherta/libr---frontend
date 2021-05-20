@@ -1,6 +1,7 @@
 ﻿import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { NgForm } from '@angular/forms';
 import { first } from 'rxjs/operators';
 
 import { AccountService, AlertService } from '@app/_services';
@@ -37,6 +38,7 @@ export class AddEditComponent implements OnInit {
            email: ['', Validators.email],
             age: ['', Validators.required],
             phone: ['', Validators.required],
+          role: ['', Validators.required],
             password: ['', passwordValidators]
         });
 
@@ -50,6 +52,7 @@ export class AddEditComponent implements OnInit {
                     this.f.phone.setValue(x.phone);
                     this.f.email.setValue(x.email);
                     this.f.password.setValue(x.password);
+                    this.f.role.setValue(x.role);
                 });
         }
     }
