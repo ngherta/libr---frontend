@@ -1,4 +1,4 @@
-﻿import {Component, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 import {BookService} from '@app/_services/book.service';
 import {debounceTime, first, map} from 'rxjs/operators';
