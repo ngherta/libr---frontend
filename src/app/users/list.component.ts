@@ -20,7 +20,7 @@ export class ListComponent implements OnInit {
   ngOnInit() {
     this.dtOptions = {
       pagingType: 'full_numbers',
-      pageLength: 2
+      pageLength: 20
     };
     this.accountService.getAll()
       .pipe(first())

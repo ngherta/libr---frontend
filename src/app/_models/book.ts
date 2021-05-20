@@ -1,19 +1,19 @@
 export class Book {
 
-    id: number;
-    title: string;
-    authors: Array<string>;
-    publisher: string;
-    publishedDate: Date;
-    description: string;
-    industryIdentifiers: { [key: string]: string; } = {};
-    pageCount: number;
-    categories: Array<string>;
-    averageRating: number;
-    ratingsCount: number;
-    maturityRating: string;
-    imageLinks: { [key: string]: string; } = {};
-    language: string;
-    previewLink: string;
+  id: number;
+  title: string;
+  authors: Array<string>;
+  publisher: string;
+  publishedDate: Date;
+  description: string;
+  industryIdentifiers: { [key: string]: string; } = {};
+  pageCount: number;
+  categories: Array<string>;
+  averageRating: number;
+  ratingsCount: number;
+  maturityRating: string;
+  imageLinks: { [key: string]: string; } = {};
+  language: string;
+  previewLink: string;
 
 }

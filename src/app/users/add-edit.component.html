@@ -1,10 +1,11 @@
 ﻿<h1 *ngIf="isAddMode">Add User</h1>
 <h1 *ngIf="!isAddMode">Edit User</h1>
-<form [formGroup]="form" (ngSubmit)="onSubmit()">
+<form  [formGroup]="form" (ngSubmit)="onSubmit()">
     <div class="form-row">
         <div class="form-group col">
             <label for="firstName">First Name</label>
-            <input type="text" formControlName="firstName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" />
+            <input type="text" required formControlName="firstName" class="form-control"
+                   [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" />
             <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
                 <div *ngIf="f.firstName.errors.required">First Name is required</div>
             </div>
@@ -17,9 +18,6 @@
             </div>
         </div>
     </div>
-
-
-
 
   <div class="form-row">
     <div class="form-group col">
@@ -38,9 +36,6 @@
     </div>
   </div>
 
-
-
-
     <div class="form-row">
         <div class="form-group col">
             <label for="email">Email</label>
@@ -49,7 +44,19 @@
                 <div *ngIf="f.email.errors.required">email is required</div>
             </div>
         </div>
-        <div class="form-group col">
+
+      <div *ngIf="!isAddMode" class="form-group col">
+        <label for="role">
+          Role
+        </label>
+        <select type="text" name = "role" formControlName="role" class = "form-control" [ngClass]="{ 'is-invalid': submitted && f.role.errors }">
+          <option label="User" value="USER">User</option>
+          <option label="Admin" value = "ADMIN" selected>Admin</option>
+        </select>
+      </div>
+
+
+        <div *ngIf="isAddMode" class="form-group col">
             <label for="password">
                 Password
                 <em *ngIf="!isAddMode">(Leave blank to keep the same password)</em>
