@@ -1,0 +1,17 @@
+body {
+  background: rgb(39, 39, 39);
+}
+
+h1 {
+  position: static;
+  top: 10%;
+  left: 10%;
+
+  font-size: 60px;
+  font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
+  background: linear-gradient(
+    to right, #f32170, #ff6b08,
+    #cf23cf, #eedd44);
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+}

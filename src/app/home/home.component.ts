@@ -1,17 +1,29 @@
-﻿import { Component } from '@angular/core';
+﻿import {Component} from '@angular/core';
 
-import { User } from '@app/_models';
-import { AccountService } from '@app/_services';
+import {BookService} from '@app/_services/book.service';
+import {logger} from 'codelyzer/util/logger';
+import {first} from "rxjs/operators";
+import {AccountService} from "@app/_services";
+import {Book} from "@app/_models/book";
 
-@Component({ 
-    templateUrl: 'home.component.html',
- })
+
+@Component({
+  templateUrl: 'home.component.html',
+})
 
 
 export class HomeComponent {
-    user: User;
+  books: Book[] = [];
 
-    constructor(private accountService: AccountService) {
-        this.user = this.accountService.userValue;
-    }
+  constructor(private bookService: BookService,
+              private accountService: AccountService) {  }
+  showData(data: string) {
+    this.bookService.findInGoogleApi(data)
+      .subscribe(dataResponse => {
+        for (const dataResponseElement of dataResponse.items) {
+          console.log(dataResponseElement.volumeInfo);
+        }
+      });
+  }
+
 }

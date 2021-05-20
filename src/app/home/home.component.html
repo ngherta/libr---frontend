@@ -1,26 +1,85 @@
 ﻿<div class="p-4">
-    <div class="container">
-        <h1>Hi {{user.firstName}} !</h1>
-        <style>
-            body {
-                background: rgb(39, 39, 39);
-            }
-          
-            h1 {
-                position: static;
-                top: 10%;
-                left: 10%;
-          
-                font-size: 60px;
-                font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
-                background: linear-gradient(
-                    to right, #f32170, #ff6b08,
-                     #cf23cf, #eedd44);
-                -webkit-text-fill-color: transparent;
-                -webkit-background-clip: text;
-            }
-        </style>
-        <p> You're logged in Libr!!</p>
-        <p><a routerLink="/users">Manage Users</a></p>
+  <div class="container">
+
+    <div class="input-group rounded" style="width: 30%;">
+      <mat-form-field class="input">
+        <div (keyup)="showData(input.value)">
+          <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search"
+                 aria-describedby="search-addon" #input/>
+          <span class="input-group-text border-0" id="search-addon">
+          </span>
+        </div>
+      </mat-form-field>
+      <i class="fas fa-search"></i>
     </div>
+
+
+
+
+    <div *ngFor="let book of books" class="container d-flex justify-content-center mt-50 mb-50">
+      <div class="row">
+        <div class="col-md-10">
+          <div class="card card-body mt-3">
+            <div class="media align-items-center align-items-lg-start text-center text-lg-left flex-column flex-lg-row">
+              <div class="mr-2 mb-3 mb-lg-0">
+                <img src="../../assets/img/ThinkJava.jpg" width="150" height="150" alt="">
+              </div>
+              <div class="media-body">
+                <h6 class="media-title font-weight-semibold">
+                  <a href="#" data-abc="true">{{book.title}}</a>
+                </h6>
+                <ul class="list-inline list-inline-dotted mb-3 mb-lg-2">
+                  <li class="list-inline-item"><a href="#" class="text-muted" data-abc="true">{{book.categories}}</a></li>
+                </ul>
+                <p class="mb-3">Thinking In Java should be read cover to cover by every Java programmer, then kept close at
+                  hand for frequent reference.</p>
+
+
+                <ul class="list-inline list-inline-dotted mb-0">
+                  <li class="list-inline-item">All items from <a href="#" data-abc="true">Mobile junction</a></li>
+                  <li class="list-inline-item">Add to <a href="#" data-abc="true">wishlist</a></li>
+                </ul>
+              </div>
+              <div class="mt-3 mt-lg-0 ml-lg-3 text-center">
+                <h3 class="mb-0 font-weight-semibold">Available</h3>
+                <div> <i class="fa fa-star"></i> <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i> <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i> </div>
+                <div class="text-muted">12 reviews</div>
+                <button type="button" class="btn btn-warning mt-4 text-white"><i class="icon-cart-add mr-2"></i> Take a book</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+
+
+    <style>
+      body {
+        background: rgb(39, 39, 39);
+      }
+
+      h1 {
+        position: static;
+        top: 10%;
+        left: 10%;
+
+        font-size: 60px;
+        font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
+        background: linear-gradient(
+          to right, #f32170, #ff6b08,
+          #cf23cf, #eedd44);
+        -webkit-text-fill-color: transparent;
+        -webkit-background-clip: text;
+      }
+    </style>
+    <p> You're logged in Libr!!</p>
+    <p><a routerLink="/users">Manage Users</a></p>
+  </div>
 </div>
