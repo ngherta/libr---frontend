@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {User} from "@app/_models";
-import {Book} from "@app/_models/book";
-import {Subject} from "rxjs";
-import {AccountService} from "@app/_services";
-import {first} from "rxjs/operators";
-import {BookService} from "@app/_services/book.service";
+import {User} from '@app/_models';
+import {Book} from '@app/_models/book';
+import {Subject} from 'rxjs';
+import {AccountService} from '@app/_services';
+import {first} from 'rxjs/operators';
+import {BookService} from '@app/_services/book.service';
 
 @Component({
   selector: 'app-books',
@@ -22,10 +22,11 @@ export class BooksComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.dtOptions = {
-      pagingType: 'full_numbers',
-      pageLength: 5
-    };
+    // this.dtOptions = {
+    //   pagingType: 'full_numbers',
+    //   pageLength: 5
+    // };
+
     this.bookService.findInGoogleApi('java')
       .pipe(first())
       .subscribe(books => {
@@ -33,4 +34,5 @@ export class BooksComponent implements OnInit {
         this.dtTrigger.next();
       });
   }
+
 }

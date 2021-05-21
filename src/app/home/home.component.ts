@@ -5,6 +5,7 @@ import {logger} from 'codelyzer/util/logger';
 import {first} from "rxjs/operators";
 import {AccountService} from "@app/_services";
 import {Book} from "@app/_models/book";
+import {BooksComponent} from "@app/books/books.component";
 
 
 @Component({
@@ -17,6 +18,7 @@ export class HomeComponent {
 
   constructor(private bookService: BookService,
               private accountService: AccountService) {  }
+
   showData(data: string) {
     this.bookService.findInGoogleApi(data)
       .subscribe(dataResponse => {
