@@ -5,6 +5,7 @@ import {Subject} from "rxjs";
 import {AccountService} from "@app/_services";
 import {first} from "rxjs/operators";
 import {BookService} from "@app/_services/book.service";
+import {FormsModule} from "@angular/forms";
 
 @Component({
   selector: 'app-books',
@@ -22,15 +23,16 @@ export class BooksComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.dtOptions = {
-      pagingType: 'full_numbers',
-      pageLength: 5
-    };
-    this.bookService.findInGoogleApi('java')
-      .pipe(first())
-      .subscribe(books => {
-        this.books = books;
-        this.dtTrigger.next();
-      });
+    // this.dtOptions = {
+    //   pagingType: 'full_numbers',
+    //   pageLength: 5
+    // };
+
+    // this.bookService.findInGoogleApi('java')
+    //   .pipe(first())
+    //   .subscribe(books => {
+    //     this.books = books;
+    //     this.dtTrigger.next();
+    //   });
   }
 }
