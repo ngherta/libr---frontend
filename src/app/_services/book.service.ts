@@ -25,4 +25,8 @@ export class BookService {
     return this.http.get(`https://www.googleapis.com/books/v1/volumes?q=` + keyword);
   }
 
+  save(book: Book) {
+    return this.http.post(`${environment.apiUrl}/books/save`, book);
+  }
+
 }

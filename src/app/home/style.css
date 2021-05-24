@@ -1,5 +1,10 @@
 body {
   background: rgb(39, 39, 39);
+  min-height: 1000px !important;
+}
+
+.container {
+  min-height: 1000px;
 }
 
 .search-card-info {
@@ -32,7 +37,7 @@ body {
 }
 .drop-down-search {
   position: relative;
-  width: 59%;
+  width: 76%;
   overflow: auto;
   height: 500px;
   border-radius: 0 0 4px 4px;
@@ -41,11 +46,15 @@ body {
   background-color: #edeef0;
 }
 
+.button-container {
+  padding-top: 25px;
+}
+
 .button-x {
   z-index: 1;
   position: relative;
-  bottom: 30px;
-  right: 20px;
+  bottom: 32px;
+  right: 13px;
 }
 
 .conteiner {
@@ -54,7 +63,7 @@ body {
 
 .card {
   margin: 0 auto;
-  background-color: 	#A0A0A0;
+  background-color: 	white;
   padding: 10px;
   /*border-bottom: 1px lightgrey solid;*/
 }
@@ -63,8 +72,17 @@ body {
   display: flex;
 }
 
-.imgSize {
+.desctiption-text-hidden {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
 
+.imgSize {
+  height: 180px;
+  width: auto;
+  margin: auto 0;
 }
 
 .cardWrapper {
@@ -77,6 +95,7 @@ body {
 
 .infoWrapper {
   padding-left: 15px;
+  width: 100%;
 }
 
 .button {
@@ -86,6 +105,7 @@ body {
 
 .infoCard {
   margin-right: 10%;
+  width: 50%;
 }
 
 .textColor {

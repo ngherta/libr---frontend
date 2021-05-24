@@ -8,16 +8,18 @@
       object.onsearch = handler;
       function clearButton(handler) {
         books = [];
+        condition = false;
+        console.log("TEST");
       }
     </script>
 
-      <div style= "position: absolute; z-index: 1;" class="input-group container-fluid">
-        <mat-form-field style="width: 60%; margin: 0 10%;" class="input">
+      <div style="width: 100%" class="input-group container-fluid">
+        <mat-form-field style="width: 78%; z-index: 1; margin: 0 10%;" class="input">
           <div (keyup)="showData(input.value)">
-            <input type="search" style="margin: 0 auto;" class="form-control rounded" placeholder="Search"
+            <input id = "myInput" type="search" style="margin: 0 auto;" class="form-control rounded" placeholder="Search"
                    aria-label="Search"
                    aria-describedby="search-addon" #input/>
-            <button type="button" (click)="clearArray()" class="button-x close" aria-label="Close">
+            <button type="button" onclick="document.getElementById('myInput').value = ''" (click)="clearArray()"  class="button-x close" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
 
@@ -28,27 +30,29 @@
               <div *ngFor="let book of books" class="conteiner">
                 <div class="card">
                   <div class="cardWrapper">
-                    <img class="imgSize" src="{{book.imageLinks.thumbnail}}" alt="..">
+                    <img class="imgSize" src="{{book.imageLinks ? book.imageLinks.thumbnail : 'https://fully-booked.ap-south-1.linodeobjects.com/catalog/product/placeholder/default/book-placeholder.png'}}" alt="..">
 
                     <div class="infoWrapper">
                       <div class="info">
                         <div class="infoCard">
-                          <p > <span class="textColor"> Title:  </span>{{book.title}}</p>
-                          <p> <span class="textColor"> Author: </span>{{book.authors}}</p>
-                          <p> <span class="textColor">Publisher: </span>{{book.publisher}}</p>
+                          <p > <span class="textColor"> Title:  </span>{{book.title ? book.title : 'NULL'}}</p>
+                          <p> <span class="textColor"> Author: </span>{{book.authors ? book.authors : 'NULL'}}</p>
+                          <p> <span class="textColor">Publisher: </span>{{book.publisher ? book.publisher : 'NULL'}}</p>
                         </div>
                         <div >
-                          <p> <span class="textColor"> Pages: </span>{{book.pageCount}}</p>
-                          <p> <span class="textColor"> Rating: </span>{{book.averageRating}}</p>
-                          <p> <span class="textColor"> Language: </span>{{book.language}}</p>
+                          <p> <span class="textColor"> Pages: </span>{{book.pageCount ? book.pageCount : 'NULL'}}</p>
+                          <p> <span class="textColor"> Rating: </span>{{book.averageRating ? book.averageRating : 'NULL'}}</p>
+                          <p> <span class="textColor"> Language: </span>{{book.language ? book.language : 'NULL'}}</p>
                         </div>
                         <div class="button">
-                          <p>Request</p>
-                          <button type="button" class="btn btn-primary">Request</button>
+                          <div class="button-container">
+                            <p>Request</p>
+                            <button type="button" class="btn btn-primary">Request</button>
+                          </div>
                         </div>
                       </div>
                       <div class="discriptionInfo">
-                        <p><span class="textColor">Discription: </span><span> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis officiis, officia deserunt, possimus perspiciatis, vero id minus praesentium earum alias delectus rerum. Voluptas modi accusamus labore, nam, ut ab odio!</span> </p>
+                        <p><span class="textColor">Discription: </span><span class="desctiption-text-hidden">{{book.description ? book.description : 'NULL'}}</span> </p>
                       </div>
                     </div>
                   </div>
@@ -194,9 +198,6 @@
 <!--        </div>-->
 
     <style>
-      body {
-        background: rgb(39, 39, 39);
-      }
 
       h1 {
         position: static;
