@@ -1,12 +1,11 @@
-﻿import {Injectable} from '@angular/core';
+﻿﻿
+import {Injectable} from '@angular/core';
 import {Router} from '@angular/router';
 import {HttpClient} from '@angular/common/http';
 import {BehaviorSubject, Observable} from 'rxjs';
-import {map} from 'rxjs/operators';
 
 import {environment} from '@environments/environment';
-import {User} from '@app/_models';
-import {Book} from "@app/_models/book";
+import {Book} from '@app/_models/book';
 
 @Injectable({providedIn: 'root'})
 export class BookService {
@@ -26,7 +25,7 @@ export class BookService {
   }
 
   save(book: Book) {
-    return this.http.post(`${environment.apiUrl}/books/save`, book);
+    return this.http.post(`${environment.apiUrl}/books/`, book);
   }
 
 }

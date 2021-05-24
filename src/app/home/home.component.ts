@@ -66,12 +66,12 @@ export class HomeComponent implements OnInit {
 
   }
 
-  private saveBook() {
-    this.bookService.save(this.form.value)
+  public saveBook(book: Book) {
+    this.bookService.save(book)
       .pipe(first())
       .subscribe(
         data => {
-          this.alertService.success('User added successfully', { keepAfterRouteChange: true });
+          this.alertService.success('Book added successfully', { keepAfterRouteChange: true });
           this.router.navigate(['.', { relativeTo: this.route }]);
         },
         error => {

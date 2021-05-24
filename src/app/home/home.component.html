@@ -1,8 +1,5 @@
-﻿<div class="p-4">
+﻿<div class="p-4 main-container">
   <div class="container">
-
-    <app-typeahead-template></app-typeahead-template>
-
 
     <script>
       object.onsearch = handler;
@@ -12,190 +9,192 @@
         console.log("TEST");
       }
     </script>
+    <div style="width: 100%" class="input-group container-fluid">
+      <div class="input math-form-field">
+        <div (keyup)="showData(input.value)">
+          <input id = "myInput" type="search" style="margin: 0 auto;" class="form-control rounded" placeholder="Search"
+                 aria-label="Search"
+                 aria-describedby="search-addon" #input/>
+          <button type="button" onclick="document.getElementById('myInput').value = ''" (click)="clearArray()"
+                  class="button-x close" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
 
-      <div style="width: 100%" class="input-group container-fluid">
-        <mat-form-field style="width: 78%; z-index: 1; margin: 0 10%;" class="input">
-          <div (keyup)="showData(input.value)">
-            <input id = "myInput" type="search" style="margin: 0 auto;" class="form-control rounded" placeholder="Search"
-                   aria-label="Search"
-                   aria-describedby="search-addon" #input/>
-            <button type="button" onclick="document.getElementById('myInput').value = ''" (click)="clearArray()"  class="button-x close" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
+          <!--            <button *ngIf="input.focus()" type="button" class="close" aria-label="Close">-->
+          <!--              <span aria-hidden="true">&times;</span>-->
+          <!--            </button>-->
+          <div *ngIf="condition" class="drop-down-search" style="position: absolute">
+            <div *ngFor="let book of books" class="conteiner">
+              <div class="card">
+                <div class="cardWrapper">
+                  <img class="imgSize" src="{{book.imageLinks ? book.imageLinks.thumbnail :
+                     'https://fully-booked.ap-south-1.linodeobjects.com/catalog/product/placeholder/default/book-placeholder.png'}}"
+                       alt="..">
 
-<!--            <button *ngIf="input.focus()" type="button" class="close" aria-label="Close">-->
-<!--              <span aria-hidden="true">&times;</span>-->
-<!--            </button>-->
-            <div *ngIf="condition" class="drop-down-search" style="position: absolute">
-              <div *ngFor="let book of books" class="conteiner">
-                <div class="card">
-                  <div class="cardWrapper">
-                    <img class="imgSize" src="{{book.imageLinks ? book.imageLinks.thumbnail : 'https://fully-booked.ap-south-1.linodeobjects.com/catalog/product/placeholder/default/book-placeholder.png'}}" alt="..">
-
-                    <div class="infoWrapper">
-                      <div class="info">
-                        <div class="infoCard">
-                          <p > <span class="textColor"> Title:  </span>{{book.title ? book.title : 'NULL'}}</p>
-                          <p> <span class="textColor"> Author: </span>{{book.authors ? book.authors : 'NULL'}}</p>
-                          <p> <span class="textColor">Publisher: </span>{{book.publisher ? book.publisher : 'NULL'}}</p>
-                        </div>
-                        <div >
-                          <p> <span class="textColor"> Pages: </span>{{book.pageCount ? book.pageCount : 'NULL'}}</p>
-                          <p> <span class="textColor"> Rating: </span>{{book.averageRating ? book.averageRating : 'NULL'}}</p>
-                          <p> <span class="textColor"> Language: </span>{{book.language ? book.language : 'NULL'}}</p>
-                        </div>
-                        <div class="button">
-                          <div class="button-container">
-                            <p>Request</p>
-                            <button type="button" class="btn btn-primary">Request</button>
-                          </div>
+                  <div class="infoWrapper">
+                    <div class="info">
+                      <div class="infoCard">
+                        <p > <span class="textColor"> Title:  </span>{{book.title ? book.title : 'NULL'}}</p>
+                        <p> <span class="textColor"> Author: </span>{{book.authors ? book.authors : 'NULL'}}</p>
+                        <p> <span class="textColor">Publisher: </span>{{book.publisher ? book.publisher : 'NULL'}}</p>
+                      </div>
+                      <div >
+                        <p> <span class="textColor"> Pages: </span>{{book.pageCount ? book.pageCount : 'NULL'}}</p>
+                        <p> <span class="textColor"> Rating: </span>{{book.averageRating ? book.averageRating : 'NULL'}}</p>
+                        <p> <span class="textColor"> Language: </span>{{book.language ? book.language : 'NULL'}}</p>
+                      </div>
+                      <div class="button">
+                        <div class="button-container">
+                          <p>Request</p>
+                          <button type="button" class="btn btn-primary" (click)="saveBook(book)">Request</button>
                         </div>
                       </div>
-                      <div class="discriptionInfo">
-                        <p><span class="textColor">Discription: </span><span class="desctiption-text-hidden">{{book.description ? book.description : 'NULL'}}</span> </p>
-                      </div>
+                    </div>
+                    <div class="discriptionInfo">
+                      <p><span class="textColor">Discription: </span><span class="desctiption-text-hidden">{{book.description ? book.description : 'NULL'}}</span> </p>
                     </div>
                   </div>
                 </div>
               </div>
+            </div>
 
 
 
-<!--            <div style="position: relative;" *ngFor="let book of books" class=" border-1 container-fluid container-of-cards" id="search-addon">-->
-<!--            <div class="search-card-container">-->
-<!--              <div class="search-card-img">-->
-<!--                <img src="{{book.imageLinks.thumbnail}}" alt="Image of {{book.title}}">-->
-<!--              </div>-->
+            <!--            <div style="position: relative;" *ngFor="let book of books" class=" border-1 container-fluid container-of-cards" id="search-addon">-->
+            <!--            <div class="search-card-container">-->
+            <!--              <div class="search-card-img">-->
+            <!--                <img src="{{book.imageLinks.thumbnail}}" alt="Image of {{book.title}}">-->
+            <!--              </div>-->
 
 
-<!--              <div class="search-card-info">-->
-<!--                <div class="short-card-info">-->
-<!--                <div style="width: 150px;">-->
-<!--                  <p>-->
-<!--                  <strong>Title&#58;</strong>-->
-<!--                    {{book.title}}-->
-<!--                </p>-->
-<!--                <p>-->
-<!--                  <strong>Author&#58;</strong>-->
-<!--                  <span *ngFor="let author of book.authors">{{author}}</span>-->
-<!--                </p>-->
-<!--                <p>-->
-<!--                  <strong>Publisher&#58;</strong>-->
-<!--                  {{book.publisher}}-->
-<!--                </p>-->
-<!--                </div>-->
+            <!--              <div class="search-card-info">-->
+            <!--                <div class="short-card-info">-->
+            <!--                <div style="width: 150px;">-->
+            <!--                  <p>-->
+            <!--                  <strong>Title&#58;</strong>-->
+            <!--                    {{book.title}}-->
+            <!--                </p>-->
+            <!--                <p>-->
+            <!--                  <strong>Author&#58;</strong>-->
+            <!--                  <span *ngFor="let author of book.authors">{{author}}</span>-->
+            <!--                </p>-->
+            <!--                <p>-->
+            <!--                  <strong>Publisher&#58;</strong>-->
+            <!--                  {{book.publisher}}-->
+            <!--                </p>-->
+            <!--                </div>-->
 
-<!--                <div style="width: 100px;">-->
-<!--                  <p>-->
-<!--                  <strong>Pages&#58;</strong>-->
-<!--                    {{book.pageCount}}-->
-<!--                </p>-->
-<!--                <p>-->
-<!--                  <strong>Rating&#58;</strong>-->
-<!--                  {{book.averageRating}}-->
-<!--                </p>-->
-<!--                <p>-->
-<!--                  <strong>Language&#58;</strong>-->
-<!--                  {{book.language}}-->
-<!--                </p>-->
-<!--                </div>-->
-<!--                <a class=" btn-request btn btn-primary" href="#" role="button">Request</a>-->
+            <!--                <div style="width: 100px;">-->
+            <!--                  <p>-->
+            <!--                  <strong>Pages&#58;</strong>-->
+            <!--                    {{book.pageCount}}-->
+            <!--                </p>-->
+            <!--                <p>-->
+            <!--                  <strong>Rating&#58;</strong>-->
+            <!--                  {{book.averageRating}}-->
+            <!--                </p>-->
+            <!--                <p>-->
+            <!--                  <strong>Language&#58;</strong>-->
+            <!--                  {{book.language}}-->
+            <!--                </p>-->
+            <!--                </div>-->
+            <!--                <a class=" btn-request btn btn-primary" href="#" role="button">Request</a>-->
 
-<!--              </div>-->
-<!--                <p class="field-description">-->
-<!--                  <strong>Description&#58;</strong>-->
-<!--                  {{book.description}}</p>-->
-<!--              </div>-->
-
-
-<!--            </div>-->
-<!--          </div>-->
+            <!--              </div>-->
+            <!--                <p class="field-description">-->
+            <!--                  <strong>Description&#58;</strong>-->
+            <!--                  {{book.description}}</p>-->
+            <!--              </div>-->
 
 
-<!--              <div style="position: relative" *ngFor="let book of books" class="container d-flex justify-content-center mt-50 mb-50">-->
-<!--                <div class="row">-->
-<!--                  <div class="col-md-10">-->
-<!--                    <div style="padding: 0.25em;" class="card card-body mt-3">-->
-<!--                      <div style="width: 51.5em;" class="media align-items-center align-items-lg-start text-center text-lg-left flex-column flex-lg-row">-->
-<!--                        <div class="mr-2 mb-3 mb-lg-0">-->
-<!--                          <img src="{{book.imageLinks.thumbnail}}" width="150" height="150" alt="">-->
-<!--                        </div>-->
-<!--                        <div class="media-body">-->
-<!--                          <h6 class="media-title font-weight-semibold">-->
-<!--                            <a href="#" data-abc="true">{{book.title}}</a>-->
-<!--                          </h6>-->
-<!--                          <ul class="list-inline list-inline-dotted mb-3 mb-lg-2">-->
-<!--                            <li class="list-inline-item"><a href="#" class="text-muted" data-abc="true">{{book.categories}}</a></li>-->
-<!--                          </ul>-->
-<!--                          <p class="mb-3">Thinking In Java should be read cover to cover by every Java programmer, then kept close at-->
-<!--                            hand for frequent reference.</p>-->
+            <!--            </div>-->
+            <!--          </div>-->
 
 
-<!--                          <ul class="list-inline list-inline-dotted mb-0">-->
-<!--                            <li class="list-inline-item">All items from <a href="#" data-abc="true">Mobile junction</a></li>-->
-<!--                            <li class="list-inline-item">Add to <a href="#" data-abc="true">wishlist</a></li>-->
-<!--                          </ul>-->
-<!--                        </div>-->
-<!--                        <div class="mt-3 mt-lg-0 ml-lg-3 text-center">-->
-<!--                          <h3 class="mb-0 font-weight-semibold">Available</h3>-->
-<!--                          <div> <i class="fa fa-star"></i> <i class="fa fa-star"></i>-->
-<!--                            <i class="fa fa-star"></i> <i class="fa fa-star"></i>-->
-<!--                            <i class="fa fa-star"></i> </div>-->
-<!--                          <div class="text-muted">12 reviews</div>-->
-<!--                          <button type="button" class="btn btn-warning mt-4 text-white"><i class="icon-cart-add mr-2"></i> Take a book</button>-->
-<!--                        </div>-->
-<!--                      </div>-->
-<!--                    </div>-->
-<!--                  </div>-->
-<!--                </div>-->
-<!--              </div>-->
+            <!--              <div style="position: relative" *ngFor="let book of books" class="container d-flex justify-content-center mt-50 mb-50">-->
+            <!--                <div class="row">-->
+            <!--                  <div class="col-md-10">-->
+            <!--                    <div style="padding: 0.25em;" class="card card-body mt-3">-->
+            <!--                      <div style="width: 51.5em;" class="media align-items-center align-items-lg-start text-center text-lg-left flex-column flex-lg-row">-->
+            <!--                        <div class="mr-2 mb-3 mb-lg-0">-->
+            <!--                          <img src="{{book.imageLinks.thumbnail}}" width="150" height="150" alt="">-->
+            <!--                        </div>-->
+            <!--                        <div class="media-body">-->
+            <!--                          <h6 class="media-title font-weight-semibold">-->
+            <!--                            <a href="#" data-abc="true">{{book.title}}</a>-->
+            <!--                          </h6>-->
+            <!--                          <ul class="list-inline list-inline-dotted mb-3 mb-lg-2">-->
+            <!--                            <li class="list-inline-item"><a href="#" class="text-muted" data-abc="true">{{book.categories}}</a></li>-->
+            <!--                          </ul>-->
+            <!--                          <p class="mb-3">Thinking In Java should be read cover to cover by every Java programmer, then kept close at-->
+            <!--                            hand for frequent reference.</p>-->
 
+
+            <!--                          <ul class="list-inline list-inline-dotted mb-0">-->
+            <!--                            <li class="list-inline-item">All items from <a href="#" data-abc="true">Mobile junction</a></li>-->
+            <!--                            <li class="list-inline-item">Add to <a href="#" data-abc="true">wishlist</a></li>-->
+            <!--                          </ul>-->
+            <!--                        </div>-->
+            <!--                        <div class="mt-3 mt-lg-0 ml-lg-3 text-center">-->
+            <!--                          <h3 class="mb-0 font-weight-semibold">Available</h3>-->
+            <!--                          <div> <i class="fa fa-star"></i> <i class="fa fa-star"></i>-->
+            <!--                            <i class="fa fa-star"></i> <i class="fa fa-star"></i>-->
+            <!--                            <i class="fa fa-star"></i> </div>-->
+            <!--                          <div class="text-muted">12 reviews</div>-->
+            <!--                          <button type="button" class="btn btn-warning mt-4 text-white"><i class="icon-cart-add mr-2"></i> Take a book</button>-->
+            <!--                        </div>-->
+            <!--                      </div>-->
+            <!--                    </div>-->
+            <!--                  </div>-->
+            <!--                </div>-->
+            <!--              </div>-->
+
+          </div>
+        </div>
+      </div>
+      <i class="fas fa-search"></i>
+    </div>
+
+
+    <div>
+      <div *ngFor="let book of books" class="container d-flex justify-content-center mt-50 mb-50">
+        <div class="row">
+          <div class="col-md-10">
+            <div class="card card-body mt-3">
+              <div class="media align-items-center align-items-lg-start text-center text-lg-left flex-column flex-lg-row">
+                <div class="mr-2 mb-3 mb-lg-0">
+                  <img src="{{book.imageLinks.thumbnail}}" width="150" height="150" alt="">
+                </div>
+                <div class="media-body">
+                  <h6 class="media-title font-weight-semibold">
+                    <a href="#" data-abc="true">{{book.title}}</a>
+                  </h6>
+                  <ul class="list-inline list-inline-dotted mb-3 mb-lg-2">
+                    <li class="list-inline-item"><a href="#" class="text-muted" data-abc="true">{{book.categories}}</a></li>
+                  </ul>
+                  <p class="mb-3">Thinking In Java should be read cover to cover by every Java programmer, then kept close at
+                    hand for frequent reference.</p>
+
+
+                  <ul class="list-inline list-inline-dotted mb-0">
+                    <li class="list-inline-item">All items from <a href="#" data-abc="true">Mobile junction</a></li>
+                    <li class="list-inline-item">Add to <a href="#" data-abc="true">wishlist</a></li>
+                  </ul>
+                </div>
+                <div class="mt-3 mt-lg-0 ml-lg-3 text-center">
+                  <h3 class="mb-0 font-weight-semibold">Available</h3>
+                  <div> <i class="fa fa-star"></i> <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i> <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i> </div>
+                  <div class="text-muted">12 reviews</div>
+                  <button type="button" class="btn btn-warning mt-4 text-white"><i class="icon-cart-add mr-2"></i> Take a book</button>
+                </div>
+              </div>
             </div>
           </div>
-        </mat-form-field>
-        <i class="fas fa-search"></i>
+        </div>
       </div>
-
-
-<!--        <div>-->
-<!--          <div *ngFor="let book of books" class="container d-flex justify-content-center mt-50 mb-50">-->
-<!--            <div class="row">-->
-<!--              <div class="col-md-10">-->
-<!--                <div class="card card-body mt-3">-->
-<!--                  <div class="media align-items-center align-items-lg-start text-center text-lg-left flex-column flex-lg-row">-->
-<!--                    <div class="mr-2 mb-3 mb-lg-0">-->
-<!--                      <img src="{{book.imageLinks.thumbnail}}" width="150" height="150" alt="">-->
-<!--                    </div>-->
-<!--                    <div class="media-body">-->
-<!--                      <h6 class="media-title font-weight-semibold">-->
-<!--                        <a href="#" data-abc="true">{{book.title}}</a>-->
-<!--                      </h6>-->
-<!--                      <ul class="list-inline list-inline-dotted mb-3 mb-lg-2">-->
-<!--                        <li class="list-inline-item"><a href="#" class="text-muted" data-abc="true">{{book.categories}}</a></li>-->
-<!--                      </ul>-->
-<!--                      <p class="mb-3">Thinking In Java should be read cover to cover by every Java programmer, then kept close at-->
-<!--                        hand for frequent reference.</p>-->
-
-
-<!--                      <ul class="list-inline list-inline-dotted mb-0">-->
-<!--                        <li class="list-inline-item">All items from <a href="#" data-abc="true">Mobile junction</a></li>-->
-<!--                        <li class="list-inline-item">Add to <a href="#" data-abc="true">wishlist</a></li>-->
-<!--                      </ul>-->
-<!--                    </div>-->
-<!--                    <div class="mt-3 mt-lg-0 ml-lg-3 text-center">-->
-<!--                      <h3 class="mb-0 font-weight-semibold">Available</h3>-->
-<!--                      <div> <i class="fa fa-star"></i> <i class="fa fa-star"></i>-->
-<!--                        <i class="fa fa-star"></i> <i class="fa fa-star"></i>-->
-<!--                        <i class="fa fa-star"></i> </div>-->
-<!--                      <div class="text-muted">12 reviews</div>-->
-<!--                      <button type="button" class="btn btn-warning mt-4 text-white"><i class="icon-cart-add mr-2"></i> Take a book</button>-->
-<!--                    </div>-->
-<!--                  </div>-->
-<!--                </div>-->
-<!--              </div>-->
-<!--            </div>-->
-<!--          </div>-->
-<!--        </div>-->
+    </div>
 
     <style>
 
