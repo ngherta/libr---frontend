@@ -60,7 +60,7 @@ export class AccountService {
     return this.http.put(`${environment.apiUrl}/users/${id}`, params)
       .pipe(map(x => {
         // update stored user if the logged in user updated their own record
-        if (id == this.userValue.id) {
+        if (id === this.userValue.id) {
           // update local storage
           const user = {...this.userValue, ...params};
           localStorage.setItem('user', JSON.stringify(user));
@@ -71,6 +71,23 @@ export class AccountService {
         return x;
       }));
   }
+
+  updatePass(id, newPassword){
+    return this.http.put(`${environment.apiUrl}/auth/password/${id}`, {'newPassword' : newPassword})
+      .pipe(map(x => {
+        // update stored user if the logged in user updated their own record
+        if (id === this.userValue.id) {
+          // update local storage
+          const user = {...this.userValue, ...newPassword};
+          localStorage.setItem('user', JSON.stringify(user));
+
+          // publish updated user to subscribers
+          this.userSubject.next(user);
+        }
+        return x;
+      }));
+  }
+
 
   delete(id: string) {
     return this.http.delete(`${environment.apiUrl}/users/${id}`)

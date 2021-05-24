@@ -3,8 +3,6 @@ import {BrowserModule} from '@angular/platform-browser';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 
-// used to create fake backend
-//import { fakeBackendProvider } from './_helpers';
 
 import {AppRoutingModule} from './app-routing.module';
 import {JwtInterceptor, ErrorInterceptor} from './_helpers';
@@ -13,9 +11,10 @@ import {AlertComponent} from './_components';
 import {HomeComponent} from './home';
 import {BooksComponent} from './books/books.component';
 
-;
-import {TypeaheadTemplateComponent} from './typeahead-template/typeahead-template.component'
-import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
+
+import {TypeaheadTemplateComponent} from './typeahead-template/typeahead-template.component';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {ChangePasswordComponent} from '@app/users/change-password.component';
 
 
 @NgModule({
@@ -32,11 +31,13 @@ import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
     AlertComponent,
     HomeComponent,
     BooksComponent,
+    ChangePasswordComponent,
     TypeaheadTemplateComponent
   ],
+
   bootstrap: [AppComponent, TypeaheadTemplateComponent],
   exports: [TypeaheadTemplateComponent]
 })
 
 export class AppModule {
-};
+}

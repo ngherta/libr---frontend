@@ -4,7 +4,7 @@ import {BookService} from '@app/_services/book.service';
 import {debounceTime, first, map} from 'rxjs/operators';
 import {AccountService} from '@app/_services';
 import {Book} from '@app/_models/book';
-import {Observable, OperatorFunction} from "rxjs";
+import {Observable, OperatorFunction} from 'rxjs';
 
 
 
@@ -42,14 +42,14 @@ export class HomeComponent implements OnInit {
 
         console.log(dataResponse);
         for (let i = 0; i < dataResponse.items.length; i++) {
-          if(i ===  5) break;
+          if(i ===  5) { break; }
           this.books.push(dataResponse.items[i].volumeInfo);
         }
 
         if (this.books.length > 0) {
           this.condition = true;
         }
-        else this.condition = false;
+        else { this.condition = false; }
       });
 
   }

@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-
 import { UsersRoutingModule } from './users-routing.module';
 import { LayoutComponent } from './layout.component';
 import { ListComponent } from './list.component';
 import { AddEditComponent } from './add-edit.component';
-import {DataTablesModule} from "angular-datatables";
+import { DataTablesModule } from 'angular-datatables';
 import { NgForm } from '@angular/forms';
+import {ChangePasswordComponent} from '@app/users/change-password.component';
 
 @NgModule({
     imports: [
@@ -19,7 +19,7 @@ import { NgForm } from '@angular/forms';
     declarations: [
         LayoutComponent,
         ListComponent,
-        AddEditComponent
+        AddEditComponent,
     ]
 })
 export class UsersModule { }

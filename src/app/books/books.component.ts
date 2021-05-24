@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 
-import {User} from "@app/_models";
-import {Book} from "@app/_models/book";
-import {Subject} from "rxjs";
-import {AccountService} from "@app/_services";
-import {first} from "rxjs/operators";
-import {BookService} from "@app/_services/book.service";
-import {FormsModule} from "@angular/forms";
+import {User} from '@app/_models';
+import {Book} from '@app/_models/book';
+import {Subject} from 'rxjs';
+import {AccountService} from '@app/_services';
+import {first} from 'rxjs/operators';
+import {BookService} from '@app/_services/book.service';
+import {FormsModule} from '@angular/forms';
 
 
 @Component({

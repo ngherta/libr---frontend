@@ -6,7 +6,7 @@ import {map} from 'rxjs/operators';
 
 import {environment} from '@environments/environment';
 import {User} from '@app/_models';
-import {Book} from "@app/_models/book";
+import {Book} from '@app/_models/book';
 
 @Injectable({providedIn: 'root'})
 export class BookService {
