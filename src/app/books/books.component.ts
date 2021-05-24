@@ -1,10 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import {User} from '@app/_models';
-import {Book} from '@app/_models/book';
-import {Subject} from 'rxjs';
-import {AccountService} from '@app/_services';
-import {first} from 'rxjs/operators';
-import {BookService} from '@app/_services/book.service';
+
+import {User} from "@app/_models";
+import {Book} from "@app/_models/book";
+import {Subject} from "rxjs";
+import {AccountService} from "@app/_services";
+import {first} from "rxjs/operators";
+import {BookService} from "@app/_services/book.service";
+import {FormsModule} from "@angular/forms";
+
 
 @Component({
   selector: 'app-books',
@@ -27,12 +30,13 @@ export class BooksComponent implements OnInit {
     //   pageLength: 5
     // };
 
-    this.bookService.findInGoogleApi('java')
-      .pipe(first())
-      .subscribe(books => {
-        this.books = books;
-        this.dtTrigger.next();
-      });
+    // this.bookService.findInGoogleApi('java')
+    //   .pipe(first())
+    //   .subscribe(books => {
+    //     this.books = books;
+    //     this.dtTrigger.next();
+    //   });
+
   }
 
 }

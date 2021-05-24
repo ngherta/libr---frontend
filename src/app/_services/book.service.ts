@@ -22,7 +22,7 @@ export class BookService {
   }
 
   findInGoogleApi(keyword: string) {
-    return this.http.get<Book[]>(`https://www.googleapis.com/books/v1/volumes?q=` + keyword);
+    return this.http.get(`https://www.googleapis.com/books/v1/volumes?q=` + keyword);
   }
 
 }
