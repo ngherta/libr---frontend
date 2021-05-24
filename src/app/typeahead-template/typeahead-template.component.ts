@@ -18,6 +18,7 @@ import {NgbTypeahead} from "@ng-bootstrap/ng-bootstrap";
 
 export class TypeaheadTemplateComponent {
   public model: any;
+  search: any;
   books: Book[] = [];
 
   @ViewChild('typeaheadInstance')

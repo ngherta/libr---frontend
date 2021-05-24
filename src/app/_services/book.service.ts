@@ -1,12 +1,13 @@
-﻿import {Injectable} from '@angular/core';
+﻿import {User} from "@app/_models";
+
+import {Injectable} from '@angular/core';
 import {Router} from '@angular/router';
 import {HttpClient} from '@angular/common/http';
 import {BehaviorSubject, Observable} from 'rxjs';
-import {map} from 'rxjs/operators';
 
 import {environment} from '@environments/environment';
-import {User} from '@app/_models';
-import {Book} from "@app/_models/book";
+import {Book} from '@app/_models/book';
+import {map} from "rxjs/operators";
 
 @Injectable({providedIn: 'root'})
 export class BookService {
@@ -21,12 +22,30 @@ export class BookService {
     this.book = this.bookSubject.asObservable();
   }
 
+  public get bookValue(): Book {
+    return this.bookSubject.value;
+  }
+
   findInGoogleApi(keyword: string) {
     return this.http.get(`https://www.googleapis.com/books/v1/volumes?q=` + keyword);
   }
 
   save(book: Book) {
-    return this.http.post(`${environment.apiUrl}/books/`, book);
+    return this.http.post(`${environment.apiUrl}/books/save`, book);
   }
 
+  getById(id: string) {
+    return this.http.get<Book>(`${environment.apiUrl}/books/${id}`);
+  }
+
+  getAll() {
+    return this.http.get<Book[]>(`${environment.apiUrl}/books/all`);
+  }
+
+  delete(id: string) {
+    return this.http.delete(`${environment.apiUrl}/books/delete/${id}`)
+      .pipe(map(x => {
+        return x;
+      }));
+  }
 }

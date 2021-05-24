@@ -1,12 +1,12 @@
-import {Component, OnInit} from '@angular/core';
+﻿import {Component, OnInit} from '@angular/core';
 
 import {BookService} from '@app/_services/book.service';
 import {debounceTime, first, map} from 'rxjs/operators';
 import {AccountService, AlertService} from '@app/_services';
+import {Book} from '@app/_models/book';
 import {Observable, OperatorFunction} from "rxjs";
 import {ActivatedRoute, Router} from "@angular/router";
 import {FormGroup} from "@angular/forms";
-import {Book} from "@app/_models/book";
 
 
 @Component({
@@ -32,13 +32,6 @@ export class HomeComponent implements OnInit {
 
 
   ngOnInit() {
-    // this.bookService.findInGoogleApi(book)
-    //   .pipe(first())
-    //   .subscribe(books => {
-    //     for (const book of books) {
-    //       this.books = books;
-    //     }
-    //   });
 
   }
 
@@ -54,8 +47,6 @@ export class HomeComponent implements OnInit {
           if(i ===  5) break;
           this.condition = true;
           this.books.push(dataResponse.items[i].volumeInfo);
-          this.books.id = i;
-          console.log(this.books.id);
         }
 
         console.log(this.books);
@@ -68,8 +59,8 @@ export class HomeComponent implements OnInit {
 
   }
 
-  private saveBook() {
-    this.bookService.save(this.form.value)
+  public saveBook(book: Book) {
+    this.bookService.save(book)
       .pipe(first())
       .subscribe(
         data => {
@@ -80,9 +71,6 @@ export class HomeComponent implements OnInit {
           this.alertService.error(error);
           this.loading = false;
         });
-
-    console.log("save book is working");
-
   }
 
   clearArray() {

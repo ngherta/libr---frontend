@@ -1,11 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {User} from "@app/_models";
-import {Book} from "@app/_models/book";
 import {Subject} from "rxjs";
-import {AccountService} from "@app/_services";
 import {first} from "rxjs/operators";
 import {BookService} from "@app/_services/book.service";
-import {FormsModule} from "@angular/forms";
+import {ActivatedRoute, Router} from "@angular/router";
+import {Book} from "@app/_models/book";
 
 @Component({
   selector: 'app-books',
@@ -13,26 +11,36 @@ import {FormsModule} from "@angular/forms";
   styleUrls: ['./books.component.less']
 })
 export class BooksComponent implements OnInit {
+  dtOptions: DataTables.Settings = {};
   books: Book[] = [];
 
   // We use this trigger because fetching the list of persons can be quite long,
   // thus we ensure the data is fetched before rendering
   dtTrigger: Subject<any> = new Subject<any>();
 
-  constructor(private bookService: BookService) {
+  constructor(private bookService: BookService, private router: Router, private activatedRoute: ActivatedRoute) {
   }
 
   ngOnInit() {
-    // this.dtOptions = {
-    //   pagingType: 'full_numbers',
-    //   pageLength: 5
-    // };
+    this.dtOptions = {
+      pagingType: 'full_numbers',
+      pageLength: 20
+    };
+    this.bookService.getAll()
+      .pipe(first())
+      .subscribe(books => {
+        this.books = books;
+        this.dtTrigger.next();
+      });
+  }
 
-    // this.bookService.findInGoogleApi('java')
-    //   .pipe(first())
-    //   .subscribe(books => {
-    //     this.books = books;
-    //     this.dtTrigger.next();
-    //   });
+  deleteBook(id: string) {
+    const book = this.books.find(x => x.id === id);
+    // book.isDeleting = true;
+    this.bookService.delete(id)
+      .pipe(first())
+      .subscribe(() => {
+        this.books = this.books.filter(x => x.id !== id);
+      });
   }
 }
