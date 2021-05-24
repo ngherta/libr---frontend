@@ -7,6 +7,7 @@ import { LayoutComponent } from './layout.component';
 import { ListComponent } from './list.component';
 import { AddEditComponent } from './add-edit.component';
 import {DataTablesModule} from "angular-datatables";
+import { NgForm } from '@angular/forms';
 
 @NgModule({
     imports: [

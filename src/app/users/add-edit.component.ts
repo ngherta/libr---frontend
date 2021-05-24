@@ -1,6 +1,7 @@
 ﻿import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { NgForm } from '@angular/forms';
 import { first } from 'rxjs/operators';
 
 import { AccountService, AlertService } from '@app/_services';
@@ -24,7 +25,7 @@ export class AddEditComponent implements OnInit {
     ngOnInit() {
         this.id = this.route.snapshot.params['id'];
         this.isAddMode = !this.id;
-        
+
         // password not required in edit mode
         const passwordValidators = [Validators.minLength(6)];
         if (this.isAddMode) {
@@ -34,7 +35,10 @@ export class AddEditComponent implements OnInit {
         this.form = this.formBuilder.group({
             firstName: ['', Validators.required],
             lastName: ['', Validators.required],
-            email: ['', Validators.email],
+           email: ['', Validators.email],
+            age: ['', Validators.required],
+            phone: ['', Validators.required],
+          role: ['', Validators.required],
             password: ['', passwordValidators]
         });
 
@@ -44,7 +48,11 @@ export class AddEditComponent implements OnInit {
                 .subscribe(x => {
                     this.f.firstName.setValue(x.firstName);
                     this.f.lastName.setValue(x.lastName);
+                    this.f.age.setValue(x.age);
+                    this.f.phone.setValue(x.phone);
                     this.f.email.setValue(x.email);
+                    this.f.password.setValue(x.password);
+                    this.f.role.setValue(x.role);
                 });
         }
     }
