@@ -3,10 +3,10 @@
 import {BookService} from '@app/_services/book.service';
 import {debounceTime, first, map} from 'rxjs/operators';
 import {AccountService, AlertService} from '@app/_services';
-import {Book} from '@app/_models/book';
 import {Observable, OperatorFunction} from "rxjs";
 import {ActivatedRoute, Router} from "@angular/router";
 import {FormGroup} from "@angular/forms";
+import {Book} from "@app/_models/book";
 
 
 @Component({
@@ -54,6 +54,8 @@ export class HomeComponent implements OnInit {
           if(i ===  5) break;
           this.condition = true;
           this.books.push(dataResponse.items[i].volumeInfo);
+          this.books.id = i;
+          console.log(this.books.id);
         }
 
         console.log(this.books);
