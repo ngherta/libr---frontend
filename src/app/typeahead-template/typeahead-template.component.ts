@@ -26,21 +26,21 @@ export class TypeaheadTemplateComponent {
   constructor(private bookService: BookService) {
   }
 
-  search: (text$: Observable<string>) => Observable<Book[]> = (text$: Observable<string>) =>
-    text$.pipe(
-      distinctUntilChanged(),
-      debounceTime(200),
-      map(term => {
-        console.log(term);
-        this.bookService.findInGoogleApi(term)
-          .subscribe(dataResponse => {
-            this.books = [];
-            for (let i = 0; i < dataResponse.items.length; i++) {
-              this.books.push(dataResponse.items[i].volumeInfo);
-            }
-          });
-        return this.books.slice(0, 3);
-      }))
+  // search: (text$: Observable<string>) => Observable<Book[]> = (text$: Observable<string>) =>
+  //   text$.pipe(
+  //     distinctUntilChanged(),
+  //     debounceTime(200),
+  //     map(term => {
+  //       console.log(term);
+  //       this.bookService.findInGoogleApi(term)
+  //         .subscribe(dataResponse => {
+  //           this.books = [];
+  //           for (let i = 0; i < dataResponse.items.length; i++) {
+  //             this.books.push(dataResponse.items[i].volumeInfo);
+  //           }
+  //         });
+  //       return this.books.slice(0, 3);
+  //     }))
 
   formatter = (x: { title: string }) => x.title;
 }

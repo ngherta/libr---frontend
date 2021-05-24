@@ -7,6 +7,7 @@ import {Book} from '@app/_models/book';
 import {Observable, OperatorFunction} from "rxjs";
 
 
+
 @Component({
   templateUrl: 'home.component.html',
   styleUrls: ['style.css']
@@ -15,7 +16,9 @@ import {Observable, OperatorFunction} from "rxjs";
 export class HomeComponent implements OnInit {
   books: Book[] = [];
 
+
   constructor(private bookService: BookService,
+
               private accountService: AccountService) {
   }
 
@@ -31,15 +34,28 @@ export class HomeComponent implements OnInit {
 
   }
 
+  condition: boolean = false;
   showData(data: string) {
     this.books = [];
     this.bookService.findInGoogleApi(data)
       .subscribe(dataResponse => {
+
         console.log(dataResponse);
         for (let i = 0; i < dataResponse.items.length; i++) {
+          if(i ===  5) break;
           this.books.push(dataResponse.items[i].volumeInfo);
         }
+
+        if (this.books.length > 0) {
+          this.condition = true;
+        }
+        else this.condition = false;
       });
+
+  }
+
+  clearArray() {
+    this.books = [];
   }
 
 }
