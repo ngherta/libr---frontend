@@ -10,6 +10,7 @@ const usersModule = () => import('./users/users.module').then(x => x.UsersModule
 
 const routes: Routes = [
     { path: '', component: HomeComponent, canActivate: [AuthGuard] },
+  { path: 'book', component: BooksComponent, canActivate: [AuthGuard] },
     { path: 'users', loadChildren: usersModule, canActivate: [AuthGuard] },
     { path: 'account', loadChildren: accountModule },
     {path: 'book', component: BooksComponent},

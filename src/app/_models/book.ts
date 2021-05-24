@@ -5,7 +5,7 @@ export class Book {
   authors: Array<string>;
   publisher: string;
   publishedDate: Date;
-  description: string;
+  description: string; /*add tio html description*/
   industryIdentifiers: { [key: string]: string; } = {};
   pageCount: number;
   categories: Array<string>;
