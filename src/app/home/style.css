@@ -3,8 +3,8 @@ body {
   min-height: 1000px !important;
 }
 
-.container {
-  min-height: 1000px;
+.main-container {
+  min-height: 92vh;
 }
 
 .search-card-info {
@@ -27,6 +27,12 @@ body {
   display: flex;
   padding: 5px;
   font-size: 12px;
+}
+
+.math-form-field {
+  width: 78%;
+  z-index: 1;
+  margin: 0 10%;
 }
 
 .field-description {
@@ -87,10 +93,6 @@ body {
 
 .cardWrapper {
   display: flex;
-}
-
-.discriptionInfo {
-  margin-top: 60px;
 }
 
 .infoWrapper {

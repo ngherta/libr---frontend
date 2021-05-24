@@ -71,13 +71,15 @@ export class HomeComponent implements OnInit {
       .pipe(first())
       .subscribe(
         data => {
-          this.alertService.success('User added successfully', { keepAfterRouteChange: true });
+          this.alertService.success('Book added successfully', { keepAfterRouteChange: true });
           this.router.navigate(['.', { relativeTo: this.route }]);
         },
         error => {
           this.alertService.error(error);
           this.loading = false;
         });
+
+    console.log("save book is working");
 
   }
 

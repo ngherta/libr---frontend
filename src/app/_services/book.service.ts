@@ -26,7 +26,7 @@ export class BookService {
   }
 
   save(book: Book) {
-    return this.http.post(`${environment.apiUrl}/books/save`, book);
+    return this.http.post(`${environment.apiUrl}/books/`, book);
   }
 
 }
