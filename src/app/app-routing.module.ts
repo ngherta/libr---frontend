@@ -17,6 +17,7 @@ const routes: Routes = [
     { path: 'auth/password/:id', component:  ChangePasswordComponent},
     // otherwise redirect to home
     { path: '**', redirectTo: '' }
+
 ];
 
 @NgModule({
