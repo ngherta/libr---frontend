@@ -13,6 +13,7 @@ const routes: Routes = [
             { path: '', component: ListComponent },
             { path: 'add', component: AddEditComponent },
             { path: 'edit/:id', component: AddEditComponent },
+          {path: 'books', component: BooksComponent}
         ]
     }
 ];
