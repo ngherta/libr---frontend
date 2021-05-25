@@ -1,18 +1,19 @@
 import { Component, OnInit } from '@angular/core';
-import {Subject} from "rxjs";
-import {first} from "rxjs/operators";
-import {BookService} from "@app/_services/book.service";
-import {ActivatedRoute, Router} from "@angular/router";
-import {Book} from "@app/_models/book";
+import {Subject} from 'rxjs';
+import {first} from 'rxjs/operators';
+import {BookService} from '@app/_services/book.service';
+import {ActivatedRoute, Router} from '@angular/router';
+import {Book} from '@app/_models/book';
 
 @Component({
-  selector: 'app-books',
   templateUrl: './books.component.html',
   styleUrls: ['./books.component.less']
 })
+
 export class BooksComponent implements OnInit {
   dtOptions: DataTables.Settings = {};
   books: Book[] = [];
+
 
   // We use this trigger because fetching the list of persons can be quite long,
   // thus we ensure the data is fetched before rendering

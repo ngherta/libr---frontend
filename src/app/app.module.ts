@@ -12,13 +12,12 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {AlertComponent} from './_components';
 import {HomeComponent} from './home';
-import {BooksComponent} from './books/books.component';
 
-import {TypeaheadTemplateComponent} from './typeahead-template/typeahead-template.component'
+import {TypeaheadTemplateComponent} from './typeahead-template/typeahead-template.component';
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
-import { ProfileComponent } from './profile/profile.component'
+import { ProfileComponent } from './profile/profile.component';
 
-import { NoopAnimationsModule } from '@angular/platform-browser/animations'
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import {DataTablesModule} from "angular-datatables";
 
 @NgModule({
@@ -38,7 +37,6 @@ import {DataTablesModule} from "angular-datatables";
     AppComponent,
     AlertComponent,
     HomeComponent,
-    BooksComponent,
     TypeaheadTemplateComponent
 ,
     ProfileComponent  ],

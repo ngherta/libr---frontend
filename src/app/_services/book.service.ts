@@ -48,4 +48,24 @@ export class BookService {
         return x;
       }));
   }
+
+  register(book: Book) {
+    return this.http.post(`${environment.apiUrl}/books/save`, book);
+  }
+
+  update(id, params) {
+    return this.http.put(`${environment.apiUrl}/books/${id}`, params)
+      .pipe(map(x => {
+        // update stored user if the logged in user updated their own record
+        if (id === this.bookValue.id) {
+          // update local storage
+          const book = {...this.bookValue, ...params};
+          localStorage.setItem('book', JSON.stringify(book));
+
+          // publish updated user to subscribers
+          this.bookSubject.next(book);
+        }
+        return x;
+      }));
+  }
 }

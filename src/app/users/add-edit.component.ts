@@ -38,7 +38,6 @@ export class AddEditComponent implements OnInit {
            email: ['', Validators.email],
             age: ['', Validators.required],
             phone: ['', Validators.required],
-          role: ['', Validators.required],
             password: ['', passwordValidators]
         });
 
@@ -62,10 +61,8 @@ export class AddEditComponent implements OnInit {
 
     onSubmit() {
         this.submitted = true;
-
         // reset alerts on submit
         this.alertService.clear();
-
         // stop here if form is invalid
         if (this.form.invalid) {
             return;
