@@ -14,6 +14,7 @@ export class Book {
   imageLinks: { [key: string]: string; } = {};
   language: string;
   previewLink: string;
+  comments: Array<string>;
   vote: number;
 
 }

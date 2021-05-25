@@ -18,7 +18,9 @@ import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import { ProfileComponent } from './profile/profile.component';
 
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import {DataTablesModule} from "angular-datatables";
+import {DataTablesModule} from "angular-datatables";;
+import { InsideBookComponent } from './inside-book/inside-book.component'
+import {ChangePasswordComponent} from "@app/users/change-password.component";
 
 @NgModule({
   imports: [
@@ -31,15 +33,17 @@ import {DataTablesModule} from "angular-datatables";
     MatCardModule,
     NoopAnimationsModule,
     MatFormFieldModule,
-    DataTablesModule
+    DataTablesModule,
+
   ],
   declarations: [
     AppComponent,
     AlertComponent,
     HomeComponent,
-    TypeaheadTemplateComponent
-,
-    ProfileComponent  ],
+    TypeaheadTemplateComponent,
+    ChangePasswordComponent,
+    ProfileComponent ,
+    InsideBookComponent ],
   bootstrap: [AppComponent, TypeaheadTemplateComponent],
   exports: [TypeaheadTemplateComponent]
 })
