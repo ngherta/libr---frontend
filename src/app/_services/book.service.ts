@@ -53,6 +53,11 @@ export class BookService {
     return this.http.post(`${environment.apiUrl}/books/save`, book);
   }
 
+  vote(userId: string, bookId: number, vote: number) {
+    console.log(userId, bookId, vote);
+    return this.http.post(`${environment.apiUrl}/vote`, {"userId": userId, "bookId": bookId, "vote": vote});
+  }
+
   update(id, params) {
     return this.http.put(`${environment.apiUrl}/books/${id}`, params)
       .pipe(map(x => {

@@ -16,26 +16,44 @@ import {FormGroup} from "@angular/forms";
 
 export class HomeComponent implements OnInit {
   books: Book[] = [];
+  booksData: Book[] = [];
   form: FormGroup;
   id: string;
+  userId: string;
   isAddMode: boolean;
   loading = false;
   submitted = false;
 
   constructor(private bookService: BookService,
               private accountService: AccountService,
-              private alertService : AlertService,
+              private alertService: AlertService,
               private route: ActivatedRoute,
               private router: Router
-) {
+  ) {
+    this.userId = localStorage.getItem('user');
   }
 
 
   ngOnInit() {
+    // this.booksData.sort((a,b)=>a.vote > b.vote);
+    // this.booksData.sort((a,b) => a.vote.localeCompare(b.vote));
+    // this.booksData.sort(function (a, b) {
+    //   return a.vote - b.vote;
+    // });
 
+    // this.booksData.sort((a,b) => a.vote.localeCompare(b.vote));
+
+    this.userId = JSON.parse(localStorage.getItem('user')).id;
+    this.bookService.getAll()
+      .pipe(first())
+      .subscribe(booksD => {
+        this.booksData = booksD;
+        // this.dtTrigger.next();
+      });
   }
 
   condition: boolean = false;
+
   showData(data: string) {
     this.books = [];
     this.condition = false;
@@ -44,7 +62,7 @@ export class HomeComponent implements OnInit {
 
         console.log(dataResponse);
         for (let i = 0; i < dataResponse.items.length; i++) {
-          if(i ===  5) break;
+          if (i === 5) break;
           this.condition = true;
           this.books.push(dataResponse.items[i].volumeInfo);
         }
@@ -64,11 +82,35 @@ export class HomeComponent implements OnInit {
       .pipe(first())
       .subscribe(
         data => {
-          this.alertService.success('Book added successfully', { keepAfterRouteChange: true });
-          this.router.navigate(['.', { relativeTo: this.route }]);
+          this.alertService.success('Book added successfully', {keepAfterRouteChange: true});
+          this.router.navigate(['.', {relativeTo: this.route}]);
         },
         error => {
-          this.alertService.error(error);
+          this.alertService.error(error.error.errorMessage);
+          this.loading = false;
+        });
+  }
+
+  public upVote(bookId) {
+    this.bookService.vote(this.userId, bookId, 1)
+      .subscribe(data => {
+          console.log(data);
+          //use the sum of votes here
+        },
+        error => {
+          this.alertService.error(error.error.errorMessage);
+          this.loading = false;
+        });
+  }
+
+  public downVote(bookId) {
+    this.bookService.vote(this.userId, bookId, -1)
+      .subscribe(data => {
+          console.log(data);
+          //use the sum of votes here
+        },
+        error => {
+          this.alertService.error(error.error.errorMessage);
           this.loading = false;
         });
   }

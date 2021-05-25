@@ -10,7 +10,7 @@ import {first} from 'rxjs/operators';
   templateUrl: './add-edit.component.html',
 })
 export class AddEditComponent implements OnInit {
-  forms: FormGroup;
+  form: FormGroup;
   id: string;
   isAddMode: boolean;
   loading = false;
@@ -52,7 +52,7 @@ export class AddEditComponent implements OnInit {
   }
 
   // convenience getter for easy access to form fields
-  get f() { return this.forms.controls; }
+  get f() { return this.form.controls; }
 
   onSubmit() {
     this.submitted = true;
@@ -61,7 +61,7 @@ export class AddEditComponent implements OnInit {
     this.alertService.clear();
 
     // stop here if form is invalid
-    if (this.forms.invalid) {
+    if (this.form.invalid) {
       return;
     }
 
@@ -74,7 +74,7 @@ export class AddEditComponent implements OnInit {
   }
 
   private createBook() {
-    this.bookService.register(this.forms.value)
+    this.bookService.register(this.form.value)
       .pipe(first())
       .subscribe(
         data => {
@@ -82,13 +82,13 @@ export class AddEditComponent implements OnInit {
           this.router.navigate(['.', { relativeTo: this.route }]);
         },
         error => {
-          this.alertService.error(error);
+          this.alertService.error(error.error.errorMessage);
           this.loading = false;
         });
   }
 
   private updateBook() {
-    this.bookService.update(this.id, this.forms.value)
+    this.bookService.update(this.id, this.form.value)
       .pipe(first())
       .subscribe(
         data => {
@@ -96,7 +96,7 @@ export class AddEditComponent implements OnInit {
           this.router.navigate(['..', { relativeTo: this.route }]);
         },
         error => {
-          this.alertService.error(error);
+          this.alertService.error(error.error.errorMessage);
           this.loading = false;
         });
   }
