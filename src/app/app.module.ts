@@ -13,12 +13,12 @@ import {AppComponent} from './app.component';
 import {AlertComponent} from './_components';
 import {HomeComponent} from './home';
 import {BooksComponent} from './books/books.component';
-
-import {TypeaheadTemplateComponent} from './typeahead-template/typeahead-template.component'
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import { ProfileComponent } from './profile/profile.component'
 
 import { NoopAnimationsModule } from '@angular/platform-browser/animations'
+import {ChangePasswordComponent} from '@app/users/change-password.component';;
+import { InsideBookComponent } from './inside-book/inside-book.component'
 
 @NgModule({
   imports: [
@@ -36,12 +36,13 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations'
     AlertComponent,
     HomeComponent,
     BooksComponent,
-    TypeaheadTemplateComponent
-,
-    ProfileComponent  ],
-  bootstrap: [AppComponent, TypeaheadTemplateComponent],
-  exports: [TypeaheadTemplateComponent]
+    ChangePasswordComponent,
+
+    ProfileComponent ,
+
+    InsideBookComponent ],
+  bootstrap: [AppComponent],
 })
 
 export class AppModule {
-};
+}

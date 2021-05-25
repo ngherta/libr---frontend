@@ -75,7 +75,7 @@ export class HomeComponent implements OnInit {
           this.router.navigate(['.', { relativeTo: this.route }]);
         },
         error => {
-          this.alertService.error(error);
+          this.alertService.error(error.error.errorMessage);
           this.loading = false;
         });
 

@@ -1,0 +1,31 @@
+<div *ngIf="book" class="main-div">
+  <mat-card class="card">
+    <mat-card-header class="header-container">
+      <div mat-card-avatar>
+        <img src="{{book.imageLinks.smallThumbnail}}" class="header-image">
+      </div>
+      <div>
+        <mat-card-title class="book-title">{{book.title}}</mat-card-title>
+        <div *ngFor="let author of book.authors" class="book-author">
+          <mat-card-subtitle>{{author}}</mat-card-subtitle>
+        </div>
+      </div>
+    </mat-card-header>
+    <mat-card-content>
+      <p><b>Total pages:</b> {{book.pageCount}}</p>
+      <p><b>Categories:</b> {{book.categories}}</p>
+      <p><b>Average ratings:</b> {{book.averageRating}}</p>
+      <p><b>Votes:</b> {{book.vote}}</p>
+      <div><b>Comments:</b>
+        <div *ngFor="let comment of book.comments" class="comment-container">
+          <div class="comment">{{comment.userDto.firstName}}  {{comment.userDto.lastName}} said:
+            <div style="margin-left: 40px; max-width: 50%">{{comment.comment}}</div>
+          </div>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>
+
+
+
