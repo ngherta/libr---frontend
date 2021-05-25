@@ -1,4 +1,4 @@
-﻿import { Component, OnInit } from '@angular/core';
+﻿ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgForm } from '@angular/forms';
@@ -38,7 +38,6 @@ export class AddEditComponent implements OnInit {
            email: ['', Validators.email],
             age: ['', Validators.required],
             phone: ['', Validators.required],
-          role: ['', Validators.required],
             password: ['', passwordValidators]
         });
 
@@ -62,10 +61,8 @@ export class AddEditComponent implements OnInit {
 
     onSubmit() {
         this.submitted = true;
-
         // reset alerts on submit
         this.alertService.clear();
-
         // stop here if form is invalid
         if (this.form.invalid) {
             return;
@@ -88,7 +85,7 @@ export class AddEditComponent implements OnInit {
                     this.router.navigate(['.', { relativeTo: this.route }]);
                 },
                 error => {
-                    this.alertService.error(error);
+                    this.alertService.error(error.error.errorMessage);
                     this.loading = false;
                 });
     }
@@ -102,7 +99,7 @@ export class AddEditComponent implements OnInit {
                     this.router.navigate(['..', { relativeTo: this.route }]);
                 },
                 error => {
-                    this.alertService.error(error);
+                    this.alertService.error(error.error.errorMessage);
                     this.loading = false;
                 });
     }

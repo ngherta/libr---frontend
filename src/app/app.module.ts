@@ -2,21 +2,25 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
+import {MatCardModule} from '@angular/material/card';
+import {MatFormFieldModule} from '@angular/material/form-field';
 
 // used to create fake backend
 //import { fakeBackendProvider } from './_helpers';
 
 import {AppRoutingModule} from './app-routing.module';
-import {JwtInterceptor, ErrorInterceptor} from './_helpers';
 import {AppComponent} from './app.component';
 import {AlertComponent} from './_components';
 import {HomeComponent} from './home';
-import {BooksComponent} from './books/books.component';
 
-;
-import {TypeaheadTemplateComponent} from './typeahead-template/typeahead-template.component'
+import {TypeaheadTemplateComponent} from './typeahead-template/typeahead-template.component';
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
+import { ProfileComponent } from './profile/profile.component';
 
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import {DataTablesModule} from "angular-datatables";;
+import { InsideBookComponent } from './inside-book/inside-book.component'
+import {ChangePasswordComponent} from "@app/users/change-password.component";
 
 @NgModule({
   imports: [
@@ -25,15 +29,21 @@ import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
     HttpClientModule,
     AppRoutingModule,
     FormsModule,
-    NgbModule
+    NgbModule,
+    MatCardModule,
+    NoopAnimationsModule,
+    MatFormFieldModule,
+    DataTablesModule,
+
   ],
   declarations: [
     AppComponent,
     AlertComponent,
     HomeComponent,
-    BooksComponent,
-    TypeaheadTemplateComponent
-  ],
+    TypeaheadTemplateComponent,
+    ChangePasswordComponent,
+    ProfileComponent ,
+    InsideBookComponent ],
   bootstrap: [AppComponent, TypeaheadTemplateComponent],
   exports: [TypeaheadTemplateComponent]
 })

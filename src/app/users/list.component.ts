@@ -4,6 +4,7 @@ import {first} from 'rxjs/operators';
 import {AccountService} from '@app/_services';
 import {Subject} from 'rxjs';
 import {User} from '@app/_models';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({templateUrl: 'list.component.html'})
 export class ListComponent implements OnInit {
@@ -14,7 +15,7 @@ export class ListComponent implements OnInit {
   // thus we ensure the data is fetched before rendering
   dtTrigger: Subject<any> = new Subject<any>();
 
-  constructor(private accountService: AccountService) {
+  constructor(private accountService: AccountService, private router: Router, private activatedRoute: ActivatedRoute) {
   }
 
   ngOnInit() {
@@ -38,5 +39,9 @@ export class ListComponent implements OnInit {
       .subscribe(() => {
         this.users = this.users.filter(x => x.id !== id);
       });
+  }
+
+  navigateToProfile(id: string) {
+    this.router.navigate(["/profile/" + id], {relativeTo: this.activatedRoute});
   }
 }

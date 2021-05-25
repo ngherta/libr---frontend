@@ -37,7 +37,7 @@ export class AccountService {
   }
 
   logout() {
-    // remove user from local storage and set current user to null
+    // remove user from  local storage and set current user to null
     localStorage.removeItem('user');
     this.userSubject.next(null);
     this.router.navigate(['/account/login']);
@@ -45,7 +45,7 @@ export class AccountService {
 
   register(user: User) {
     user.role = 'USER';
-    return this.http.post(`${environment.apiUrl}/auth/register`, user);
+    return this.http.post(`${environment.apiUrl}/users/register`, user);
   }
 
   getAll() {
@@ -63,6 +63,22 @@ export class AccountService {
         if (id == this.userValue.id) {
           // update local storage
           const user = {...this.userValue, ...params};
+          localStorage.setItem('user', JSON.stringify(user));
+
+          // publish updated user to subscribers
+          this.userSubject.next(user);
+        }
+        return x;
+      }));
+  }
+
+  updatePass(id, newPassword) {
+    return this.http.put(`${environment.apiUrl}/auth/password/${id}`, {'newPassword': newPassword})
+      .pipe(map(x => {
+        // update stored user if the logged in user updated their own record
+        if (id === this.userValue.id) {
+          // update local storage
+          const user = {...this.userValue, ...newPassword};
           localStorage.setItem('user', JSON.stringify(user));
 
           // publish updated user to subscribers

@@ -1,10 +1,9 @@
 export class Book {
-
-  id: number;
+  id: string;
   title: string;
   authors: Array<string>;
   publisher: string;
-  publishedDate: Date;
+  publishedDate: string;
   description: string;
   industryIdentifiers: { [key: string]: string; } = {};
   pageCount: number;
@@ -15,5 +14,7 @@ export class Book {
   imageLinks: { [key: string]: string; } = {};
   language: string;
   previewLink: string;
+  comments: Array<string>;
+  vote: number;
 
 }

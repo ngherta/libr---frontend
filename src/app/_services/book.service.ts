@@ -1,12 +1,13 @@
-﻿import {Injectable} from '@angular/core';
+﻿import {User} from "@app/_models";
+
+import {Injectable} from '@angular/core';
 import {Router} from '@angular/router';
 import {HttpClient} from '@angular/common/http';
 import {BehaviorSubject, Observable} from 'rxjs';
-import {map} from 'rxjs/operators';
 
 import {environment} from '@environments/environment';
-import {User} from '@app/_models';
-import {Book} from "@app/_models/book";
+import {Book} from '@app/_models/book';
+import {map} from "rxjs/operators";
 
 @Injectable({providedIn: 'root'})
 export class BookService {
@@ -21,12 +22,55 @@ export class BookService {
     this.book = this.bookSubject.asObservable();
   }
 
+  public get bookValue(): Book {
+    return this.bookSubject.value;
+  }
+
   findInGoogleApi(keyword: string) {
     return this.http.get(`https://www.googleapis.com/books/v1/volumes?q=` + keyword);
   }
 
   save(book: Book) {
-    return this.http.post(`${environment.apiUrl}/books/`, book);
+    return this.http.post(`${environment.apiUrl}/books/save`, book);
   }
 
+  getById(id: string) {
+    return this.http.get<Book>(`${environment.apiUrl}/books/${id}`);
+  }
+
+  getAll() {
+    return this.http.get<Book[]>(`${environment.apiUrl}/books/all`);
+  }
+
+  delete(id: string) {
+    return this.http.delete(`${environment.apiUrl}/books/delete/${id}`)
+      .pipe(map(x => {
+        return x;
+      }));
+  }
+
+  register(book: Book) {
+    return this.http.post(`${environment.apiUrl}/books/save`, book);
+  }
+
+  vote(userId: string, bookId: number, vote: number) {
+    console.log(userId, bookId, vote);
+    return this.http.post(`${environment.apiUrl}/vote`, {"userId": userId, "bookId": bookId, "vote": vote});
+  }
+
+  update(id, params) {
+    return this.http.put(`${environment.apiUrl}/books/${id}`, params)
+      .pipe(map(x => {
+        // update stored user if the logged in user updated their own record
+        if (id === this.bookValue.id) {
+          // update local storage
+          const book = {...this.bookValue, ...params};
+          localStorage.setItem('book', JSON.stringify(book));
+
+          // publish updated user to subscribers
+          this.bookSubject.next(book);
+        }
+        return x;
+      }));
+  }
 }

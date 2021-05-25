@@ -59,8 +59,8 @@ body {
 .button-x {
   z-index: 1;
   position: relative;
-  bottom: 32px;
-  right: 13px;
+  bottom: 30px;
+  right: 15px;
 }
 
 .conteiner {
@@ -112,4 +112,21 @@ body {
 
 .textColor {
   font-weight:bold;
+}
+
+.container-button-vote {
+  display: grid;
+  margin-left: auto;
+  margin-right: 10px;
+}
+
+.btn-vote {
+  padding: 0;
+}
+
+.vote-info {
+  font-size: 3em;
+  font-family: 'Roboto';
+  font-weight: bold;
+  text-align: center;
 }
