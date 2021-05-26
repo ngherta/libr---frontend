@@ -55,7 +55,7 @@ export class InsideBookComponent implements OnInit {
     // reset alerts on submit
     this.alertService.clear();
 
-    this.bookService.comment(this.f.comment.value, this.userId, this.book.id)
+    this.bookService.comment(this.f.comment.value, this.userId,  this.book.id)
       .pipe(first())
       .subscribe(
         data => {
