@@ -19,10 +19,6 @@
                   class="button-x close" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
-
-          <!--            <button *ngIf="input.focus()" type="button" class="close" aria-label="Close">-->
-          <!--              <span aria-hidden="true">&times;</span>-->
-          <!--            </button>-->
           <div *ngIf="condition" class="drop-down-search" style="position: absolute">
             <div *ngFor="let book of books" class="container-max-width" style="padding: 10px">
               <div class="card">
@@ -82,9 +78,6 @@
       <i class="fas fa-search"></i>
     </div>
 
-
-
-
     <div>
       <div *ngFor="let book of booksData" class="container-max-width" style="padding: 10px">
         <div class="card">
@@ -113,28 +106,17 @@
                 <div class="infoCard">
                   <p > <span class="textColor"> Title:  </span>{{book.title ? book.title : 'n/a'}}</p>
                   <p> <span class="textColor"> Author: </span>{{book.authors ? book.authors : 'n/a'}}</p>
-                  <p> <span class="textColor">Publisher: </span>{{book.publisher ? book.publisher : 'n/a'}}</p>
+                  <p> <span class="textColor"> Publisher: </span>{{book.publisher ? book.publisher : 'n/a'}}</p>
                 </div>
                 <div >
                   <p> <span class="textColor"> Pages: </span>{{book.pageCount ? book.pageCount : 'n/a'}}</p>
                   <p> <span class="textColor"> Rating: </span>{{book.averageRating ? book.averageRating : 'n/a'}}</p>
                   <p> <span class="textColor"> Language: </span>{{book.language ? book.language : 'n/a'}}</p>
                 </div>
-<!--                <div class="container-button-vote">-->
-<!--                  <button type="button" class="btn btn-success btn-vote" (click)="upVote(book.id)">-->
-<!--                    <svg xmlns="http://www.w3.org/2000/svg" width="50px" height="50px" fill="currentColor" class="bi bi-arrow-up" viewBox="0 0 16 16">-->
-<!--                      <path fill-rule="evenodd" d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5z"/>-->
-<!--                    </svg>-->
-<!--                  </button>-->
-<!--                  <span class = "vote-info">-->
-<!--                    {{book.vote}}-->
-<!--                  </span>-->
-<!--                  <button type="button" class="btn btn-danger btn-vote" (click)="downVote(book.id)">-->
-<!--                    <svg xmlns="http://www.w3.org/2000/svg" width="50px" height="50px" fill="currentColor" class="bi bi-arrow-down" viewBox="0 0 16 16">-->
-<!--                      <path fill-rule="evenodd" d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1z"/>-->
-<!--                    </svg>-->
-<!--                  </button>-->
-<!--                </div>-->
+                <div style="display: grid; margin-left: auto">
+                  <span class="badge rounded-pill bg-danger status-info">Status</span>
+                  <button type="button" style="margin-top: auto" class="btn btn-success">Take a book</button>
+                </div>
               </div>
               <div class="discriptionInfo">
                 <p><span class="textColor">Description: </span><span class="desctiption-text-hidden">{{book.description ? book.description : 'n/a'}}</span> </p>
@@ -143,50 +125,6 @@
           </div>
         </div>
     </div>
-
-
-<!--    <div>-->
-<!--      <div *ngFor="let book of booksData" class="container d-flex justify-content-center mt-50 mb-50">-->
-<!--        <div class="row">-->
-<!--          <div class="col-md-10">-->
-<!--            <div class="card card-body mt-3">-->
-<!--              <div class="media align-items-center align-items-lg-start text-center text-lg-left flex-column flex-lg-row">-->
-<!--                <div class="mr-2 mb-3 mb-lg-0">-->
-<!--                  <img src="{{book.imageLinks.thumbnail}}" width="150" height="150" alt="">-->
-<!--                </div>-->
-<!--                <div class="media-body">-->
-<!--                  <h6 class="media-title font-weight-semibold">-->
-<!--                    <a href="#" data-abc="true">{{book.title}}</a>-->
-<!--                  </h6>-->
-<!--                  <ul class="list-inline list-inline-dotted mb-3 mb-lg-2">-->
-<!--                    <li class="list-inline-item"><a href="#" class="text-muted" data-abc="true">{{book.categories}}</a></li>-->
-<!--                  </ul>-->
-<!--                  <p class="mb-3">Thinking In Java should be read cover to cover by every Java programmer, then kept close at-->
-<!--                    hand for frequent reference.</p>-->
-
-
-<!--                  <ul class="list-inline list-inline-dotted mb-0">-->
-<!--                    <li class="list-inline-item">All items from <a href="#" data-abc="true">Mobile junction</a></li>-->
-<!--                    <li class="list-inline-item">Add to <a href="#" data-abc="true">wishlist</a></li>-->
-<!--                  </ul>-->
-<!--                </div>-->
-<!--                <div class="mt-3 mt-lg-0 ml-lg-3 text-center">-->
-<!--                  <h3 class="mb-0 font-weight-semibold">Available</h3>-->
-<!--                  <div> <i class="fa fa-star"></i> <i class="fa fa-star"></i>-->
-<!--                    <i class="fa fa-star"></i> <i class="fa fa-star"></i>-->
-<!--                    <i class="fa fa-star"></i> </div>-->
-<!--                  <div class="text-muted">12 reviews</div>-->
-<!--                  <button type="button" class="btn btn-warning mt-4 text-white"><i class="icon-cart-add mr-2"></i> Take a book</button>-->
-<!--                </div>-->
-<!--              </div>-->
-<!--            </div>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--      <div class="vote-card">-->
-
-<!--      </div>-->
-<!--    </div>-->
 
     <style>
 
@@ -204,7 +142,6 @@
         -webkit-background-clip: text;
       }
     </style>
-    <!--    <p> You're logged in Libr!!</p>-->
-    <!--    <p><a routerLink="/users">Manage Users</a></p>-->
+
   </div>
 </div>

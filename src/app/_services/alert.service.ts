@@ -8,6 +8,7 @@ import { Alert, AlertType } from '@app/_models';
 export class AlertService {
     private subject = new Subject<Alert>();
     private defaultId = 'default-alert';
+    private bol = true;
 
     // enable subscribing to alerts observable
     onAlert(id = this.defaultId): Observable<Alert> {
@@ -16,19 +17,23 @@ export class AlertService {
 
     // convenience methods
     success(message: string, options?: any) {
-        this.alert(new Alert({ ...options, type: AlertType.Success, message }));
+        this.alert(new Alert({ ...options, type: AlertType.Success, message }))
+        setTimeout(()=> this.clear(), 10000);
     }
 
     error(message: string, options?: any) {
         this.alert(new Alert({ ...options, type: AlertType.Error, message }));
+        setTimeout(()=> this.clear(), 10000);
     }
 
     info(message: string, options?: any) {
         this.alert(new Alert({ ...options, type: AlertType.Info, message }));
+        setTimeout(()=> this.clear(), 10000);
     }
 
     warn(message: string, options?: any) {
         this.alert(new Alert({ ...options, type: AlertType.Warning, message }));
+        setTimeout(()=> this.clear(), 10000);
     }
 
     // main alert method

@@ -25,7 +25,9 @@
     <tbody>
     <tr *ngFor="let book of books" >
       <td>{{book.id}}</td>
-      <td>{{book.title}}</td>
+      <td>
+        <a routerLink="/books/{{book.id}}">{{book.title}}</a>
+      </td>
       <td>{{book.authors}}</td>
       <td>{{book.publisher}}</td>
       <td>{{book.publishedDate}}</td>

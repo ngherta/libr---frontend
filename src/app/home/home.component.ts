@@ -83,7 +83,8 @@ export class HomeComponent implements OnInit {
       .subscribe(
         data => {
           this.fetchBooks();
-          this.alertService.success('Book added successfully', {keepAfterRouteChange: true});
+          // setTimeout(()=> this.isVisible = false,2500);
+          this.alertService.success('Book added successfully', {keepAfterRouteChange: false});
         },
         error => {
           this.alertService.error(error.error.errorMessage);
