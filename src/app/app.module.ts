@@ -13,7 +13,6 @@ import {AppComponent} from './app.component';
 import {AlertComponent} from './_components';
 import {HomeComponent} from './home';
 
-import {TypeaheadTemplateComponent} from './typeahead-template/typeahead-template.component';
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import { ProfileComponent } from './profile/profile.component';
 
@@ -40,12 +39,11 @@ import {ChangePasswordComponent} from "@app/users/change-password.component";
     AppComponent,
     AlertComponent,
     HomeComponent,
-    TypeaheadTemplateComponent,
     ChangePasswordComponent,
     ProfileComponent ,
     InsideBookComponent ],
-  bootstrap: [AppComponent, TypeaheadTemplateComponent],
-  exports: [TypeaheadTemplateComponent]
+  bootstrap: [AppComponent],
+  exports: []
 })
 
 export class AppModule {

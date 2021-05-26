@@ -15,7 +15,7 @@
           <input id = "myInput" type="search" style="margin: 0 auto;" class="form-control rounded" placeholder="Search"
                  aria-label="Search"
                  aria-describedby="search-addon" #input/>
-          <button type="button" onclick="document.getElementById('myInput').value = ''" (click)="clearArray()"
+          <button type="button" (click)="clearArray()"
                   class="button-x close" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -24,7 +24,7 @@
           <!--              <span aria-hidden="true">&times;</span>-->
           <!--            </button>-->
           <div *ngIf="condition" class="drop-down-search" style="position: absolute">
-            <div *ngFor="let book of books" class="conteiner" style="padding: 10px">
+            <div *ngFor="let book of books" class="container-max-width" style="padding: 10px">
               <div class="card">
                 <div class="cardWrapper">
                   <img class="imgSize" src="{{book.imageLinks ? book.imageLinks.thumbnail :
@@ -34,24 +34,43 @@
                   <div class="infoWrapper">
                     <div class="info">
                       <div class="infoCard">
-                        <p > <span class="textColor"> Title:  </span>{{book.title ? book.title : 'NULL'}}</p>
-                        <p> <span class="textColor"> Author: </span>{{book.authors ? book.authors : 'NULL'}}</p>
-                        <p> <span class="textColor">Publisher: </span>{{book.publisher ? book.publisher : 'NULL'}}</p>
+                        <p > <span class="textColor"> Title:  </span>{{book.title ? book.title : 'n/a'}}</p>
+                        <p> <span class="textColor"> Author: </span>{{book.authors ? book.authors : 'n/a'}}</p>
+                        <p> <span class="textColor">Publisher: </span>{{book.publisher ? book.publisher : 'n/a'}}</p>
                       </div>
                       <div >
-                        <p> <span class="textColor"> Pages: </span>{{book.pageCount ? book.pageCount : 'NULL'}}</p>
-                        <p> <span class="textColor"> Rating: </span>{{book.averageRating ? book.averageRating : 'NULL'}}</p>
-                        <p> <span class="textColor"> Language: </span>{{book.language ? book.language : 'NULL'}}</p>
+                        <p> <span class="textColor"> Pages: </span>{{book.pageCount ? book.pageCount : 'n/a'}}</p>
+                        <p> <span class="textColor"> Rating: </span>{{book.averageRating ? book.averageRating : 'n/a'}}</p>
+                        <p> <span class="textColor"> Language: </span>{{book.language ? book.language : 'n/a'}}</p>
                       </div>
                       <div class="button">
                         <div class="button-container">
-                          <p>Request</p>
-                          <button type="button" class="btn btn-primary" (click)="saveBook(book)">Request</button>
+                          <button type="button" id="{{book.apiId}}" class="btn btn-primary" data-bs-toggle="modal"
+                                  [attr.data-bs-target]="'#confirmationRequestModal-'+ book.apiId">Request</button>
+                        </div>
+                      </div>
+                      <div class="modal fade" data-bs-backdrop="false" id="confirmationRequestModal-{{book.apiId}}" tabindex="-1" role="dialog" aria-labelledby="confirmationRequestModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="confirmationRequestModalLabel">{{book.title}}</h5>
+                              <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                            </div>
+                            <div class="modal-body">
+                              Do you want to add this book?
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                              <button type="button" class="btn btn-primary" (click)="saveBook(book)">Yes</button>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>
                     <div class="discriptionInfo">
-                      <p><span class="textColor">Discription: </span><span class="desctiption-text-hidden">{{book.description ? book.description : 'NULL'}}</span> </p>
+                      <p><span class="textColor">Description: </span><span class="desctiption-text-hidden">{{book.description ? book.description : 'n/a'}}</span> </p>
                     </div>
                   </div>
                 </div>
@@ -65,13 +84,13 @@
 
 
 
-    <div>
-      <div *ngFor="let book of booksData" class="conteiner" style="padding: 10px">
-        <div class="card">
 
+    <div>
+      <div *ngFor="let book of booksData" class="container-max-width" style="padding: 10px">
+        <div class="card">
           <div class="cardWrapper">
             <div class="container-button-vote">
-              <button type="button" class="btn btn-success btn-vote" (click)="upVote(book.id)">
+              <button (click)="upVote(book.id);" ng-disabled="buttonClicked" class="btn btn-success btn-vote" type="button">
                 <svg xmlns="http://www.w3.org/2000/svg" width="50px" height="50px" fill="currentColor" class="bi bi-arrow-up" viewBox="0 0 16 16">
                   <path fill-rule="evenodd" d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5z"/>
                 </svg>
@@ -86,20 +105,20 @@
               </button>
             </div>
 
-            <img class="imgSize" width="200px" height="200px" src="https://fully-booked.ap-south-1.linodeobjects.com/catalog/product/placeholder/default/book-placeholder.png"
+            <img class="imgSize" width="200px" height="200px" src="{{book.imageLinks.thumbnail ? book.imageLinks.thumbnail : 'https://fully-booked.ap-south-1.linodeobjects.com/catalog/product/placeholder/default/book-placeholder.png'}}"
                  alt="..">
 
             <div class="infoWrapper">
               <div class="info">
                 <div class="infoCard">
-                  <p > <span class="textColor"> Title:  </span>{{book.title ? book.title : 'NULL'}}</p>
-                  <p> <span class="textColor"> Author: </span>{{book.authors ? book.authors : 'NULL'}}</p>
-                  <p> <span class="textColor">Publisher: </span>{{book.publisher ? book.publisher : 'NULL'}}</p>
+                  <p > <span class="textColor"> Title:  </span>{{book.title ? book.title : 'n/a'}}</p>
+                  <p> <span class="textColor"> Author: </span>{{book.authors ? book.authors : 'n/a'}}</p>
+                  <p> <span class="textColor">Publisher: </span>{{book.publisher ? book.publisher : 'n/a'}}</p>
                 </div>
                 <div >
-                  <p> <span class="textColor"> Pages: </span>{{book.pageCount ? book.pageCount : 'NULL'}}</p>
-                  <p> <span class="textColor"> Rating: </span>{{book.averageRating ? book.averageRating : 'NULL'}}</p>
-                  <p> <span class="textColor"> Language: </span>{{book.language ? book.language : 'NULL'}}</p>
+                  <p> <span class="textColor"> Pages: </span>{{book.pageCount ? book.pageCount : 'n/a'}}</p>
+                  <p> <span class="textColor"> Rating: </span>{{book.averageRating ? book.averageRating : 'n/a'}}</p>
+                  <p> <span class="textColor"> Language: </span>{{book.language ? book.language : 'n/a'}}</p>
                 </div>
 <!--                <div class="container-button-vote">-->
 <!--                  <button type="button" class="btn btn-success btn-vote" (click)="upVote(book.id)">-->
@@ -118,7 +137,7 @@
 <!--                </div>-->
               </div>
               <div class="discriptionInfo">
-                <p><span class="textColor">Discription: </span><span class="desctiption-text-hidden">{{book.description ? book.description : 'NULL'}}</span> </p>
+                <p><span class="textColor">Description: </span><span class="desctiption-text-hidden">{{book.description ? book.description : 'n/a'}}</span> </p>
               </div>
             </div>
           </div>
