@@ -7,6 +7,7 @@ export class Alert {
     fade: boolean;
 
     constructor(init?:Partial<Alert>) {
+        this.autoClose = true;
         Object.assign(this, init);
     }
 }

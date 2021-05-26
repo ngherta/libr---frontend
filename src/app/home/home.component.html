@@ -114,8 +114,8 @@
                   <p> <span class="textColor"> Language: </span>{{book.language ? book.language : 'n/a'}}</p>
                 </div>
                 <div style="display: grid; margin-left: auto">
-                  <span class="badge rounded-pill bg-danger status-info">Status</span>
-                  <button type="button" style="margin-top: auto" class="btn btn-success">Take a book</button>
+                  <span class="badge rounded-pill bg-warning text-dark status-info">{{book.status}}</span>
+                  <button *ngIf="book.status === 'IN_LIBRARY'" type="button" style="margin-top: auto" class="btn btn-success">Take a book</button>
                 </div>
               </div>
               <div class="discriptionInfo">

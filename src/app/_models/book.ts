@@ -17,6 +17,7 @@ export class Book {
   previewLink: string;
   comments: Array<string>;
   vote: number;
+  userId: number;
 
 
 }

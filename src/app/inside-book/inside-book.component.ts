@@ -44,6 +44,7 @@ export class InsideBookComponent implements OnInit {
     this.bookService.getById(this.bookId).pipe(
       map((book: Book) => this.book = book, this.loading = false)
     ).subscribe();
+
   }
 
   get f() { return this.formComments.controls; }
@@ -55,17 +56,19 @@ export class InsideBookComponent implements OnInit {
     // reset alerts on submit
     this.alertService.clear();
 
-    this.bookService.comment(this.f.comment.value, this.userId,  this.book.id)
+    this.bookService.comment(this.f.comment.value, this.userId, this.book.id)
       .pipe(first())
       .subscribe(
         data => {
-          //
+          this.bookService.getById(this.bookId).pipe(
+            map((book: Book) => this.book = book, this.loading = false)
+          ).subscribe();
         },
         error => {
           this.alertService.error(error.error.errorMessage);
           this.loading = false;
         });
-
   }
+
 
 }

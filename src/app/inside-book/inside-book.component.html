@@ -16,10 +16,10 @@
           <strong>Published date</strong>
           <p class="info-book">{{book.publishedDate}}</p>
         </div>
-        <div class="info-about-book">
-          <strong>Industry Identifiers</strong>
-          <p class="info-book">{{book.industryIdentifiers}}</p>
-        </div>
+<!--        <div class="info-about-book">-->
+<!--          <strong>Industry Identifiers</strong>-->
+<!--          <p class="info-book">{{book.industryIdentifiers}}</p>-->
+<!--        </div>-->
         <div class="info-about-book">
           <strong>Categories</strong>
           <p class="info-book">{{book.categories}}</p>
@@ -40,8 +40,15 @@
         </div>
         <div class="info-about-book">
           <strong>IndustryIdentifiers</strong>
-          <p class="info-book">{{book.industryIdentifiers}}</p>
+          <p class="info-book">Identifier: {{book.industryIdentifiers[0].identifier}},
+        Type: {{book.industryIdentifiers[0].type}}
+          </p>
         </div>
+      </div>
+      <div style="width: 20%">
+        <div class="info-about-book">
+          <strong>Description:</strong>
+          <p>{{book.description}}</p>
       </div>
     </div>
     <div class="second-card-info"></div>
@@ -57,7 +64,7 @@
 <!--      </form>-->
 
 
-      <form [formGroup]="formComments" (ngSubmit)="onSubmit()">
+      <form [formGroup]="formComments" (ngSubmit)="onSubmit(); reload()">
         <div class="form-group">
           <label for="comment">Write a comment:</label>
           <input type="text" formControlName="comment" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.comment.errors }" />
