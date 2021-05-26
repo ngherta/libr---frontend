@@ -1,11 +1,12 @@
 export class Book {
   id: string;
+  apiId: string;
   title: string;
   authors: Array<string>;
   publisher: string;
   publishedDate: string;
   description: string;
-  industryIdentifiers: { [key: string]: string; } = {};
+  industryIdentifiers: Array<{ [key: string]: string; }> = [];
   pageCount: number;
   categories: Array<string>;
   averageRating: number;
@@ -16,5 +17,6 @@ export class Book {
   previewLink: string;
   comments: Array<string>;
   vote: number;
+
 
 }
