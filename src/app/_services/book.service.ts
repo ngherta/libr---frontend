@@ -31,7 +31,7 @@ export class BookService {
   }
 
   save(book: Book) {
-    return this.http.post(`${environment.apiUrl}/books/save`, book);
+    return this.http.post(`${environment.apiUrl}/books`, book);
   }
 
   getById(id: string) {
@@ -39,7 +39,7 @@ export class BookService {
   }
 
   getAll() {
-    return this.http.get<Book[]>(`${environment.apiUrl}/books/all`);
+    return this.http.get<Book[]>(`${environment.apiUrl}/books`);
   }
 
   delete(id: string) {
@@ -56,6 +56,15 @@ export class BookService {
   vote(userId: string, bookId: number, vote: number) {
     console.log(userId, bookId, vote);
     return this.http.post(`${environment.apiUrl}/vote`, {"userId": userId, "bookId": bookId, "vote": vote});
+  }
+
+  getStatus() {
+
+  }
+
+  comment(comment, userId, bookId) {
+    console.log(comment, userId, bookId);
+    return this.http.post(`${environment.apiUrl}/comments/`, {"userId": userId, "bookId": bookId, "comment": comment});
   }
 
   update(id, params) {
