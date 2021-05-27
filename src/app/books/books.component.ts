@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {Subject} from 'rxjs';
-import {first} from 'rxjs/operators';
-import {BookService} from '@app/_services/book.service';
-import {ActivatedRoute, Router} from '@angular/router';
-import {Book} from '@app/_models/book';
+import { Subject } from 'rxjs';
+import { first } from 'rxjs/operators';
+import { BookService } from '@app/_services/book.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Book } from '@app/_models/book';
 
 @Component({
   templateUrl: './books.component.html',
@@ -13,6 +13,7 @@ import {Book} from '@app/_models/book';
 export class BooksComponent implements OnInit {
   dtOptions: DataTables.Settings = {};
   books: Book[] = [];
+  emailDropdown = false;
 
 
   // We use this trigger because fetching the list of persons can be quite long,
@@ -27,7 +28,7 @@ export class BooksComponent implements OnInit {
       pagingType: 'full_numbers',
       pageLength: 20
     };
-    this.bookService.getAll()
+    this.bookService.getAllFiltered()
       .pipe(first())
       .subscribe(books => {
         this.books = books;

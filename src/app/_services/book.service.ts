@@ -1,15 +1,15 @@
-﻿import {User} from "@app/_models";
+﻿import { User } from "@app/_models";
 
-import {Injectable} from '@angular/core';
-import {Router} from '@angular/router';
-import {HttpClient} from '@angular/common/http';
-import {BehaviorSubject, Observable} from 'rxjs';
+import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+import { BehaviorSubject, Observable } from 'rxjs';
 
-import {environment} from '@environments/environment';
-import {Book} from '@app/_models/book';
-import {map} from "rxjs/operators";
+import { environment } from '@environments/environment';
+import { Book } from '@app/_models/book';
+import { map } from "rxjs/operators";
 
-@Injectable({providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 export class BookService {
   private bookSubject: BehaviorSubject<Book>;
   public book: Observable<Book>;
@@ -42,8 +42,12 @@ export class BookService {
     return this.http.get<Book[]>(`${environment.apiUrl}/books`);
   }
 
+  getAllFiltered() {
+    return this.http.get<Book[]>(`${environment.apiUrl}/books/filtered`);
+  }
+
   delete(id: string) {
-    return this.http.delete(`${environment.apiUrl}/books/delete/${id}`)
+    return this.http.delete(`${environment.apiUrl}/books/${id}`)
       .pipe(map(x => {
         console.log("test")
         return x;
@@ -56,7 +60,7 @@ export class BookService {
 
   vote(userId: string, bookId: number, vote: number) {
     console.log(userId, bookId, vote);
-    return this.http.post(`${environment.apiUrl}/vote`, {"userId": userId, "bookId": bookId, "vote": vote});
+    return this.http.post(`${environment.apiUrl}/vote`, { "userId": userId, "bookId": bookId, "vote": vote });
   }
 
   getStatus() {
@@ -65,11 +69,11 @@ export class BookService {
 
   comment(comment, userId, bookId) {
     console.log(comment, userId, bookId);
-    return this.http.post(`${environment.apiUrl}/comments/`, {"userId": userId, "bookId": bookId, "comment": comment});
+    return this.http.post(`${environment.apiUrl}/comments/`, { "userId": userId, "bookId": bookId, "comment": comment });
   }
 
-  updateStatus (userId, bookId, status) {
-    return this.http.post(`${environment.apiUrl}/book-actions/update-status`, {"userId": userId, "bookId": bookId, "newStatus": status});
+  updateStatus(userId, bookId, status) {
+    return this.http.post(`${environment.apiUrl}/book-actions/update-status`, { "userId": userId, "bookId": bookId, "newStatus": status });
   }
 
   update(id, params) {
@@ -78,7 +82,7 @@ export class BookService {
         // update stored user if the logged in user updated their own record
         if (id === this.bookValue.id) {
           // update local storage
-          const book = {...this.bookValue, ...params};
+          const book = { ...this.bookValue, ...params };
           localStorage.setItem('book', JSON.stringify(book));
 
           // publish updated user to subscribers

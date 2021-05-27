@@ -1,15 +1,16 @@
-﻿import {Component, OnInit} from '@angular/core';
-import {first} from 'rxjs/operators';
+﻿import { Component, OnInit } from '@angular/core';
+import { first } from 'rxjs/operators';
 
-import {AccountService} from '@app/_services';
-import {Subject} from 'rxjs';
-import {User} from '@app/_models';
-import {ActivatedRoute, Router} from '@angular/router';
+import { AccountService } from '@app/_services';
+import { Subject } from 'rxjs';
+import { User } from '@app/_models';
+import { ActivatedRoute, Router } from '@angular/router';
 
-@Component({templateUrl: 'list.component.html'})
+@Component({ templateUrl: 'list.component.html' })
 export class ListComponent implements OnInit {
   dtOptions: DataTables.Settings = {};
   users: User[] = [];
+  userRole: string
 
   // We use this trigger because fetching the list of persons can be quite long,
   // thus we ensure the data is fetched before rendering
@@ -29,6 +30,7 @@ export class ListComponent implements OnInit {
         this.users = users;
         this.dtTrigger.next();
       });
+    this.userRole = this.accountService.getRole();
   }
 
   deleteUser(id: string) {
@@ -42,6 +44,12 @@ export class ListComponent implements OnInit {
   }
 
   navigateToProfile(id: string) {
-    this.router.navigate(["/profile/" + id], {relativeTo: this.activatedRoute});
+    this.router.navigate(["/profile/" + id], { relativeTo: this.activatedRoute });
+  }
+
+  public sendEmail(id: string, type: string) {
+    console.log("test");
+
+    this.accountService.sendEmail(id, type);
   }
 }
