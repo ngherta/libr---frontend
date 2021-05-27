@@ -23,7 +23,6 @@ export class ChangePasswordComponent implements OnInit {
   }
 
   ngOnInit() {
-
     this.id = this.route.snapshot.params['id'];
     // this.isAddMode = !this.id;
 
@@ -59,10 +58,10 @@ export class ChangePasswordComponent implements OnInit {
       .subscribe(
         data => {
           this.alertService.success('Update successful', { keepAfterRouteChange: true });
-          this.router.navigate(['..', { relativeTo: this.route }]);
+          this.router.navigate(['../../../books/', { relativeTo: this.id }]);
         },
         error => {
-          this.alertService.error(error);
+          this.alertService.error(error.error(error));
           this.loading = false;
         });
   }

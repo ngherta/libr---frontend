@@ -1,15 +1,39 @@
-<div *ngIf="user" class="main-div">
-  <mat-card class="card">
-    <mat-card-header>
-      <mat-card-title>{{user.firstName + " " + user.lastName}}</mat-card-title>
-      <mat-card-subtitle>{{user.phone}}</mat-card-subtitle>
-    </mat-card-header>
-    <mat-card-content>
-      <p>{{user.email}}</p>
-      <p>{{user.role}}</p>
-    </mat-card-content>
-  </mat-card>
-</div>
+<!--<div *ngIf="user" class="main-div">-->
+<!--  <mat-card class="card">-->
+<!--    <mat-card-header>-->
+<!--      <mat-card-title>{{user.firstName + " " + user.lastName}}</mat-card-title>-->
+<!--      <mat-card-subtitle>{{user.phone}}</mat-card-subtitle>-->
+<!--    </mat-card-header>-->
+<!--    <mat-card-content>-->
+<!--      <p>{{user.email}}</p>-->
+<!--      <p>{{user.role}}</p>-->
+<!--    </mat-card-content>-->
+<!--  </mat-card>-->
+<!--</div>-->
 
+
+<div class="container">
+  <div class="profile-container">
+    <div class="profile-info">
+      <span>
+        <p class=""><strong>First name: </strong> {{user.firstName}}</p>
+        <p class=""><strong>Last name: </strong> {{user.lastName}}</p>
+      </span>
+      <span>
+        <p class=""><strong>Age: </strong> {{user.age}}</p>
+        <p class=""><strong>Phone: </strong> {{user.phone}}</p>
+      </span>
+      <span>
+        <p class=""><strong>Email: </strong> {{user.email}}</p>
+        <p class=""><strong>Role: </strong> {{user.role}}</p>
+      </span>
+    </div>
+    <div class="profile-button">
+      <a class="btn btn-info" href="auth/password/10" >Change password</a>
+      <a class="btn btn-primary" href="#" style="margin-right: 15px;" routerLinkActive="active">Edit profile</a>
+    </div>
+  </div>
+  <div class="dashboard-container"></div>
+</div>
 
 

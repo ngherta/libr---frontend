@@ -4,9 +4,9 @@ import { BookService } from '@app/_services/book.service';
 import { debounceTime, first, map } from 'rxjs/operators';
 import { AccountService, AlertService } from '@app/_services';
 import { Book } from '@app/_models/book';
-import { Observable, OperatorFunction } from "rxjs";
-import { ActivatedRoute, Router } from "@angular/router";
-import { FormGroup } from "@angular/forms";
+import { Observable, OperatorFunction } from 'rxjs';
+import { ActivatedRoute, Router } from '@angular/router';
+import { FormGroup } from '@angular/forms';
 
 
 @Component({
@@ -15,6 +15,16 @@ import { FormGroup } from "@angular/forms";
 })
 
 export class HomeComponent implements OnInit {
+
+  constructor(private bookService: BookService,
+              private accountService: AccountService,
+              private alertService: AlertService,
+              private route: ActivatedRoute,
+              private router: Router
+  ) {
+    // this.userId = localStorage.getItem('user').id;
+    this.userRole = accountService.getRole();
+  }
   books: Book[] = [];
   booksData: Book[] = [];
   vote: number;
@@ -26,24 +36,13 @@ export class HomeComponent implements OnInit {
   loading = false;
   submitted = false;
 
-  constructor(private bookService: BookService,
-    private accountService: AccountService,
-    private alertService: AlertService,
-    private route: ActivatedRoute,
-    private router: Router
-  ) {
-    // this.userId = localStorage.getItem('user').id;
-    this.userRole = accountService.getRole();
-  }
+  condition = false;
 
 
   ngOnInit() {
-
     this.userId = JSON.parse(localStorage.getItem('user')).id;
     this.fetchBooks();
   }
-
-  condition: boolean = false;
 
   showData(data: string) {
     this.books = [];
@@ -53,8 +52,8 @@ export class HomeComponent implements OnInit {
 
         console.log(dataResponse);
         for (let i = 0; i < dataResponse.items.length; i++) {
-          if (i === 5) break;
-          var b = dataResponse.items[i].volumeInfo;
+          if (i === 5) { break; }
+          const b = dataResponse.items[i].volumeInfo;
           b.apiId = dataResponse.items[i].id;
           this.books.push(b);
         }

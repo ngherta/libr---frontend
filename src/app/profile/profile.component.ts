@@ -1,9 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {User} from "@app/_models";
-import {ActivatedRoute} from "@angular/router";
-import {AccountService} from "@app/_services";
-import {map} from "rxjs/operators";
-import {log} from 'util';
+import {User} from '@app/_models';
+import {ActivatedRoute} from '@angular/router';
+import {AccountService} from '@app/_services';
+import {map} from 'rxjs/operators';
 
 @Component({
   selector: 'app-profile',
@@ -22,10 +21,11 @@ export class ProfileComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.userId = this.activatedRoute.snapshot.params['id'];
+    this.userId = this.activatedRoute.snapshot.params.id;
+    console.log(this.userId);
     this.userService.getById(this.userId).pipe(
       map((user: User) => this.user = user)
-    ).subscribe()
+    ).subscribe();
 
   }
 
