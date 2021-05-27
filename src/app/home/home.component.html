@@ -97,14 +97,16 @@
                 </svg>
               </button>
             </div>
-
-            <img class="imgSize" width="200px" height="200px" src="{{book.imageLinks.thumbnail ? book.imageLinks.thumbnail : 'https://fully-booked.ap-south-1.linodeobjects.com/catalog/product/placeholder/default/book-placeholder.png'}}"
+            <a routerLink="/books/{{book.id}}">
+              <img class="imgSize" width="200px" height="200px" src="{{book.imageLinks.thumbnail ? book.imageLinks.thumbnail : 'https://fully-booked.ap-south-1.linodeobjects.com/catalog/product/placeholder/default/book-placeholder.png'}}"
                  alt="..">
-
+            </a>
             <div class="infoWrapper">
               <div class="info">
                 <div class="infoCard">
-                  <p > <span class="textColor"> Title:  </span>{{book.title ? book.title : 'n/a'}}</p>
+                    <p > <span class="textColor"> Title:  </span>
+                      <a routerLink="/books/{{book.id}}">{{book.title ? book.title : 'n/a'}}</a>
+                    </p>
                   <p> <span class="textColor"> Author: </span>{{book.authors ? book.authors : 'n/a'}}</p>
                   <p> <span class="textColor"> Publisher: </span>{{book.publisher ? book.publisher : 'n/a'}}</p>
                 </div>
@@ -113,7 +115,7 @@
                   <p> <span class="textColor"> Rating: </span>{{book.averageRating ? book.averageRating : 'n/a'}}</p>
                   <p> <span class="textColor"> Language: </span>{{book.language ? book.language : 'n/a'}}</p>
                 </div>
-                <div style="display: grid; margin-left: auto">
+                <div style="display: grid; width: 120px; margin-left: auto">
                   <span class="badge rounded-pill bg-warning text-dark status-info">{{book.status}}</span>
                   <button *ngIf="book.status === 'IN_LIBRARY'" type="button" style="margin-top: auto" class="btn btn-success">Take a book</button>
                 </div>

@@ -73,7 +73,7 @@ export class AccountService {
   }
 
   updatePass(id, newPassword) {
-    return this.http.put(`${environment.apiUrl}/auth/password/${id}`, {'newPassword': newPassword})
+    return this.http.put(`${environment.apiUrl}/users/password/${id}`, {'newPassword': newPassword})
       .pipe(map(x => {
         // update stored user if the logged in user updated their own record
         if (id === this.userValue.id) {

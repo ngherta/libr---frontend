@@ -55,19 +55,10 @@
   </div>
   <div class = "card comments-container">
     <div class="form-group textarea-container" style="width: 50%;">
-<!--      <form action="post">-->
-<!--        <div class="form-group">-->
-<!--          <label for="exampleFormControlTextarea1" style="font-size: 2rem;">Write a comment</label>-->
-<!--          <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>-->
-<!--          <button type="submit" class="btn btn-primary mb-2" style="margin-top: 15px;">Submit</button>-->
-<!--        </div>-->
-<!--      </form>-->
-
-
-      <form [formGroup]="formComments" (ngSubmit)="onSubmit(); reload()">
+      <form [formGroup]="formComments" (ngSubmit)="onSubmit(); this.formComments.reset();">
         <div class="form-group">
           <label for="comment">Write a comment:</label>
-          <input type="text" formControlName="comment" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.comment.errors }" />
+          <input type="text" formControlName="comment" name="comment" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.comment.errors }" />
           <div *ngIf="submitted && f.comment.errors" class="invalid-feedback">
             <div *ngIf="f.comment.errors.required">Comment is required</div>
           </div>

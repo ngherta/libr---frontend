@@ -15,6 +15,7 @@ import {AccountService, AlertService} from "@app/_services";
 export class InsideBookComponent implements OnInit {
   bookId: string = null;
   userId: number;
+  filterName: string;
   book: Book = null;
   loading: boolean = true;
   formComments: FormGroup;
@@ -34,7 +35,7 @@ export class InsideBookComponent implements OnInit {
 
   ngOnInit() {
     this.formComments = this.formBuilder.group({
-      comment: ['', Validators.required]
+        comment: ['', Validators.min(10)]
     });
 
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
