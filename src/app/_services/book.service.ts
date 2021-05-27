@@ -45,6 +45,7 @@ export class BookService {
   delete(id: string) {
     return this.http.delete(`${environment.apiUrl}/books/delete/${id}`)
       .pipe(map(x => {
+        console.log("test")
         return x;
       }));
   }
@@ -65,6 +66,10 @@ export class BookService {
   comment(comment, userId, bookId) {
     console.log(comment, userId, bookId);
     return this.http.post(`${environment.apiUrl}/comments/`, {"userId": userId, "bookId": bookId, "comment": comment});
+  }
+
+  updateStatus (userId, bookId, status) {
+    return this.http.post(`${environment.apiUrl}/book-actions/update-status`, {"userId": userId, "bookId": bookId, "newStatus": status});
   }
 
   update(id, params) {

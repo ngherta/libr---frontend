@@ -36,11 +36,13 @@ export class BooksComponent implements OnInit {
   }
 
   deleteBook(id: string) {
-    const book = this.books.find(x => x.id === id);
+    console.log("id" + id);
+    // const book = this.books.find(x => x.id === id);
     // book.isDeleting = true;
     this.bookService.delete(id)
       .pipe(first())
       .subscribe(() => {
+        console.log("wodss");
         this.books = this.books.filter(x => x.id !== id);
       });
   }

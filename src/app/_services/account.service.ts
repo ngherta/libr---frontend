@@ -36,6 +36,10 @@ export class AccountService {
       }));
   }
 
+  getRole() {
+    return JSON.parse(localStorage.getItem('user')).role;
+  }
+
   logout() {
     // remove user from  local storage and set current user to null
     localStorage.removeItem('user');
@@ -49,7 +53,7 @@ export class AccountService {
   }
 
   getAll() {
-    return this.http.get<User[]>(`${environment.apiUrl}/users/all`);
+    return this.http.get<User[]>(`${environment.apiUrl}/users`);
   }
 
   getById(id: string) {

@@ -117,7 +117,23 @@
                 </div>
                 <div style="display: grid; width: 120px; margin-left: auto">
                   <span class="badge rounded-pill bg-warning text-dark status-info">{{book.status}}</span>
-                  <button *ngIf="book.status === 'IN_LIBRARY'" type="button" style="margin-top: auto" class="btn btn-success">Take a book</button>
+                  <button *ngIf="book.status === 'IN_LIBRARY' && this.userRole === 'USER'" type="button" style="margin-top: auto" class="btn btn-success">Take a book</button>
+                  <div *ngIf="this.userRole === 'ADMIN'">
+                    <div class="dropdown" style="width: 100%;">
+                      <button style="width: 100%;" class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Status
+                      </button>
+                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <button (click)="status(book.id, 'SUBMITED')" class="dropdown-item">SUBMIT</button>
+                        <button (click)="status(book.id, 'APPROVED')" class="dropdown-item">APPROVE</button>
+                        <button (click)="status(book.id, 'ORDERED')" class="dropdown-item">ORDER</button>
+                        <button (click)="status(book.id, 'IN_LIBRARY')" class="dropdown-item">IN_LIBRARY</button>
+                        <button (click)="status(book.id, 'REQUESTED')" class="dropdown-item">REQUEST</button>
+                        <button (click)="status(book.id, 'IN_USE')" class="dropdown-item">IN_USE</button>
+                        <button (click)="status(book.id, 'RETURNED')" class="dropdown-item">RETURN</button>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
               <div class="discriptionInfo">

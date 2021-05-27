@@ -21,6 +21,7 @@ export class HomeComponent implements OnInit {
   form: FormGroup;
   id: string;
   userId: string;
+  userRole: string;
   isAddMode: boolean;
   loading = false;
   submitted = false;
@@ -31,7 +32,8 @@ export class HomeComponent implements OnInit {
               private route: ActivatedRoute,
               private router: Router
   ) {
-    this.userId = localStorage.getItem('user');
+    // this.userId = localStorage.getItem('user').id;
+    this.userRole = accountService.getRole();
   }
 
 
@@ -63,14 +65,7 @@ export class HomeComponent implements OnInit {
           b.apiId = dataResponse.items[i].id;
           this.books.push(b);
         }
-
         this.condition = true;
-
-
-        // if (this.books.length > 0) {
-        //   this.condition = true;
-        // }
-        // else this.condition = false;
       });
 
   }
@@ -84,9 +79,19 @@ export class HomeComponent implements OnInit {
       .subscribe(
         data => {
           this.fetchBooks();
-          // setTimeout(()=> this.isVisible = false,2500);
           this.alertService.success('Book added successfully', {keepAfterRouteChange: false});
         },
+        error => {
+          this.alertService.error(error.error.errorMessage);
+          this.loading = false;
+        });
+  }
+
+  public status(bookId, bookStatus) {
+    this.bookService.updateStatus(this.userId, bookId, bookStatus)
+      .subscribe(data => {
+        this.fetchBooks();
+      },
         error => {
           this.alertService.error(error.error.errorMessage);
           this.loading = false;
@@ -103,6 +108,7 @@ export class HomeComponent implements OnInit {
           this.loading = false;
         });
   }
+
 
 
   private fetchBooks() {
