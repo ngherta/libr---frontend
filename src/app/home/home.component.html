@@ -117,7 +117,10 @@
                 </div>
                 <div style="display: grid; width: 120px; margin-left: auto">
                   <span class="badge rounded-pill bg-warning text-dark status-info">{{book.status}}</span>
-                  <button *ngIf="book.status === 'IN_LIBRARY' && this.userRole === 'USER'" type="button" style="margin-top: auto" class="btn btn-success">Take a book</button>
+                  <button *ngIf="book.status === 'IN_LIBRARY' && this.userRole === 'USER'"
+                          (click)="status(book.id, 'REQUESTED')"
+                          type="button" style="margin-top: auto"
+                          class="btn btn-success">Take a book</button>
                   <div *ngIf="this.userRole === 'ADMIN'">
                     <div class="dropdown" style="width: 100%;">
                       <button style="width: 100%;" class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

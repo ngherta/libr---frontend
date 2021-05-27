@@ -91,6 +91,9 @@ export class HomeComponent implements OnInit {
     this.bookService.updateStatus(this.userId, bookId, bookStatus)
       .subscribe(data => {
         this.fetchBooks();
+          if (bookStatus === 'REQUESTED') {
+            this.alertService.success('Book requested successfully', {keepAfterRouteChange: false});
+          }
       },
         error => {
           this.alertService.error(error.error.errorMessage);
