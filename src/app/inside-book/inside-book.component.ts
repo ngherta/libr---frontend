@@ -52,10 +52,14 @@ export class InsideBookComponent implements OnInit {
 
   onSubmit() {
 
-    // this.submitted = true;
+    this.submitted = true;
 
     // reset alerts on submit
     this.alertService.clear();
+
+    if (this.formComments.invalid) {
+      return;
+    }
 
     this.bookService.comment(this.f.comment.value, this.userId, this.book.id)
       .pipe(first())

@@ -38,13 +38,6 @@ export class HomeComponent implements OnInit {
 
 
   ngOnInit() {
-    // this.booksData.sort((a,b)=>a.vote > b.vote);
-    // this.booksData.sort((a,b) => a.vote.localeCompare(b.vote));
-    // this.booksData.sort(function (a, b) {
-    //   return a.vote - b.vote;
-    // });
-
-    // this.booksData.sort((a,b) => a.vote.localeCompare(b.vote));
 
     this.userId = JSON.parse(localStorage.getItem('user')).id;
     this.fetchBooks();
@@ -115,7 +108,7 @@ export class HomeComponent implements OnInit {
 
 
   private fetchBooks() {
-    this.bookService.getAll()
+    this.bookService.getAllFiltered()
       .pipe(first())
       .subscribe(booksD => {
         this.booksData = booksD;
