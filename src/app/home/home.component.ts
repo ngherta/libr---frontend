@@ -120,7 +120,7 @@ export class HomeComponent implements OnInit {
       .pipe(first())
       .subscribe(booksD => {
         this.booksData = booksD;
-
+        this.booksCount = 0;
         for (const book of booksD) {
           if (book.status === 'IN_LIBRARY') {
             this.booksCount++;
