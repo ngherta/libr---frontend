@@ -5,21 +5,19 @@ import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import {MatCardModule} from '@angular/material/card';
 import {MatFormFieldModule} from '@angular/material/form-field';
 
-// used to create fake backend
-//import { fakeBackendProvider } from './_helpers';
-
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {AlertComponent} from './_components';
 import {HomeComponent} from './home';
 
-import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { ProfileComponent } from './profile/profile.component';
 
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import {DataTablesModule} from "angular-datatables";;
-import { InsideBookComponent } from './inside-book/inside-book.component'
-import {ChangePasswordComponent} from "@app/users/change-password.component";
+import {DataTablesModule} from 'angular-datatables';
+import { InsideBookComponent } from './inside-book/inside-book.component';
+import {ChangePasswordComponent} from '@app/users/change-password.component';
+import {EditProfileComponent} from "@app/profile/edit-profile.component";
 
 @NgModule({
   imports: [
@@ -33,18 +31,20 @@ import {ChangePasswordComponent} from "@app/users/change-password.component";
     NoopAnimationsModule,
     MatFormFieldModule,
     DataTablesModule,
-
   ],
+
   declarations: [
     AppComponent,
     AlertComponent,
     HomeComponent,
     ChangePasswordComponent,
-    ProfileComponent ,
-    InsideBookComponent ],
+    InsideBookComponent,
+    ProfileComponent,
+    EditProfileComponent],
+
   bootstrap: [AppComponent],
   exports: []
 })
 
 export class AppModule {
-};
+}

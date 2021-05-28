@@ -6,6 +6,7 @@ import {AuthGuard} from './_helpers';
 import {ProfileComponent} from '@app/profile/profile.component';
 import {InsideBookComponent} from "@app/inside-book/inside-book.component";
 import {ChangePasswordComponent} from "@app/users/change-password.component";
+import {EditProfileComponent} from "@app/profile/edit-profile.component";
 
 const accountModule = () => import('./account/account.module').then(x => x.AccountModule);
 const usersModule = () => import('./users/users.module').then(x => x.UsersModule);
@@ -16,6 +17,7 @@ const routes: Routes = [
   {path: 'users', loadChildren: usersModule, canActivate: [AuthGuard]},
   {path: 'account', loadChildren: accountModule},
   {path: 'profile/:id', component: ProfileComponent},
+  {path: 'profile/edit/:id', component: EditProfileComponent},
   {path: 'books', children: [
       {
         path: '', loadChildren: booksModule, canActivate: [AuthGuard]

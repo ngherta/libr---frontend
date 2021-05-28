@@ -9,8 +9,10 @@ import { User } from './_models';
 
 export class AppComponent {
     user: User;
+    userId: number;
 
     constructor(private accountService: AccountService) {
+      // this.userId = accountService.userId;
       this.accountService.user.subscribe(x => this.user = x);
     }
 
