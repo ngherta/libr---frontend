@@ -69,6 +69,18 @@ export class InsideBookComponent implements OnInit {
           this.bookService.getById(this.bookId).pipe(
             map((book: Book) => this.book = book, this.loading = false)
           ).subscribe();
+          this.submitted = false;
+        },
+        error => {
+          this.alertService.error(error.error.errorMessage);
+          this.loading = false;
+        });
+  }
+
+  addCommentReaction (commentId, reaction) {
+    this.bookService.addCommentReaction(this.userId, commentId, reaction)
+      .subscribe(data => {
+          // this.fetchBooks();
         },
         error => {
           this.alertService.error(error.error.errorMessage);
@@ -77,15 +89,4 @@ export class InsideBookComponent implements OnInit {
   }
 
 
-  formDate(date: any) {
-    // let today = new Date(date);
-    // let hours = today.getHours();
-    // let minutes = today.getMinutes();
-    // let day = today.getDate()+1;
-    // let month = today.getMonth()+1;
-    // let year = today.getFullYear();
-    //
-    // return year + "-" + (month<10 ? ("0" + month) : month)+ "-" + (day<10 ? ("0" + day) : day)
-    //   + "  " + (hours<10 ? ("0" + hours) : hours) + ":" + minutes;
-  }
 }

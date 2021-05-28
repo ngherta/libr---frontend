@@ -71,6 +71,11 @@ export class BookService {
       { "userId": userId, "bookId": bookId, "type": reaction });
   }
 
+  addCommentReaction(userId, commentId, reaction) {
+    return this.http.post(`${environment.apiUrl}/`,
+      { "userId": userId, "commentId": commentId, "type": reaction });
+  }
+
   comment(comment, userId, bookId) {
     console.log(comment, userId, bookId);
     return this.http.post(`${environment.apiUrl}/comments/`, { "userId": userId, "bookId": bookId, "comment": comment });
