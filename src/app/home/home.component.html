@@ -85,7 +85,7 @@
 
     <div class = "sort-container">
       <input class="d-none" type="radio" name="flexRadioDefault" id="sort-button-all" checked>
-      <label (click)="filterStatus('ALL')" class="checkbox-order" for="sort-button-all">
+      <label (click)="filterStatus('')" class="checkbox-order" for="sort-button-all">
         <span class="badge rounded-pill bg-light text-dark">ALL</span>
       </label>
       <input class="d-none" type="radio" name="flexRadioDefault" id="sort-button-approved">
@@ -199,20 +199,20 @@
     </div>
   </div>
 </div>
+</div>
+<style>
 
-  <style>
+  h1 {
+    position: static;
+    top: 10%;
+    left: 10%;
 
-    h1 {
-      position: static;
-      top: 10%;
-      left: 10%;
-
-      font-size: 60px;
-      font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
-      background: linear-gradient(
-        to right, #f32170, #ff6b08,
-        #cf23cf, #eedd44);
-      -webkit-text-fill-color: transparent;
-      -webkit-background-clip: text;
-    }
-  </style>
+    font-size: 60px;
+    font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
+    background: linear-gradient(
+      to right, #f32170, #ff6b08,
+      #cf23cf, #eedd44);
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+  }
+</style>

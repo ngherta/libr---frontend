@@ -30,6 +30,8 @@ export class HomeComponent implements OnInit {
   vote: number;
   form: FormGroup;
   id: string;
+  orderStatus: string = '';
+  booksCount: number = 0;
   userId: string;
   userRole: string;
   isAddMode: boolean;
@@ -93,6 +95,13 @@ export class HomeComponent implements OnInit {
         });
   }
 
+  filterStatus(status) {
+    // if (status === '') {
+    //   this.orderStatus =
+    // }
+    this.orderStatus = status;
+  }
+
   public upVote(bookId) {
     this.bookService.vote(this.userId, bookId, 1)
       .subscribe(data => {
@@ -111,6 +120,13 @@ export class HomeComponent implements OnInit {
       .pipe(first())
       .subscribe(booksD => {
         this.booksData = booksD;
+
+        for (const book of booksD) {
+          if (book.status === 'IN_LIBRARY') {
+            this.booksCount++;
+          }
+        }
+
         // this.dtTrigger.next();
       });
   }
@@ -120,6 +136,17 @@ export class HomeComponent implements OnInit {
       .subscribe(data => {
         this.fetchBooks();
       },
+        error => {
+          this.alertService.error(error.error.errorMessage);
+          this.loading = false;
+        });
+  }
+
+  addBookReaction(bookId, reaction) {
+    this.bookService.addBookReaction(this.userId, bookId, reaction)
+      .subscribe(data => {
+          this.fetchBooks();
+        },
         error => {
           this.alertService.error(error.error.errorMessage);
           this.loading = false;
