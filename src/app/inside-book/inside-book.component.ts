@@ -52,7 +52,7 @@ export class InsideBookComponent implements OnInit {
 
   onSubmit() {
 
-    this.submitted = true;
+    // this.submitted = true;
 
     // reset alerts on submit
     this.alertService.clear();

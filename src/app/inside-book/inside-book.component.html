@@ -59,37 +59,33 @@
 
     <!--      active, editable, done-->
     <div class="md-stepper-horizontal orange">
-      <div [ngClass]="{'active' : book.status === 'SUBMITTED' || book.status === 'APPROVED' || book.status === 'ORDERED' ||
-        book.status === 'IN_LIBRARY' || book.status === 'IN_USE', 'last-step-bar' : book.status === 'SUBMITTED'}" class="md-step">
-        <div class="md-step-circle"><span>1</span></div>
+      <div [ngClass]="{'active' : book.status === 'SUBMITTED' }" class="md-step">
+        <div class="md-step-circle"></div>
         <div class="md-step-title">SUBMITTED</div>
         <div class="md-step-bar-left"></div>
         <div class="md-step-bar-right"></div>
       </div>
-      <div [ngClass]="{'active' : book.status === 'APPROVED' || book.status === 'ORDERED' || book.status === 'IN_LIBRARY' ||
-        book.status === 'IN_USE', 'last-step-bar' : book.status === 'APPROVED'}" class="md-step">
-        <div class="md-step-circle"><span>2</span></div>
+      <div [ngClass]="{'active' : book.status === 'APPROVED' }" class="md-step">
+        <div class="md-step-circle"></div>
         <div class="md-step-title">APPROVED</div>
         <div class="md-step-optional">Optional</div>
         <div class="md-step-bar-left"></div>
         <div class="md-step-bar-right"></div>
       </div>
-      <div [ngClass]="{'active' : book.status === 'ORDERED' || book.status === 'IN_LIBRARY' || book.status === 'IN_USE',
-      'last-step-bar' : book.status === 'ORDERED'}" class="md-step">
-        <div class="md-step-circle"><span>3</span></div>
+      <div [ngClass]="{'active' : book.status === 'ORDERED' }" class="md-step">
+        <div class="md-step-circle"></div>
         <div class="md-step-title">ORDERED</div>
         <div class="md-step-bar-left"></div>
         <div class="md-step-bar-right"></div>
       </div>
-      <div [ngClass]="{'active' : book.status === 'IN_LIBRARY' || book.status === 'IN_USE',
-      'last-step-bar' : book.status === 'IN_LIBRARY'}" class="md-step">
-        <div class="md-step-circle"><span>4</span></div>
+      <div [ngClass]="{'active' : book.status === 'IN_LIBRARY' }" class="md-step">
+        <div class="md-step-circle"></div>
         <div class="md-step-title">IN_LIBRARY</div>
         <div class="md-step-bar-left"></div>
         <div class="md-step-bar-right"></div>
       </div>
-      <div [ngClass]="{'active' : book.status === 'IN_USE', 'last-step-bar' : book.status === 'IN_USE'}" class="md-step">
-        <div class="md-step-circle"><span>5</span></div>
+      <div [ngClass]="{'active' : book.status === 'IN_USE'}" class="md-step">
+        <div class="md-step-circle"></div>
         <div class="md-step-title">IN_USE</div>
         <div class="md-step-bar-left"></div>
         <div class="md-step-bar-right"></div>

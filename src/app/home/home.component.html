@@ -115,16 +115,16 @@
                   <p> <span class="textColor"> Rating: </span>{{book.averageRating ? book.averageRating : 'n/a'}}</p>
                   <p> <span class="textColor"> Language: </span>{{book.language ? book.language : 'n/a'}}</p>
                 </div>
-                <div style="display: grid; width: 120px; margin-left: auto">
-                  <span class="badge rounded-pill bg-warning text-dark status-info">{{book.status}}</span>
+                <div style="display: grid; margin-left: auto">
+                  <span *ngIf="this.userRole === 'USER'" class="badge rounded-pill bg-warning text-dark status-info">{{book.status}}</span>
                   <button *ngIf="book.status === 'IN_LIBRARY' && this.userRole === 'USER'"
                           (click)="status(book.id, 'REQUESTED')"
                           type="button" style="margin-top: auto"
                           class="btn btn-success">Take a book</button>
                   <div *ngIf="this.userRole === 'ADMIN'">
                     <div class="dropdown" style="width: 100%;">
-                      <button style="width: 100%;" class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Status
+                      <button style="width: 100%; border-radius: 1.25em;" class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        {{book.status}}
                       </button>
                       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         <button (click)="status(book.id, 'SUBMITED')" class="dropdown-item">SUBMIT</button>
