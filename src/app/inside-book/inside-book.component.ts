@@ -17,7 +17,7 @@ export class InsideBookComponent implements OnInit {
   userId: number;
   filterName: string;
   book: Book = null;
-  loading: boolean = true;
+  loading = false;
   formComments: FormGroup;
   submitted = false;
   returnUrl: string;
@@ -43,8 +43,8 @@ export class InsideBookComponent implements OnInit {
 
     this.bookId = this.activatedRoute.snapshot.params['id'];
     this.bookService.getById(this.bookId).pipe(
-      map((book: Book) => this.book = book, this.loading = false)
-    ).subscribe();
+      map((book: Book) => this.book = book, this.loading = false))
+      .subscribe();
 
   }
 
@@ -52,7 +52,7 @@ export class InsideBookComponent implements OnInit {
 
   onSubmit() {
 
-    // this.submitted = true;
+    this.submitted = true;
 
     // reset alerts on submit
     this.alertService.clear();
@@ -61,6 +61,7 @@ export class InsideBookComponent implements OnInit {
       return;
     }
 
+    this.loading = true;
     this.bookService.comment(this.f.comment.value, this.userId, this.book.id)
       .pipe(first())
       .subscribe(
@@ -77,14 +78,14 @@ export class InsideBookComponent implements OnInit {
 
 
   formDate(date: any) {
-    let today = new Date(date);
-    let hours = today.getHours();
-    let minutes = today.getMinutes();
-    let day = today.getDate()+1;
-    let month = today.getMonth()+1;
-    let year = today.getFullYear();
-
-    return year + "-" + (month<10 ? ("0" + month) : month)+ "-" + (day<10 ? ("0" + day) : day)
-      + "  " + (hours<10 ? ("0" + hours) : hours) + ":" + minutes;
+    // let today = new Date(date);
+    // let hours = today.getHours();
+    // let minutes = today.getMinutes();
+    // let day = today.getDate()+1;
+    // let month = today.getMonth()+1;
+    // let year = today.getFullYear();
+    //
+    // return year + "-" + (month<10 ? ("0" + month) : month)+ "-" + (day<10 ? ("0" + day) : day)
+    //   + "  " + (hours<10 ? ("0" + hours) : hours) + ":" + minutes;
   }
 }

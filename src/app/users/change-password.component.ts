@@ -58,7 +58,7 @@ export class ChangePasswordComponent implements OnInit {
       .subscribe(
         data => {
           this.alertService.success('Update successful', { keepAfterRouteChange: true });
-          this.router.navigate(['../../../books/', { relativeTo: this.id }]);
+          this.router.navigate(['../../../profile/' + this.id, { relativeTo: this.id }]);
         },
         error => {
           this.alertService.error(error.error(error));

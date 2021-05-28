@@ -8,14 +8,10 @@
         <th>Title</th>
         <th>Authors</th>
         <th>Publisher</th>
-        <th>Published date</th>
         <th>Description</th>
-        <th>IndustryIdentifiers</th>
         <th>Page count</th>
         <th>Categories</th>
         <th>Average rating</th>
-        <th>Rating count</th>
-        <th>Maturity rating</th>
         <th>Image links</th>
         <th>Language</th>
         <th></th>
@@ -29,15 +25,10 @@
         </td>
         <td>{{book.authors}}</td>
         <td>{{book.publisher}}</td>
-        <td>{{book.publishedDate}}</td>
-        <td>{{book.description}}</td>
-        <td>{{book.industryIdentifiers}}</td>
+        <td class="desctiption-text-hidden">{{book.description}}</td>
         <td>{{book.pageCount}}</td>
         <td>{{book.categories}}</td>
         <td>{{book.averageRating}}</td>
-        <td>{{book.ratingsCount}}</td>
-        <td>{{book.maturityRating}}</td>
-        <td>{{book.imageLinks}}</td>
         <td>{{book.language}}</td>
         <td style="white-space: nowrap">
           <a routerLink="edit/{{book.id}}" class="btn btn-sm btn-primary mr-1">Edit</a>

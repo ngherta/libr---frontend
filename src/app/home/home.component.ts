@@ -1,12 +1,12 @@
-﻿import { Component, OnInit } from '@angular/core';
+﻿import {Component, OnInit} from '@angular/core';
 
-import { BookService } from '@app/_services/book.service';
-import { debounceTime, first, map } from 'rxjs/operators';
-import { AccountService, AlertService } from '@app/_services';
-import { Book } from '@app/_models/book';
-import { Observable, OperatorFunction } from 'rxjs';
-import { ActivatedRoute, Router } from '@angular/router';
-import { FormGroup } from '@angular/forms';
+import {BookService} from '@app/_services/book.service';
+import {debounceTime, first, map} from 'rxjs/operators';
+import {AccountService, AlertService} from '@app/_services';
+import {Book} from '@app/_models/book';
+import {Observable, OperatorFunction} from "rxjs";
+import {ActivatedRoute, Router} from "@angular/router";
+import {FormGroup} from "@angular/forms";
 
 
 @Component({
@@ -63,7 +63,7 @@ export class HomeComponent implements OnInit {
   }
 
   public saveBook(book: Book) {
-    $("#confirmationRequestModal-" + book.apiId).modal('hide');
+    // $("#confirmationRequestModal-" + book.apiId).modal('hide');
     this.clearArray();
     book.userId = Number.parseInt(this.userId);
     this.bookService.save(book)

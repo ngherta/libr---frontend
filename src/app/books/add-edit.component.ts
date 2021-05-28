@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {AlertService} from '@app/_services';
 import {BookService} from '@app/_services/book.service';
@@ -27,6 +27,23 @@ export class AddEditComponent implements OnInit {
   ngOnInit() {
     this.id = this.route.snapshot.params['id'];
     this.isAddMode = !this.id;
+
+    this.form = this.formBuilder.group({
+        title: ['', Validators.required],
+        authors: ['', Validators.required],
+        publisher: ['', Validators.required],
+        publishedDate: ['', Validators.required],
+        description: ['', Validators.required],
+        industryIdentifiers: ['', Validators.required],
+        pageCount: ['', Validators.required],
+        categories: ['', Validators.required],
+        averageRating: ['', Validators.required],
+        ratingsCount: ['', Validators.required],
+        maturityRating: ['', Validators.required],
+        imageLinks: ['', Validators.required],
+        language: ['', Validators.required],
+        previewLink: ['', Validators.required]
+    })
 
     if (!this.isAddMode) {
       this.bookService.getById(this.id)
