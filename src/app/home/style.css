@@ -3,6 +3,28 @@ body {
   min-height: 1000px !important;
 }
 
+.sort-container {
+  display: flex;
+  width: 50%;
+  margin-left: auto;
+}
+
+.checkbox-order {
+  margin-left: 5px;
+}
+
+input:checked + .checkbox-order .badge {
+  background-color: #0d6efd!important;
+}
+
+.button-order {
+  border: 0;
+  padding: 2px;
+  background: #6c757d!important;
+  display: flex;
+  border-radius: 1.25em;
+}
+
 .main-container {
   min-height: 92vh;
 }
@@ -135,4 +157,11 @@ body {
   height: 30px;
   font-size: 1.2rem;
   margin: 0 auto;
+}
+
+.reaction-field {
+  margin-left: auto;
+}
+.reaction-container {
+  display: flex;
 }

@@ -18,6 +18,8 @@ export class Book {
   comments: Array<string>;
   vote: number;
   userId: number;
+  status: string;
+  reactions: { [key: string]: string; } = {}
 
 
 }
