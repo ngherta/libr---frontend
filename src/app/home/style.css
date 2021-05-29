@@ -165,3 +165,8 @@ input:checked + .checkbox-order .badge {
 .reaction-container {
   display: flex;
 }
+
+.categories-dropdown {
+  max-height: 306px;
+  overflow: auto;
+}

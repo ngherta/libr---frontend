@@ -1,8 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {User} from '@app/_models';
 import {ActivatedRoute} from '@angular/router';
-import {AccountService} from '@app/_services';
+import {AccountService, AlertService} from '@app/_services';
 import {map} from 'rxjs/operators';
+import {BookService} from '@app/_services/book.service';
 
 @Component({
   selector: 'app-profile',
@@ -13,10 +14,16 @@ export class ProfileComponent implements OnInit {
 
   userId: string = null;
   user: User = null;
+  bookAction: any;
+  isAddMode: boolean;
+  loading = false;
+  submitted = false;
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private userService: AccountService
+    private userService: AccountService,
+    private bookService: BookService,
+    private alertService: AlertService
   ) {
   }
 
@@ -27,6 +34,30 @@ export class ProfileComponent implements OnInit {
       map((user: User) => this.user = user)
     ).subscribe();
 
+    this.bookService.getBookActionByStatus('REQUESTED').subscribe(
+      dataResponse => {
+        for (const actionInfo of dataResponse.items) {
+          this.bookAction.push(actionInfo);
+          console.log(actionInfo);
+        }
+      }
+    );
   }
+
+  public status(bookId, bookStatus) {
+    this.bookService.updateStatus(this.userId, bookId, bookStatus)
+      .subscribe(data => {
+          // this.fetchBooks();
+          if (bookStatus === 'REQUESTED') {
+            this.alertService.success('Book requested successfully', { keepAfterRouteChange: false });
+          }
+        },
+        error => {
+          this.alertService.error(error.error.errorMessage);
+          this.loading = false;
+        });
+  }
+
+
 
 }

@@ -89,6 +89,10 @@ export class BookService {
     return this.http.post(`${environment.apiUrl}/book-actions/update-status`, { "userId": userId, "bookId": bookId, "newStatus": status });
   }
 
+  getBookActionByStatus(status) {
+    return this.http.get(`${environment.apiUrl}/book-actions/${status}`);
+  }
+
   update(id, params) {
     return this.http.put(`${environment.apiUrl}/books/${id}`, params)
       .pipe(map(x => {

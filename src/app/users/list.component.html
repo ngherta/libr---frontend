@@ -4,13 +4,13 @@
   <thead>
     <tr>
       <th style="width: 4%">ID</th>
-      <th style="width: 16%">First name</th>
-      <th style="width: 16%">Last name</th>
+      <th style="width: 10%">First name</th>
+      <th style="width: 10%">Last name</th>
       <th style="width: 16%">Email</th>
       <th style="width: 16%">Telephone</th>
       <th style="width: 16%">Age</th>
       <th style="width: 6%">Role</th>
-      <th style="width: 10%">
+      <th style="width: 22%">
       </th>
     </tr>
   </thead>
@@ -27,24 +27,24 @@
       <td>{{user.phone}}</td>
       <td>{{user.age}}</td>
       <td>{{user.role}}</td>
-      <td style="white-space: nowrap">
+      <td>
 
-        <div *ngIf="this.userRole === 'ADMIN'" class="dropdown" style="width: 100%;">
+        <div class="dropdown" style="width: 100%;">
           <a routerLink="edit/{{user.id}}" class="btn btn-sm btn-primary mr-1">Edit</a>
           <button (click)="deleteUser(user.id)" class="btn btn-sm btn-danger btn-delete-user">
             <span *ngIf="user.isDeleting" class="spinner-border spinner-border-sm"></span>
             <span *ngIf="!user.isDeleting">Delete</span>
           </button>
 
-<!--          <button style="width: 100%;" class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"-->
-<!--            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
-<!--            Email-->
-<!--          </button>-->
-<!--          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">-->
-<!--            <button (click)="sendEmail(user.id, 'BOOK_DEBT')" class="dropdown-item">BOOK_DEBT</button>-->
-<!--            <button (click)="sendEmail(user.id, 'BOOK_ORDERED')" class="dropdown-item">BOOK_ORDERED</button>-->
-<!--            <button (click)="sendEmail(user.id, 'BOOK_IN_LIBRARY')" class="dropdown-item">BOOK_IN_LIBRARY</button>-->
-<!--          </div>-->
+          <button style="width: 40%; font-size: .875rem; padding: 0.25rem 0.5rem" class="btn btn-secondary dropdown-toggle ml-1" type="button" id="dropdownMenuButton"
+            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Email
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <button (click)="sendEmail(user.id, 'BOOK_DEBT')" class="dropdown-item">BOOK_DEBT</button>
+            <button (click)="sendEmail(user.id, 'BOOK_ORDERED')" class="dropdown-item">BOOK_ORDERED</button>
+            <button (click)="sendEmail(user.id, 'BOOK_IN_LIBRARY')" class="dropdown-item">BOOK_IN_LIBRARY</button>
+          </div>
         </div>
       </td>
     </tr>

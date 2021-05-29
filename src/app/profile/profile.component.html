@@ -19,8 +19,27 @@
       <a class="btn btn-primary" href="profile/edit/{{user.id}}" style="margin-right: 15px;" routerLinkActive="active">Edit profile</a>
     </div>
   </div>
-  <div class="dashboard-container">
-
+  <div style="margin-top: 20px;" class="dashboard-container">
+    <h4>List of requested books</h4>
+    <table class="table">
+      <thead>
+      <tr>
+        <th scope="col">Full name</th>
+        <th scope="col">Book title</th>
+        <th scope="col">Date</th>
+        <th scope="col">Button</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>Gherta Nicolae</td>
+        <td>Effective Java</td>
+        <td>21.02.2021 10:30</td>
+        <td><button (click)="this.status(1, 'IN_USE')" type="button" class="btn btn-dark">Allow</button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
   </div>
 </div>
 
