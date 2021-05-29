@@ -46,6 +46,10 @@ export class BookService {
     return this.http.get<Book[]>(`${environment.apiUrl}/books/filtered`);
   }
 
+  getAllCategories() {
+    return this.http.get(`${environment.apiUrl}/`);
+  }
+
   delete(id: string) {
     return this.http.delete(`${environment.apiUrl}/books/${id}`)
       .pipe(map(x => {

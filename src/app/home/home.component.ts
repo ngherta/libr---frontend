@@ -31,8 +31,9 @@ export class HomeComponent implements OnInit {
   form: FormGroup;
   id: string;
   orderStatus: string = '';
-  orderCategory: string = 'Computers';
+  orderCategory: string = 'All';
   booksCount: number = 0;
+  categories: string[];
   userId: string;
   userRole: string;
   isAddMode: boolean;
@@ -45,6 +46,14 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.userId = JSON.parse(localStorage.getItem('user')).id;
     this.fetchBooks();
+
+    this.bookService.getAllCategories().subscribe(
+      dataResponse => {
+        for (const data of dataResponse.items) {
+          this.categories.push(data);
+        }
+      }
+    );
   }
 
   showData(data: string) {
@@ -96,7 +105,12 @@ export class HomeComponent implements OnInit {
         });
   }
 
-  filterStatus(status) {
+  filterCategoryValue(category) {
+    this.orderCategory = category;
+    console.log(this.orderCategory);
+  }
+
+  filterStatusValue(status) {
     this.orderStatus = status;
   }
 

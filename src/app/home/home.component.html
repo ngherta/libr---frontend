@@ -83,33 +83,46 @@
       </span>
     </div>
 
+    <div class="btn-group">
+      <button type="button" class="btn btn-primary dropdown-toggle" style="border-radius: 1.25em;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        {{this.orderCategory}}
+      </button>
+      <div class="dropdown-menu">
+        <a (click)="filterCategoryValue('All')" class="dropdown-item">All</a>
+        <span *ngFor= "let category of categories">
+          <a (click)="filterCategoryValue(category)" class="dropdown-item">{{category}}</a>
+        </span>
+<!--        <div class="dropdown-divider"></div>-->
+      </div>
+    </div>
+
     <div class = "sort-container">
       <input class="d-none" type="radio" name="flexRadioDefault" id="sort-button-all" checked>
-      <label (click)="filterStatus('')" class="checkbox-order" for="sort-button-all">
+      <label (click)="filterStatusValue('')" class="checkbox-order" for="sort-button-all">
         <span class="badge rounded-pill bg-light text-dark">ALL</span>
       </label>
       <input class="d-none" type="radio" name="flexRadioDefault" id="sort-button-approved">
-      <label (click)="filterStatus('APPROVED')" class="checkbox-order" for="sort-button-approved">
+      <label (click)="filterStatusValue('APPROVED')" class="checkbox-order" for="sort-button-approved">
         <span class="badge rounded-pill bg-light text-dark">APPROVED</span>
       </label>
       <input class="d-none" type="radio" name="flexRadioDefault" id="sort-button-ordered">
-      <label (click)="filterStatus('ORDERED')" class="checkbox-order" for="sort-button-ordered">
+      <label (click)="filterStatusValue('ORDERED')" class="checkbox-order" for="sort-button-ordered">
         <span class="badge rounded-pill bg-secondary bg-light text-dark">ORDERED</span>
       </label>
       <input class="d-none" type="radio" name="flexRadioDefault" id="sort-button-in_library">
-      <label (click)="filterStatus('IN_LIBRARY')" class="checkbox-order" for="sort-button-in_library">
+      <label (click)="filterStatusValue('IN_LIBRARY')" class="checkbox-order" for="sort-button-in_library">
         <span class="badge rounded-pill bg-secondary bg-light text-dark">IN_LIBRARY</span>
       </label>
       <input class="d-none" type="radio" name="flexRadioDefault" id="sort-button=requested">
-      <label (click)="filterStatus('REQUESTED')" class="checkbox-order" for="sort-button=requested">
+      <label (click)="filterStatusValue('REQUESTED')" class="checkbox-order" for="sort-button=requested">
         <span class="badge rounded-pill bg-light text-dark">REQUESTED</span>
       </label>
       <input class="d-none" type="radio" name="flexRadioDefault" id="sort-button-in_use">
-      <label (click)="filterStatus('IN_USE')" class="checkbox-order" for="sort-button-in_use">
+      <label (click)="filterStatusValue('IN_USE')" class="checkbox-order" for="sort-button-in_use">
         <span class="badge rounded-pill bg-light text-dark">IN_USE</span>
       </label>
       <input class="d-none" type="radio" name="flexRadioDefault" id="sort-button-returned">
-      <label (click)="filterStatus('RETURNED')" class="checkbox-order" for="sort-button-returned">
+      <label (click)="filterStatusValue('RETURNED')" class="checkbox-order" for="sort-button-returned">
         <span class="badge rounded-pill bg-light text-dark">RETURNED</span>
       </label>
     </div>
@@ -118,7 +131,7 @@
       <div [ngClass]="{'d-none': book.status !== this.orderStatus, 'd-block' : this.orderStatus === ''}"
            class="container-max-width" style="padding: 10px">
         <div *ngIf="book.status === this.orderStatus || this.orderStatus === ''
-        && this.orderByCategory(book.categories) || this.orderCategory === ''" class="card">
+        && this.orderByCategory(book.categories) || this.orderCategory === 'All'" class="card">
           <div class="cardWrapper">
             <div class="container-button-vote">
               <button (click)="upVote(book.id);" ng-disabled="buttonClicked" class="btn btn-success btn-vote" type="button">
