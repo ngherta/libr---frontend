@@ -1,4 +1,4 @@
-﻿import { Component, OnInit } from '@angular/core';
+﻿import {Component, OnDestroy, OnInit} from '@angular/core';
 import { first } from 'rxjs/operators';
 
 import { AccountService } from '@app/_services';
@@ -6,11 +6,12 @@ import { Subject } from 'rxjs';
 import { User } from '@app/_models';
 import { ActivatedRoute, Router } from '@angular/router';
 
+
 @Component({ templateUrl: 'list.component.html' })
-export class ListComponent implements OnInit {
+export class ListComponent implements OnDestroy, OnInit {
   dtOptions: DataTables.Settings = {};
   users: User[] = [];
-  userRole: string
+  userRole: string;
 
   // We use this trigger because fetching the list of persons can be quite long,
   // thus we ensure the data is fetched before rendering
@@ -31,6 +32,10 @@ export class ListComponent implements OnInit {
         this.dtTrigger.next();
       });
     this.userRole = this.accountService.getRole();
+  }
+
+  ngOnDestroy(): void {
+    this.dtTrigger.unsubscribe();
   }
 
   deleteUser(id: string) {

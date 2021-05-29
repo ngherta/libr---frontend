@@ -115,8 +115,10 @@
     </div>
 
     <div *ngFor="let book of booksData">
-      <div [ngClass]="{'d-none': book.status !== this.orderStatus, 'd-block' : this.orderStatus === ''}" class="container-max-width" style="padding: 10px">
-        <div *ngIf="book.status === this.orderStatus || this.orderStatus === ''" class="card">
+      <div [ngClass]="{'d-none': book.status !== this.orderStatus, 'd-block' : this.orderStatus === ''}"
+           class="container-max-width" style="padding: 10px">
+        <div *ngIf="book.status === this.orderStatus || this.orderStatus === ''
+        && this.orderByCategory(book.categories) || this.orderCategory === ''" class="card">
           <div class="cardWrapper">
             <div class="container-button-vote">
               <button (click)="upVote(book.id);" ng-disabled="buttonClicked" class="btn btn-success btn-vote" type="button">
@@ -144,7 +146,8 @@
                       <a routerLink="/books/{{book.id}}">{{book.title ? book.title : 'n/a'}}</a>
                     </p>
                   <p> <span class="textColor"> Author: </span>{{book.authors ? book.authors : 'n/a'}}</p>
-                  <p> <span class="textColor"> Publisher: </span>{{book.publisher ? book.publisher : 'n/a'}}</p>
+<!--                  <p> <span class="textColor"> Publisher: </span>{{book.publisher ? book.publisher : 'n/a'}}</p>-->
+                  <p> <span class="textColor"> Categories: </span><span>{{book.categories ? book.categories : 'n/a'}}</span></p>
                 </div>
                 <div >
                   <p> <span class="textColor"> Pages: </span>{{book.pageCount ? book.pageCount : 'n/a'}}</p>
@@ -163,9 +166,10 @@
                         {{book.status}}
                       </button>
                       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <button (click)="status(book.id, 'APPROVED')" class="dropdown-item">APPROVE</button>
-                        <button (click)="status(book.id, 'ORDERED')" class="dropdown-item">ORDER</button>
-                        <button (click)="status(book.id, 'IN_LIBRARY')" class="dropdown-item">IN_LIBRARY</button>
+                        <button *ngIf="book.status === 'SUBMITTED'" (click)="status(book.id, 'REJECTED')" class="dropdown-item">REJECTED</button>
+                        <button *ngIf="book.status === 'SUBMITTED'" (click)="status(book.id, 'APPROVED')" class="dropdown-item">APPROVE</button>
+                        <button *ngIf="book.status === 'SUBMITTED'" (click)="status(book.id, 'ORDERED')" class="dropdown-item">ORDER</button>
+                        <button *ngIf="book.status === 'ORDERED' || book.status === 'RETURNED'" (click)="status(book.id, 'IN_LIBRARY')" class="dropdown-item">IN_LIBRARY</button>
                         <button (click)="status(book.id, 'REQUESTED')" class="dropdown-item">REQUEST</button>
                         <button (click)="status(book.id, 'IN_USE')" class="dropdown-item">IN_USE</button>
                         <button (click)="status(book.id, 'RETURNED')" class="dropdown-item">RETURN</button>

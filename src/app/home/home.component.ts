@@ -31,6 +31,7 @@ export class HomeComponent implements OnInit {
   form: FormGroup;
   id: string;
   orderStatus: string = '';
+  orderCategory: string = 'Computers';
   booksCount: number = 0;
   userId: string;
   userRole: string;
@@ -96,9 +97,6 @@ export class HomeComponent implements OnInit {
   }
 
   filterStatus(status) {
-    // if (status === '') {
-    //   this.orderStatus =
-    // }
     this.orderStatus = status;
   }
 
@@ -158,4 +156,14 @@ export class HomeComponent implements OnInit {
     this.condition = false;
   }
 
+  orderByCategory(categories: string[]) {
+    for (const category of categories) {
+      if (this.orderCategory === category) {
+        return true;
+      }
+      else {
+        return false;
+      }
+    }
+  }
 }
