@@ -63,32 +63,32 @@
 
     <!--      active, editable, done-->
     <div class="md-stepper-horizontal orange">
-      <div (click)="getStatusInfo(book.id, 'SUBMITTED')" [ngClass]="{'active' : book.status === 'SUBMITTED' }" data-toggle="modal" data-target="#exampleModalCenter" class="md-step">
+      <div (click)="this.bookActionResponse = null;getStatusInfo(book.id, 'SUBMITTED')" [ngClass]="{'active' : book.status === 'SUBMITTED' }" data-toggle="modal" data-target="#exampleModalCenter" class="md-step">
         <div class="md-step-circle"></div>
         <div class="md-step-title">SUBMITTED</div>
         <div class="md-step-bar-left"></div>
         <div class="md-step-bar-right"></div>
       </div>
-      <div (click)="getStatusInfo(book.id, 'APPROVED')" [ngClass]="{'active' : book.status === 'APPROVED' }" data-toggle="modal" data-target="#exampleModalCenter" class="md-step">
+      <div (click)="this.bookActionResponse = null; getStatusInfo(book.id, 'APPROVED')" [ngClass]="{'active' : book.status === 'APPROVED' }" data-toggle="modal" data-target="#exampleModalCenter" class="md-step">
         <div class="md-step-circle"></div>
         <div class="md-step-title">APPROVED</div>
         <div class="md-step-optional">Optional</div>
         <div class="md-step-bar-left"></div>
         <div class="md-step-bar-right"></div>
       </div>
-      <div (click)="getStatusInfo(book.id, 'ORDERED')" [ngClass]="{'active' : book.status === 'ORDERED' }" data-toggle="modal" data-target="#exampleModalCenter" class="md-step">
+      <div (click)="this.bookActionResponse = null;getStatusInfo(book.id, 'ORDERED')" [ngClass]="{'active' : book.status === 'ORDERED' }" data-toggle="modal" data-target="#exampleModalCenter" class="md-step">
         <div class="md-step-circle"></div>
         <div class="md-step-title">ORDERED</div>
         <div class="md-step-bar-left"></div>
         <div class="md-step-bar-right"></div>
       </div>
-      <div (click)="getStatusInfo(book.id, 'IN_LIBRARY')" [ngClass]="{'active' : book.status === 'IN_LIBRARY' }" data-toggle="modal" data-target="#exampleModalCenter" class="md-step">
+      <div (click)="this.bookActionResponse = null;getStatusInfo(book.id, 'IN_LIBRARY')" [ngClass]="{'active' : book.status === 'IN_LIBRARY' }" data-toggle="modal" data-target="#exampleModalCenter" class="md-step">
         <div class="md-step-circle"></div>
         <div class="md-step-title">IN_LIBRARY</div>
         <div class="md-step-bar-left"></div>
         <div class="md-step-bar-right"></div>
       </div>
-      <div (click)="getStatusInfo(book.id, 'IN_USE')" [ngClass]="{'active' : book.status === 'IN_USE'}" data-toggle="modal" data-target="#exampleModalCenter" class="md-step">
+      <div (click)="this.bookActionResponse = null;getStatusInfo(book.id, 'IN_USE')" [ngClass]="{'active' : book.status === 'IN_USE'}" data-toggle="modal" data-target="#exampleModalCenter" class="md-step">
         <div class="md-step-circle"></div>
         <div class="md-step-title">IN_USE</div>
         <div class="md-step-bar-left"></div>
@@ -99,12 +99,12 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLongTitle">{{this.bookActionResponse.status}}</h5>
+              <h5 class="modal-title" id="exampleModalLongTitle">{{this.bookActionResponse ? this.bookActionResponse.status : 'n/a'}}</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
-            <div class="modal-body">
+            <div *ngIf="this.bookActionResponse != null" class="modal-body">
               <p><strong>By: </strong>{{this.bookActionResponse.firstName}} {{this.bookActionResponse.lastName}}</p>
               <p><strong>Date: </strong>{{this.bookActionResponse.date}}</p>
             </div>

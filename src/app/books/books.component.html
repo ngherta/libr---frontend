@@ -1,6 +1,6 @@
 <h1>Books</h1>
 <a routerLink="add" class="btn btn-sm btn-success mb-2">Add Book</a>
-<div style="overflow: auto; width: 1200px;">
+<div style="overflow: auto; width: 1200px; margin: 0;">
   <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-striped">
     <thead>
       <tr>
@@ -12,7 +12,6 @@
         <th>Page count</th>
         <th>Categories</th>
         <th>Average rating</th>
-        <th>Image links</th>
         <th>Language</th>
         <th></th>
       </tr>

@@ -84,14 +84,13 @@
     </div>
 
     <div class="btn-group">
-      <button type="button" class="btn btn-primary dropdown-toggle" style="border-radius: 1.25em;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <button (click)="this.fetchAllCategories()" type="button" class="btn btn-primary dropdown-toggle" style="border-radius: 1.25em;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         Category: <span class="badge bg-secondary">{{this.orderCategory}}</span>
       </button>
       <div class="dropdown-menu categories-dropdown">
         <a (click)="filterCategoryValue('All')" class="dropdown-item">All</a>
         <span *ngFor= "let category of this.categories">
-          <a (click)="filterCategoryValue(category.category.toString())" class="dropdown-item">{{category.category.toString()}}</a>
-          <i>{{category.count}}</i>
+          <a (click)="filterCategoryValue(category.category.toString())" class="dropdown-item">{{category.category.toString()}} <span class="badge bg-secondary">{{category.count}}</span></a>
         </span>
 <!--        <div class="dropdown-divider"></div>-->
       </div>

@@ -26,7 +26,7 @@ export class BooksComponent implements OnInit {
   ngOnInit() {
     this.dtOptions = {
       pagingType: 'full_numbers',
-      pageLength: 20
+      pageLength: 10
     };
     this.bookService.getAllFiltered()
       .pipe(first())

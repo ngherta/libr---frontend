@@ -48,6 +48,10 @@ export class HomeComponent implements OnInit {
     this.userId = JSON.parse(localStorage.getItem('user')).id;
     this.fetchBooks();
 
+    this.fetchAllCategories();
+  }
+
+  fetchAllCategories() {
     this.bookService.getAllCategories()
       .pipe(first())
       .subscribe(categoriesData => {
@@ -56,8 +60,6 @@ export class HomeComponent implements OnInit {
           console.log(category.category);
           console.log(category.count);
         }
-
-        // this.dtTrigger.next();
       });
   }
 
