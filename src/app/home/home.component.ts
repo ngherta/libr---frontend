@@ -1,12 +1,13 @@
-﻿import { Component, OnInit } from '@angular/core';
+﻿import {Component, OnInit} from '@angular/core';
 
-import { BookService } from '@app/_services/book.service';
-import { debounceTime, first, map } from 'rxjs/operators';
-import { AccountService, AlertService } from '@app/_services';
-import { Book } from '@app/_models/book';
-import { Observable, OperatorFunction } from "rxjs";
-import { ActivatedRoute, Router } from "@angular/router";
-import { FormGroup } from "@angular/forms";
+import {BookService} from '@app/_services/book.service';
+import {debounceTime, first, map} from 'rxjs/operators';
+import {AccountService, AlertService} from '@app/_services';
+import {Book} from '@app/_models/book';
+import {Categories} from '@app/_models/categories';
+import {Observable, OperatorFunction} from 'rxjs';
+import {ActivatedRoute, Router} from '@angular/router';
+import {FormGroup} from '@angular/forms';
 
 
 @Component({
@@ -27,13 +28,13 @@ export class HomeComponent implements OnInit {
   }
   books: Book[] = [];
   booksData: Book[] = [];
+  categories: any;
   vote: number;
   form: FormGroup;
   id: string;
-  orderStatus: string = '';
-  orderCategory: string = 'All';
-  booksCount: number = 0;
-  categories: string[];
+  orderStatus = '';
+  orderCategory = 'All';
+  booksCount = 0;
   userId: string;
   userRole: string;
   isAddMode: boolean;
@@ -47,13 +48,17 @@ export class HomeComponent implements OnInit {
     this.userId = JSON.parse(localStorage.getItem('user')).id;
     this.fetchBooks();
 
-    this.bookService.getAllCategories().subscribe(
-      dataResponse => {
-        for (const data of dataResponse.items) {
-          this.categories.push(data);
+    this.bookService.getAllCategories()
+      .pipe(first())
+      .subscribe(categoriesData => {
+        this.categories = categoriesData;
+        for (const category of this.categories) {
+          console.log(category.category);
+          console.log(category.count);
         }
-      }
-    );
+
+        // this.dtTrigger.next();
+      });
   }
 
   showData(data: string) {
@@ -75,7 +80,7 @@ export class HomeComponent implements OnInit {
   }
 
   public saveBook(book: Book) {
-    $("#confirmationRequestModal-" + book.apiId).modal('hide');
+    $('#confirmationRequestModal-' + book.apiId).modal('hide');
     this.clearArray();
     book.userId = Number.parseInt(this.userId);
     this.bookService.save(book)
@@ -107,7 +112,6 @@ export class HomeComponent implements OnInit {
 
   filterCategoryValue(category) {
     this.orderCategory = category;
-    console.log(this.orderCategory);
   }
 
   filterStatusValue(status) {
@@ -157,8 +161,8 @@ export class HomeComponent implements OnInit {
   addBookReaction(bookId, reaction) {
     this.bookService.addBookReaction(this.userId, bookId, reaction)
       .subscribe(data => {
-        this.fetchBooks();
-      },
+          this.fetchBooks();
+        },
         error => {
           this.alertService.error(error.error.errorMessage);
           this.loading = false;
@@ -170,9 +174,9 @@ export class HomeComponent implements OnInit {
     this.condition = false;
   }
 
-  orderByCategory(categories: string[]) {
+  orderByCategory(categories) {
     for (const category of categories) {
-      if (this.orderCategory === category) {
+      if (this.orderCategory.toString() === category.toString()) {
         return true;
       }
       else {

@@ -31,11 +31,11 @@
       </tr>
       </thead>
       <tbody>
-      <tr>
-        <td>Gherta Nicolae</td>
-        <td>Effective Java</td>
-        <td>21.02.2021 10:30</td>
-        <td><button (click)="this.status(1, 'IN_USE')" type="button" class="btn btn-dark">Allow</button>
+      <tr *ngFor="let request of bookAction">
+        <td>{{request.users.firstName}} {{request.users.firstName}}</td>
+        <td><a href="#">{{request.books.title}}</a></td>
+        <td>{{request.actionDate}}</td>
+        <td><button (click)="this.status(request.books.id, 'IN_USE')" type="button" class="btn btn-dark">Allow</button>
         </td>
       </tr>
       </tbody>

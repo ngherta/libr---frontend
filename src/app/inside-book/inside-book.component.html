@@ -1,7 +1,11 @@
 <div *ngIf="book" class="main-div">
   <div class="card">
-    <h2 class="title">{{book.title}}</h2>
-    <div class="first-card-info">
+    <div class="d-flex">
+      <h2 class="title">{{book.title}}</h2>
+      <span class="badge rounded-pill bg-warning text-dark vote-badge">
+      Votes <span class="badge bg-secondary">{{book.vote}}</span>
+    </span>
+    </div><div class="first-card-info">
       <div class="img-container">
         <img src="{{book.imageLinks.thumbnail ? book.imageLinks.thumbnail :
         'https://fully-booked.ap-south-1.linodeobjects.com/catalog/product/placeholder/default/book-placeholder.png'}}"
@@ -48,7 +52,7 @@
       <div style="width: 20%">
         <div class="info-about-book">
           <strong>Description:</strong>
-          <p>{{book.description}}</p>
+          <p style="max-height: 208; overflow: auto">{{book.description}}</p>
       </div>
     </div>
     <div class="status-bar">
@@ -59,32 +63,32 @@
 
     <!--      active, editable, done-->
     <div class="md-stepper-horizontal orange">
-      <div [ngClass]="{'active' : book.status === 'SUBMITTED' }" data-toggle="modal" data-target="#exampleModalCenter" class="md-step">
+      <div (click)="getStatusInfo(book.id, 'SUBMITTED')" [ngClass]="{'active' : book.status === 'SUBMITTED' }" data-toggle="modal" data-target="#exampleModalCenter" class="md-step">
         <div class="md-step-circle"></div>
         <div class="md-step-title">SUBMITTED</div>
         <div class="md-step-bar-left"></div>
         <div class="md-step-bar-right"></div>
       </div>
-      <div [ngClass]="{'active' : book.status === 'APPROVED' }" data-toggle="modal" data-target="#exampleModalCenter" class="md-step">
+      <div (click)="getStatusInfo(book.id, 'APPROVED')" [ngClass]="{'active' : book.status === 'APPROVED' }" data-toggle="modal" data-target="#exampleModalCenter" class="md-step">
         <div class="md-step-circle"></div>
         <div class="md-step-title">APPROVED</div>
         <div class="md-step-optional">Optional</div>
         <div class="md-step-bar-left"></div>
         <div class="md-step-bar-right"></div>
       </div>
-      <div [ngClass]="{'active' : book.status === 'ORDERED' }" data-toggle="modal" data-target="#exampleModalCenter" class="md-step">
+      <div (click)="getStatusInfo(book.id, 'ORDERED')" [ngClass]="{'active' : book.status === 'ORDERED' }" data-toggle="modal" data-target="#exampleModalCenter" class="md-step">
         <div class="md-step-circle"></div>
         <div class="md-step-title">ORDERED</div>
         <div class="md-step-bar-left"></div>
         <div class="md-step-bar-right"></div>
       </div>
-      <div [ngClass]="{'active' : book.status === 'IN_LIBRARY' }" data-toggle="modal" data-target="#exampleModalCenter" class="md-step">
+      <div (click)="getStatusInfo(book.id, 'IN_LIBRARY')" [ngClass]="{'active' : book.status === 'IN_LIBRARY' }" data-toggle="modal" data-target="#exampleModalCenter" class="md-step">
         <div class="md-step-circle"></div>
         <div class="md-step-title">IN_LIBRARY</div>
         <div class="md-step-bar-left"></div>
         <div class="md-step-bar-right"></div>
       </div>
-      <div [ngClass]="{'active' : book.status === 'IN_USE'}" data-toggle="modal" data-target="#exampleModalCenter" class="md-step">
+      <div (click)="getStatusInfo(book.id, 'IN_USE')" [ngClass]="{'active' : book.status === 'IN_USE'}" data-toggle="modal" data-target="#exampleModalCenter" class="md-step">
         <div class="md-step-circle"></div>
         <div class="md-step-title">IN_USE</div>
         <div class="md-step-bar-left"></div>
@@ -95,17 +99,17 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+              <h5 class="modal-title" id="exampleModalLongTitle">{{this.bookActionResponse.status}}</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
             <div class="modal-body">
-              ...
+              <p><strong>By: </strong>{{this.bookActionResponse.firstName}} {{this.bookActionResponse.lastName}}</p>
+              <p><strong>Date: </strong>{{this.bookActionResponse.date}}</p>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Save changes</button>
             </div>
           </div>
         </div>

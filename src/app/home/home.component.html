@@ -89,8 +89,9 @@
       </button>
       <div class="dropdown-menu categories-dropdown">
         <a (click)="filterCategoryValue('All')" class="dropdown-item">All</a>
-        <span *ngFor= "let category of categories">
-          <a (click)="filterCategoryValue(category)" class="dropdown-item">{{category}}</a>
+        <span *ngFor= "let category of this.categories">
+          <a (click)="filterCategoryValue(category.category.toString())" class="dropdown-item">{{category.category.toString()}}</a>
+          <i>{{category.count}}</i>
         </span>
 <!--        <div class="dropdown-divider"></div>-->
       </div>
@@ -130,8 +131,8 @@
     <div *ngFor="let book of booksData">
       <div [ngClass]="{'d-none': book.status !== this.orderStatus, 'd-block' : this.orderStatus === ''}"
            class="container-max-width" style="padding: 10px">
-        <div *ngIf="book.status === this.orderStatus || this.orderStatus === ''
-        && this.orderByCategory(book.categories) || this.orderCategory === 'All'" class="card">
+        <div *ngIf="(this.orderByCategory(book.categories) || this.orderCategory === 'All') &&
+         (book.status === this.orderStatus || this.orderStatus === '')" class="card">
           <div class="cardWrapper">
             <div class="container-button-vote">
               <button (click)="upVote(book.id);" ng-disabled="buttonClicked" class="btn btn-success btn-vote" type="button">

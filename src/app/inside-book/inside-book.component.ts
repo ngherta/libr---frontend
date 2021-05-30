@@ -17,6 +17,7 @@ export class InsideBookComponent implements OnInit {
   userId: number;
   filterName: string;
   book: Book = null;
+  bookActionResponse: any;
   loading = false;
   formComments: FormGroup;
   submitted = false;
@@ -77,7 +78,17 @@ export class InsideBookComponent implements OnInit {
         });
   }
 
-  addCommentReaction (commentId, reaction) {
+  getStatusInfo(bookId, status) {
+    this.bookService.getStatusInfo(status, bookId)
+      .subscribe(
+        data => {
+          this.bookActionResponse = data;
+          console.log('work');
+        }
+      );
+  }
+
+  addCommentReaction(commentId, reaction) {
     this.bookService.addCommentReaction(this.userId, commentId, reaction)
       .subscribe(data => {
           // this.fetchBooks();

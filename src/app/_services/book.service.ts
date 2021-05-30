@@ -1,18 +1,21 @@
-﻿import { User } from "@app/_models";
+﻿import {User} from "@app/_models";
 
-import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Observable } from 'rxjs';
+import {Injectable} from '@angular/core';
+import {Router} from '@angular/router';
+import {HttpClient} from '@angular/common/http';
+import {BehaviorSubject, Observable} from 'rxjs';
 
-import { environment } from '@environments/environment';
-import { Book } from '@app/_models/book';
-import { map } from "rxjs/operators";
+import {environment} from '@environments/environment';
+import {Book} from '@app/_models/book';
+import {map} from "rxjs/operators";
+import {Categories} from '@app/_models/Categories';
 
-@Injectable({ providedIn: 'root' })
+@Injectable({providedIn: 'root'})
 export class BookService {
   private bookSubject: BehaviorSubject<Book>;
   public book: Observable<Book>;
+  private categorySubject: BehaviorSubject<Categories>;
+  public categories: Observable<Categories>;
   userId: number;
 
   constructor(
@@ -20,6 +23,8 @@ export class BookService {
     private http: HttpClient
   ) {
     this.userId = JSON.parse(localStorage.getItem('user'));
+    this.categorySubject = new BehaviorSubject<Categories>(JSON.parse(localStorage.getItem('category')));
+    this.categories = this.categorySubject.asObservable();
     this.bookSubject = new BehaviorSubject<Book>(JSON.parse(localStorage.getItem('book')));
     this.book = this.bookSubject.asObservable();
   }
@@ -49,7 +54,7 @@ export class BookService {
   }
 
   getAllCategories() {
-    return this.http.get(`${environment.apiUrl}/`);
+    return this.http.get(`${environment.apiUrl}/books/categories`);
   }
 
   delete(id: string) {
@@ -69,8 +74,8 @@ export class BookService {
     return this.http.post(`${environment.apiUrl}/vote`, { "userId": userId, "bookId": bookId, "vote": vote });
   }
 
-  getStatus() {
-
+  getStatusInfo(status, bookId) {
+    return this.http.get(`${environment.apiUrl}/book-actions/${status}/book/${bookId}`);
   }
 
   addBookReaction(userId, bookId, reaction) {
@@ -89,7 +94,7 @@ export class BookService {
   }
 
   updateStatus(userId, bookId, status) {
-    return this.http.post(`${environment.apiUrl}/book-actions/update-status`, { "userId": userId, "bookId": bookId, "newStatus": status });
+    return this.http.post(`${environment.apiUrl}/book-actions/update-status`, { "bookId": bookId, "userId": userId, "newStatus": status });
   }
 
   getBookActionByStatus(status) {

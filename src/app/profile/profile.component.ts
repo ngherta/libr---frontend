@@ -55,10 +55,11 @@ export class ProfileComponent implements OnInit {
   fetchBookActionByStatus() {
     this.bookService.getBookActionByStatus('REQUESTED').subscribe(
       dataResponse => {
-        for (const actionInfo of dataResponse.items) {
-          this.bookAction.push(actionInfo);
-          console.log(actionInfo);
-        }
+        this.bookAction = dataResponse;
+        // for (const actionInfo of dataResponse.items) {
+        //   this.bookAction.push(actionInfo);
+        //   console.log(actionInfo);
+        // }
       }
     );
   }
