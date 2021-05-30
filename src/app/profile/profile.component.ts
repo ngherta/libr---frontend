@@ -34,20 +34,13 @@ export class ProfileComponent implements OnInit {
       map((user: User) => this.user = user)
     ).subscribe();
 
-    this.bookService.getBookActionByStatus('REQUESTED').subscribe(
-      dataResponse => {
-        for (const actionInfo of dataResponse.items) {
-          this.bookAction.push(actionInfo);
-          console.log(actionInfo);
-        }
-      }
-    );
+    this.fetchBookActionByStatus();
   }
 
   public status(bookId, bookStatus) {
     this.bookService.updateStatus(this.userId, bookId, bookStatus)
       .subscribe(data => {
-          // this.fetchBooks();
+          this.fetchBookActionByStatus();
           if (bookStatus === 'REQUESTED') {
             this.alertService.success('Book requested successfully', { keepAfterRouteChange: false });
           }
@@ -59,5 +52,14 @@ export class ProfileComponent implements OnInit {
   }
 
 
-
+  fetchBookActionByStatus() {
+    this.bookService.getBookActionByStatus('REQUESTED').subscribe(
+      dataResponse => {
+        for (const actionInfo of dataResponse.items) {
+          this.bookAction.push(actionInfo);
+          console.log(actionInfo);
+        }
+      }
+    );
+  }
 }

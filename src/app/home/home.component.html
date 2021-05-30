@@ -76,16 +76,16 @@
         </div>
       </div>
       <i class="fas fa-search"></i>
-    </div>
-    <div>
-      <span class="btn btn-primary">
-        Books in library <span class="badge bg-secondary">{{this.booksCount}}</span>
-      </span>
+      <div>
+            <span (click)="filterStatusValue('IN_LIBRARY')" class="btn btn-primary" style="position: absolute; width: 14%;">
+              Books in library <span class="badge bg-secondary">{{this.booksCount}}</span>
+            </span>
+      </div>
     </div>
 
     <div class="btn-group">
       <button type="button" class="btn btn-primary dropdown-toggle" style="border-radius: 1.25em;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        {{this.orderCategory}}
+        Category: <span class="badge bg-secondary">{{this.orderCategory}}</span>
       </button>
       <div class="dropdown-menu categories-dropdown">
         <a (click)="filterCategoryValue('All')" class="dropdown-item">All</a>
@@ -180,12 +180,12 @@
                       </button>
                       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         <button *ngIf="book.status === 'SUBMITTED'" (click)="status(book.id, 'REJECTED')" class="dropdown-item">REJECTED</button>
-                        <button *ngIf="book.status === 'SUBMITTED'" (click)="status(book.id, 'APPROVED')" class="dropdown-item">APPROVE</button>
-                        <button *ngIf="book.status === 'SUBMITTED'" (click)="status(book.id, 'ORDERED')" class="dropdown-item">ORDER</button>
+                        <button *ngIf="book.status === 'SUBMITTED'" (click)="status(book.id, 'APPROVED')" class="dropdown-item">APPROVED</button>
+                        <button *ngIf="book.status === 'SUBMITTED'" (click)="status(book.id, 'ORDERED')" class="dropdown-item">ORDERED</button>
                         <button *ngIf="book.status === 'ORDERED' || book.status === 'RETURNED'" (click)="status(book.id, 'IN_LIBRARY')" class="dropdown-item">IN_LIBRARY</button>
-                        <button (click)="status(book.id, 'REQUESTED')" class="dropdown-item">REQUEST</button>
+                        <button (click)="status(book.id, 'REQUESTED')" class="dropdown-item">REQUESTED</button>
                         <button (click)="status(book.id, 'IN_USE')" class="dropdown-item">IN_USE</button>
-                        <button (click)="status(book.id, 'RETURNED')" class="dropdown-item">RETURN</button>
+                        <button (click)="status(book.id, 'RETURNED')" class="dropdown-item">RETURNED</button>
                       </div>
                     </div>
                   </div>

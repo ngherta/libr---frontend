@@ -19,7 +19,7 @@
       <a class="btn btn-primary" href="profile/edit/{{user.id}}" style="margin-right: 15px;" routerLinkActive="active">Edit profile</a>
     </div>
   </div>
-  <div style="margin-top: 20px;" class="dashboard-container">
+  <div *ngIf="user.role === 'ADMIN'" style="margin-top: 20px;" class="dashboard-container">
     <h4>List of requested books</h4>
     <table class="table">
       <thead>
@@ -35,6 +35,28 @@
         <td>Gherta Nicolae</td>
         <td>Effective Java</td>
         <td>21.02.2021 10:30</td>
+        <td><button (click)="this.status(1, 'IN_USE')" type="button" class="btn btn-dark">Allow</button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <div *ngIf="user.role === 'USER'" class="fashboard-container">
+    <h4>List of books</h4>
+    <table class="table">
+      <thead>
+      <tr>
+        <th scope="col">Title</th>
+        <th scope="col">Authors</th>
+        <th scope="col">Categories</th>
+        <th scope="col">Button</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td><a href="#">Effective Java</a></td>
+        <td>author</td>
+        <td>Computers</td>
         <td><button (click)="this.status(1, 'IN_USE')" type="button" class="btn btn-dark">Allow</button>
         </td>
       </tr>

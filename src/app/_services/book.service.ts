@@ -13,11 +13,13 @@ import {map} from "rxjs/operators";
 export class BookService {
   private bookSubject: BehaviorSubject<Book>;
   public book: Observable<Book>;
+  userId: number;
 
   constructor(
     private router: Router,
     private http: HttpClient
   ) {
+    this.userId = JSON.parse(localStorage.getItem('user'));
     this.bookSubject = new BehaviorSubject<Book>(JSON.parse(localStorage.getItem('book')));
     this.book = this.bookSubject.asObservable();
   }
@@ -58,6 +60,7 @@ export class BookService {
   }
 
   register(book: Book) {
+    book.userId = this.userId;
     return this.http.post(`${environment.apiUrl}/books`, book);
   }
 
