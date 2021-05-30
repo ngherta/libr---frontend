@@ -1,15 +1,15 @@
-﻿import {User} from "@app/_models";
+﻿import { User } from "@app/_models";
 
-import {Injectable} from '@angular/core';
-import {Router} from '@angular/router';
-import {HttpClient} from '@angular/common/http';
-import {BehaviorSubject, Observable} from 'rxjs';
+import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+import { BehaviorSubject, Observable } from 'rxjs';
 
-import {environment} from '@environments/environment';
-import {Book} from '@app/_models/book';
-import {map} from "rxjs/operators";
+import { environment } from '@environments/environment';
+import { Book } from '@app/_models/book';
+import { map } from "rxjs/operators";
 
-@Injectable({providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 export class BookService {
   private bookSubject: BehaviorSubject<Book>;
   public book: Observable<Book>;

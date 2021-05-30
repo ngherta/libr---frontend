@@ -1,12 +1,12 @@
-﻿import {Component, OnInit} from '@angular/core';
+﻿import { Component, OnInit } from '@angular/core';
 
-import {BookService} from '@app/_services/book.service';
-import {debounceTime, first, map} from 'rxjs/operators';
-import {AccountService, AlertService} from '@app/_services';
-import {Book} from '@app/_models/book';
-import {Observable, OperatorFunction} from "rxjs";
-import {ActivatedRoute, Router} from "@angular/router";
-import {FormGroup} from "@angular/forms";
+import { BookService } from '@app/_services/book.service';
+import { debounceTime, first, map } from 'rxjs/operators';
+import { AccountService, AlertService } from '@app/_services';
+import { Book } from '@app/_models/book';
+import { Observable, OperatorFunction } from "rxjs";
+import { ActivatedRoute, Router } from "@angular/router";
+import { FormGroup } from "@angular/forms";
 
 
 @Component({
@@ -17,10 +17,10 @@ import {FormGroup} from "@angular/forms";
 export class HomeComponent implements OnInit {
 
   constructor(private bookService: BookService,
-              private accountService: AccountService,
-              private alertService: AlertService,
-              private route: ActivatedRoute,
-              private router: Router
+    private accountService: AccountService,
+    private alertService: AlertService,
+    private route: ActivatedRoute,
+    private router: Router
   ) {
     // this.userId = localStorage.getItem('user').id;
     this.userRole = accountService.getRole();
@@ -157,8 +157,8 @@ export class HomeComponent implements OnInit {
   addBookReaction(bookId, reaction) {
     this.bookService.addBookReaction(this.userId, bookId, reaction)
       .subscribe(data => {
-          this.fetchBooks();
-        },
+        this.fetchBooks();
+      },
         error => {
           this.alertService.error(error.error.errorMessage);
           this.loading = false;
