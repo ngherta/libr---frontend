@@ -1,6 +1,4 @@
-﻿import {User} from "@app/_models";
-
-import {Injectable} from '@angular/core';
+﻿import {Injectable} from '@angular/core';
 import {Router} from '@angular/router';
 import {HttpClient} from '@angular/common/http';
 import {BehaviorSubject, Observable} from 'rxjs';
@@ -64,9 +62,14 @@ export class BookService {
       }));
   }
 
-  register(book: Book) {
-    book.userId = this.userId;
+  register(book: Book, userId: number) {
+    book.userId = userId;
+    console.log(book.userId);
     return this.http.post(`${environment.apiUrl}/books`, book);
+  }
+
+  createBook(book: Book) {
+    return this.http.post(`${environment.apiUrl}/books/manually`, book);
   }
 
   vote(userId: string, bookId: number, vote: number) {

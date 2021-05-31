@@ -1,4 +1,4 @@
-﻿ import { Component, OnInit } from '@angular/core';
+﻿  import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgForm } from '@angular/forms';
@@ -35,7 +35,7 @@ export class AddEditComponent implements OnInit {
         this.form = this.formBuilder.group({
             firstName: ['', Validators.required],
             lastName: ['', Validators.required],
-           email: ['', Validators.email],
+            email: ['', Validators.email],
             age: ['', Validators.required],
             phone: ['', Validators.required],
             password: ['', passwordValidators]

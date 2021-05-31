@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {AlertService} from '@app/_services';
 import {BookService} from '@app/_services/book.service';
+import {AccountService} from '@app/_services';
 import {first} from 'rxjs/operators';
 
 @Component({
@@ -15,16 +16,19 @@ export class AddEditComponent implements OnInit {
   isAddMode: boolean;
   loading = false;
   submitted = false;
+  userId: number;
 
   constructor(
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
     private bookService: BookService,
+    private accountService: AccountService,
     private alertService: AlertService
   ) { }
 
   ngOnInit() {
+    this.userId = this.accountService.userId;
     this.id = this.route.snapshot.params['id'];
     this.isAddMode = !this.id;
 
@@ -43,13 +47,12 @@ export class AddEditComponent implements OnInit {
         imageLinks: ['', Validators.required],
         language: ['', Validators.required],
         previewLink: ['', Validators.required]
-    })
+    });
 
     if (!this.isAddMode) {
       this.bookService.getById(this.id)
         .pipe(first())
         .subscribe(x => {
-          // this.f.id.setValue(x.id);
           this.f.title.setValue(x.title);
           this.f.authors.setValue(x.authors);
           this.f.publisher.setValue(x.publisher);
@@ -64,6 +67,7 @@ export class AddEditComponent implements OnInit {
           this.f.imageLinks.setValue(x.imageLinks);
           this.f.language.setValue(x.language);
           this.f.previewLink.setValue(x.previewLink);
+          this.f.id.setValue(this.userId);
         });
     }
   }
@@ -91,7 +95,11 @@ export class AddEditComponent implements OnInit {
   }
 
   private createBook() {
-    this.bookService.register(this.form.value)
+    this.form.value.authors = this.form.value.authors.split(',');
+    this.form.value.categories = this.form.value.categories.split(',');
+    this.form.value.industryIdentifiers = [{'isbn': this.form.value.industryIdentifiers.split(',')[0]}];
+    this.form.value.imageLinks = {'thumbnail': this.form.value.imageLinks.split(',')[0]};
+    this.bookService.createBook(this.form.value)
       .pipe(first())
       .subscribe(
         data => {

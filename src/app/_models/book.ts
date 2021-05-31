@@ -19,7 +19,7 @@ export class Book {
   vote: number;
   userId: number;
   status: string;
-  reactions: { [key: string]: string; } = {}
+  reactions: { [key: string]: string; } = {};
 
 
 }
