@@ -30,6 +30,7 @@ export class HomeComponent implements OnInit {
   booksData: Book[] = [];
   categories: any;
   vote: number;
+  countOfAllCategories: number;
   form: FormGroup;
   id: string;
   orderStatus = '';
@@ -56,9 +57,9 @@ export class HomeComponent implements OnInit {
       .pipe(first())
       .subscribe(categoriesData => {
         this.categories = categoriesData;
+        this.countOfAllCategories = 0;
         for (const category of this.categories) {
-          console.log(category.category);
-          console.log(category.count);
+          this.countOfAllCategories += category.count;
         }
       });
   }

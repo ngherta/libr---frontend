@@ -77,9 +77,11 @@
       </div>
       <i class="fas fa-search"></i>
       <div>
+        <label for="sort-button-in_library">
             <span (click)="filterStatusValue('IN_LIBRARY')" class="btn btn-primary" style="position: absolute; width: 14%;">
               Books in library <span class="badge bg-secondary">{{this.booksCount}}</span>
             </span>
+        </label>
       </div>
     </div>
 
@@ -88,9 +90,11 @@
         Category: <span class="badge bg-secondary">{{this.orderCategory}}</span>
       </button>
       <div class="dropdown-menu categories-dropdown">
-        <a (click)="filterCategoryValue('All')" class="dropdown-item">All</a>
+        <a (click)="filterCategoryValue('All')" class="dropdown-item">All
+          <span class="badge bg-secondary">{{this.countOfAllCategories}}</span></a>
         <span *ngFor= "let category of this.categories">
-          <a (click)="filterCategoryValue(category.category.toString())" class="dropdown-item">{{category.category.toString()}} <span class="badge bg-secondary">{{category.count}}</span></a>
+          <a (click)="filterCategoryValue(category.category.toString())" class="dropdown-item">{{category.category.toString()}}
+            <span class="badge bg-secondary">{{category.count}}</span></a>
         </span>
 <!--        <div class="dropdown-divider"></div>-->
       </div>
@@ -100,6 +104,10 @@
       <input class="d-none" type="radio" name="flexRadioDefault" id="sort-button-all" checked>
       <label (click)="filterStatusValue('')" class="checkbox-order" for="sort-button-all">
         <span class="badge rounded-pill bg-light text-dark">ALL</span>
+      </label>
+      <input class="d-none" type="radio" name="flexRadioDefault" id="sort-button-submitted">
+      <label (click)="filterStatusValue('SUBMITTED')" class="checkbox-order" for="sort-button-submitted">
+        <span class="badge rounded-pill bg-light text-dark">SUBMITTED</span>
       </label>
       <input class="d-none" type="radio" name="flexRadioDefault" id="sort-button-approved">
       <label (click)="filterStatusValue('APPROVED')" class="checkbox-order" for="sort-button-approved">

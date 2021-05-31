@@ -42,14 +42,16 @@
     </table>
   </div>
   <div *ngIf="user.role === 'USER'" style="margin-top: 20px;" class="dashboard-container">
-    <h4>List of books</h4>
+    <h4>List of books submitted by me</h4>
     <table class="table">
       <thead>
       <tr>
         <th scope="col">Title</th>
         <th scope="col">Authors</th>
         <th scope="col">Categories</th>
-        <th scope="col">Button</th>
+        <th scope="col">Votes</th>
+        <th scope="col">Status</th>
+        <th scope="col">Date</th>
       </tr>
       </thead>
       <tbody>
@@ -57,8 +59,9 @@
         <td><a href="#">Effective Java</a></td>
         <td>author</td>
         <td>Computers</td>
-        <td><button (click)="this.status(1, 'IN_USE')" type="button" class="btn btn-dark">Allow</button>
-        </td>
+        <td>82</td>
+        <td>Submitted</td>
+        <td>02.03.2001 20:12</td>
       </tr>
       </tbody>
     </table>
