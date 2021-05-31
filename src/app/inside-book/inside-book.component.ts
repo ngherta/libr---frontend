@@ -43,10 +43,14 @@ export class InsideBookComponent implements OnInit {
     this.userId = JSON.parse(localStorage.getItem('user')).id;
 
     this.bookId = this.activatedRoute.snapshot.params['id'];
+    this.fetchBook();
+
+  }
+
+  fetchBook() {
     this.bookService.getById(this.bookId).pipe(
       map((book: Book) => this.book = book, this.loading = false))
       .subscribe();
-
   }
 
   get f() { return this.formComments.controls; }
@@ -91,7 +95,7 @@ export class InsideBookComponent implements OnInit {
   addCommentReaction(commentId, reaction) {
     this.bookService.addCommentReaction(this.userId, commentId, reaction)
       .subscribe(data => {
-          // this.fetchBooks();
+          this.fetchBook();
         },
         error => {
           this.alertService.error(error.error.errorMessage);

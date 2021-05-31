@@ -18,6 +18,7 @@ import {DataTablesModule} from 'angular-datatables';
 import { InsideBookComponent } from './inside-book/inside-book.component';
 import {ChangePasswordComponent} from '@app/users/change-password.component';
 import {EditProfileComponent} from "@app/profile/edit-profile.component";
+import {NgApexchartsModule} from 'ng-apexcharts';
 
 @NgModule({
   imports: [
@@ -31,6 +32,7 @@ import {EditProfileComponent} from "@app/profile/edit-profile.component";
     NoopAnimationsModule,
     MatFormFieldModule,
     DataTablesModule,
+    NgApexchartsModule
   ],
 
   declarations: [

@@ -145,15 +145,15 @@
         <div class="reaction-container">
           <div class="reaction-field">
             <button (click)="addCommentReaction(comment.id, 'HEART')" class="badge rounded-pill bg-light text-dark">
-                    <span>😍 {{book.reactions.HEART}}
+                    <span>😍 {{comment.reactions.HEART}}
                     </span>
             </button>
             <button (click)="addCommentReaction(comment.id, 'LAUGH')" class="badge rounded-pill bg-light text-dark">
-                    <span>🤣 {{book.reactions.LAUGH}}
+                    <span>🤣 {{comment.reactions.LAUGH}}
                     </span>
             </button >
             <button (click)="addCommentReaction(comment.id, 'SAD')" class="badge rounded-pill bg-light text-dark">
-                    <span>😢 {{book.reactions.SAD}}
+                    <span>😢 {{comment.reactions.SAD}}
                     </span>
             </button>
           </div>

@@ -1,9 +1,17 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {User} from '@app/_models';
 import {ActivatedRoute} from '@angular/router';
 import {AccountService, AlertService} from '@app/_services';
 import {map} from 'rxjs/operators';
 import {BookService} from '@app/_services/book.service';
+import {ChartComponent} from 'ng-apexcharts';
+
+export type ChartOptions = {
+  series: ApexNonAxisChartSeries;
+  chart: ApexChart;
+  responsive: ApexResponsive[];
+  labels: any;
+};
 
 @Component({
   selector: 'app-profile',
@@ -11,6 +19,8 @@ import {BookService} from '@app/_services/book.service';
   styleUrls: ['./profile.component.less']
 })
 export class ProfileComponent implements OnInit {
+  @ViewChild("chart") chart: ChartComponent;
+  public chartOptions: Partial<ChartOptions>;
 
   userId: string = null;
   user: User = null;
@@ -34,7 +44,7 @@ export class ProfileComponent implements OnInit {
       map((user: User) => this.user = user)
     ).subscribe();
 
-    this.fetchBookActionByStatus();
+    this.fetchBookActionByStatusSubmitted();
   }
 
   public status(bookId, bookStatus) {
@@ -42,7 +52,7 @@ export class ProfileComponent implements OnInit {
       .subscribe(data => {
           this.fetchBookActionByStatus();
           if (bookStatus === 'REQUESTED') {
-            this.alertService.success('Book requested successfully', { keepAfterRouteChange: false });
+            this.alertService.success('Book requested successfully', {keepAfterRouteChange: false});
           }
         },
         error => {
@@ -51,8 +61,15 @@ export class ProfileComponent implements OnInit {
         });
   }
 
+  fetchBookActionByStatusSubmitted() {
+    this.bookService.getBookActionByStatus('SUBMITTED').subscribe(
+      dataResponse => {
+        this.bookAction = dataResponse;
+      }
+    );
+  }
 
-  fetchBookActionByStatus() {
+  fetchBookActionByStatusRequested(){
     this.bookService.getBookActionByStatus('REQUESTED').subscribe(
       dataResponse => {
         this.bookAction = dataResponse;

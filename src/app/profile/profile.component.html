@@ -1,5 +1,8 @@
 <div class="container">
   <div class="profile-container">
+    <div class="d-flex mb-5">
+      <img width="350px" height="auto" style="margin: 0 auto;" src="https://devtalk.blender.org/uploads/default/original/2X/c/cbd0b1a6345a44b58dda0f6a355eb39ce4e8a56a.png" alt="Profile image">
+    </div>
     <div class="profile-info">
       <span>
         <p class=""><strong>First name: </strong> {{user.firstName}}</p>
@@ -55,17 +58,18 @@
       </tr>
       </thead>
       <tbody>
-      <tr>
-        <td><a href="#">Effective Java</a></td>
-        <td>author</td>
-        <td>Computers</td>
-        <td>82</td>
-        <td>Submitted</td>
-        <td>02.03.2001 20:12</td>
+      <tr *ngFor="let data of this.bookAction">
+        <td><a href="#">{{data.books.title}}</a></td>
+        <td>{{data.books.authors}}</td>
+        <td>{{data.books.categories}}</td>
+        <td>{{data.books.vote}}</td>
+        <td>{{data.books.status}}</td>
+        <td>{{data.actionDate}}</td>
       </tr>
       </tbody>
     </table>
   </div>
+  <div class="dashboard-container"></div>
 </div>
 
 

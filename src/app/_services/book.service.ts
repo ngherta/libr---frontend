@@ -79,12 +79,12 @@ export class BookService {
   }
 
   addBookReaction(userId, bookId, reaction) {
-    return this.http.post(`${environment.apiUrl}/reaction`,
+    return this.http.post(`${environment.apiUrl}/book-reaction`,
       { "userId": userId, "bookId": bookId, "type": reaction });
   }
 
   addCommentReaction(userId, commentId, reaction) {
-    return this.http.post(`${environment.apiUrl}/`,
+    return this.http.post(`${environment.apiUrl}/comment-reaction`,
       { "userId": userId, "commentId": commentId, "type": reaction });
   }
 

@@ -3,8 +3,8 @@
 <nav class="navbar navbar-expand navbar-dark bg-dark" *ngIf="user">
     <div class="navbar-nav">
         <a class="nav-item nav-link" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a>
-        <a class="nav-item nav-link" routerLink="/users" routerLinkActive="active">Users</a>
-        <a class="nav-item nav-link" routerLink="/books" routerLinkActive="active">Books</a>
+        <a *ngIf="user.role === 'ADMIN'" class="nav-item nav-link" routerLink="/users" routerLinkActive="active">Users</a>
+        <a *ngIf="user.role === 'ADMIN'" class="nav-item nav-link" routerLink="/books" routerLinkActive="active">Books</a>
         <a class="nav-item nav-link" routerLink="profile/{{user.id}}" routerLinkActive="active">My Profile</a>
         <a class="nav-item nav-link" (click)="logout()">Logout</a>
     </div>
