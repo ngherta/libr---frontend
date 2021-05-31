@@ -6,6 +6,7 @@
         <a *ngIf="user.role === 'ADMIN'" class="nav-item nav-link" routerLink="/users" routerLinkActive="active">Users</a>
         <a *ngIf="user.role === 'ADMIN'" class="nav-item nav-link" routerLink="/books" routerLinkActive="active">Books</a>
         <a class="nav-item nav-link" routerLink="profile/{{user.id}}" routerLinkActive="active">My Profile</a>
+        <a class="nav-item nav-link" href="/dashboard" routerLinkActive="active">Dashboard</a>
         <a class="nav-item nav-link" (click)="logout()">Logout</a>
     </div>
 </nav>

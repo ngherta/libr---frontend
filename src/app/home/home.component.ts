@@ -115,10 +115,12 @@ export class HomeComponent implements OnInit {
 
   filterCategoryValue(category) {
     this.orderCategory = category;
+    console.log(this.orderCategory);
   }
 
   filterStatusValue(status) {
     this.orderStatus = status;
+    console.log(this.orderStatus);
   }
 
   public upVote(bookId) {

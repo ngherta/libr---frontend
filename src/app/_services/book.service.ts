@@ -39,6 +39,10 @@ export class BookService {
     return this.http.post(`${environment.apiUrl}/books`, book);
   }
 
+  getAllDashboard() {
+    return this.http.get(`${environment.apiUrl}/dashboard`);
+  }
+
   getById(id: string) {
     return this.http.get<Book>(`${environment.apiUrl}/books/${id}`);
   }
@@ -118,5 +122,17 @@ export class BookService {
         }
         return x;
       }));
+  }
+
+  getActuatorInfo() {
+    return this.http.get(`${environment.apiUrl}/actuator/info`);
+  }
+
+  getActuatorHealth() {
+    return this.http.get(`${environment.apiUrl}/actuator/health`);
+  }
+
+  getActuatorMetrics() {
+    return this.http.get(`${environment.apiUrl}/actuator/metrics/`);
   }
 }

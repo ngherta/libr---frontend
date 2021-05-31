@@ -18,7 +18,7 @@ export class AccountService {
     private http: HttpClient
   ) {
     console.log(localStorage.getItem('user'));
-    this.userId = JSON.parse(localStorage.getItem('user')).id;
+    // this.userId = JSON.parse(localStorage.getItem('user')).id;
     this.userSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('user')));
     this.user = this.userSubject.asObservable();
   }
@@ -123,5 +123,9 @@ export class AccountService {
 
   sendEmail(id: string, type: string) {
     return this.http.post(`${environment.apiUrl}/emails`, { 'userId': id, 'emailType': type }).subscribe();
+  }
+
+  getActuatorInfo() {
+    return this.http.get(`${environment.apiUrl}/actuator/info`);
   }
 }

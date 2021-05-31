@@ -18,7 +18,8 @@ import {DataTablesModule} from 'angular-datatables';
 import { InsideBookComponent } from './inside-book/inside-book.component';
 import {ChangePasswordComponent} from '@app/users/change-password.component';
 import {EditProfileComponent} from "@app/profile/edit-profile.component";
-import {NgApexchartsModule} from 'ng-apexcharts';
+import {NgApexchartsModule} from 'ng-apexcharts';;
+import { DashboardComponent } from './dashboard/dashboard.component'
 
 @NgModule({
   imports: [
@@ -42,7 +43,9 @@ import {NgApexchartsModule} from 'ng-apexcharts';
     ChangePasswordComponent,
     InsideBookComponent,
     ProfileComponent,
-    EditProfileComponent],
+    EditProfileComponent,
+    DashboardComponent,
+    ],
 
   bootstrap: [AppComponent],
   exports: []

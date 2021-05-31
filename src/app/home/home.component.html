@@ -136,8 +136,9 @@
     </div>
 
     <div *ngFor="let book of booksData">
-      <div [ngClass]="{'d-none': book.status !== this.orderStatus, 'd-block' : this.orderStatus === '', 'd-none': !this.orderByCategory(book.categories),
-      'd-block': this.orderCategory === 'All'}"
+      <div [ngClass]="{'d-none': (book.status !== this.orderStatus && !this.orderByCategory(book.categories)),
+      'd-block' : (this.orderStatus === ''
+      && (this.orderCategory === 'All' || this.orderByCategory(book.categories)) )}"
            class="container-max-width" style="padding: 10px">
         <div *ngIf="(this.orderByCategory(book.categories) || this.orderCategory === 'All') &&
          (book.status === this.orderStatus || this.orderStatus === '')" class="card">
