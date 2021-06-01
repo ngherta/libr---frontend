@@ -27,7 +27,7 @@
   </div>
   <div *ngIf="user.role === 'ADMIN'" style="margin-top: 20px;" class="dashboard-container">
     <h4>List of requested books</h4>
-    <table class="table">
+    <table datatable [dtOptions]="dtOptionsAdmin" [dtTrigger]="dtTriggerAdmin" class="table">
       <thead>
         <tr>
           <th scope="col">Full name</th>
@@ -50,7 +50,7 @@
   </div>
   <div *ngIf="user.role === 'USER'" style="margin-top: 20px;" class="dashboard-container">
     <h4>List of books submitted by me</h4>
-    <table class="table">
+    <table datatable [dtOptions]="dtOptionsUser" [dtTrigger]="dtTriggerUser" class="table">
       <thead>
         <tr>
           <th scope="col">Title</th>

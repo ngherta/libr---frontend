@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { AccountService, AlertService } from '@app/_services';
 import { first, map } from 'rxjs/operators';
 import { BookService } from '@app/_services/book.service';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-profile',
@@ -11,7 +12,10 @@ import { BookService } from '@app/_services/book.service';
   styleUrls: ['./profile.component.less']
 })
 export class ProfileComponent implements OnInit {
-
+  dtOptionsAdmin: DataTables.Settings = {};
+  dtOptionsUser: DataTables.Settings = {};
+  dtTriggerAdmin: Subject<any> = new Subject<any>();
+  dtTriggerUser: Subject<any> = new Subject<any>();
   userId: string = null;
   user: User = null;
   bookAction: any;
@@ -29,6 +33,14 @@ export class ProfileComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.dtOptionsAdmin = {
+      pagingType: 'full_numbers',
+      pageLength: 20
+    };
+    this.dtOptionsUser = {
+      pagingType: 'full_numbers',
+      pageLength: 20
+    };
     this.userId = this.activatedRoute.snapshot.params.id;
     console.log(this.userId);
     this.userService.getById(this.userId).pipe(
@@ -59,6 +71,7 @@ export class ProfileComponent implements OnInit {
     this.bookService.getBookActionByStatus('SUBMITTED').subscribe(
       dataResponse => {
         this.bookAction = dataResponse;
+        this.dtTriggerAdmin.next();
       }
     );
   }
@@ -67,6 +80,7 @@ export class ProfileComponent implements OnInit {
     this.bookService.getBookActionByStatus('REQUESTED').subscribe(
       dataResponse => {
         this.bookActionRequested = dataResponse;
+        this.dtTriggerUser.next();
       }
     );
   }
