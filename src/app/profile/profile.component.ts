@@ -1,9 +1,9 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
-import {User} from '@app/_models';
-import {ActivatedRoute} from '@angular/router';
-import {AccountService, AlertService} from '@app/_services';
-import {map} from 'rxjs/operators';
-import {BookService} from '@app/_services/book.service';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { User } from '@app/_models';
+import { ActivatedRoute } from '@angular/router';
+import { AccountService, AlertService } from '@app/_services';
+import { first, map } from 'rxjs/operators';
+import { BookService } from '@app/_services/book.service';
 
 @Component({
   selector: 'app-profile',
@@ -39,14 +39,16 @@ export class ProfileComponent implements OnInit {
     this.fetchBookActionByStatusRequested();
   }
 
-  public status(bookId, bookStatus) {
-    this.bookService.updateStatus(this.userId, bookId, bookStatus)
+  public status(userId, bookId, bookStatus) {
+    this.bookService.updateStatus(userId, bookId, bookStatus)
+      .pipe(first())
       .subscribe(data => {
-          this.fetchBookActionByStatusSubmitted();
-          if (bookStatus === 'REQUESTED') {
-            this.alertService.success('Book requested successfully', {keepAfterRouteChange: false});
-          }
-        },
+        this.fetchBookActionByStatusSubmitted();
+        this.fetchBookActionByStatusRequested();
+        if (bookStatus === 'REQUESTED') {
+          this.alertService.success('Book requested successfully', { keepAfterRouteChange: false });
+        }
+      },
         error => {
           this.alertService.error(error.error.errorMessage);
           this.loading = false;
@@ -61,7 +63,7 @@ export class ProfileComponent implements OnInit {
     );
   }
 
-  fetchBookActionByStatusRequested(){
+  fetchBookActionByStatusRequested() {
     this.bookService.getBookActionByStatus('REQUESTED').subscribe(
       dataResponse => {
         this.bookActionRequested = dataResponse;

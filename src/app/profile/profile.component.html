@@ -1,7 +1,9 @@
 <div class="container">
   <div class="profile-container">
     <div class="d-flex mb-5">
-      <img width="350px" height="auto" style="margin: 0 auto;" src="https://devtalk.blender.org/uploads/default/original/2X/c/cbd0b1a6345a44b58dda0f6a355eb39ce4e8a56a.png" alt="Profile image">
+      <img width="350px" height="auto" style="margin: 0 auto;"
+        src="https://devtalk.blender.org/uploads/default/original/2X/c/cbd0b1a6345a44b58dda0f6a355eb39ce4e8a56a.png"
+        alt="Profile image">
     </div>
     <div class="profile-info">
       <span>
@@ -18,29 +20,31 @@
       </span>
     </div>
     <div class="profile-button">
-      <a class="btn btn-info" href="auth/password/{{user.id}}" >Change password</a>
-      <a class="btn btn-primary" href="profile/edit/{{user.id}}" style="margin-right: 15px;" routerLinkActive="active">Edit profile</a>
+      <a class="btn btn-info" href="auth/password/{{user.id}}">Change password</a>
+      <a class="btn btn-primary" href="profile/edit/{{user.id}}" style="margin-right: 15px;"
+        routerLinkActive="active">Edit profile</a>
     </div>
   </div>
   <div *ngIf="user.role === 'ADMIN'" style="margin-top: 20px;" class="dashboard-container">
     <h4>List of requested books</h4>
     <table class="table">
       <thead>
-      <tr>
-        <th scope="col">Full name</th>
-        <th scope="col">Book title</th>
-        <th scope="col">Date</th>
-        <th scope="col">Button</th>
-      </tr>
+        <tr>
+          <th scope="col">Full name</th>
+          <th scope="col">Book title</th>
+          <th scope="col">Date</th>
+          <th scope="col">Button</th>
+        </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let request of bookActionRequested">
-        <td>{{request.user.firstName}} {{request.user.firstName}}</td>
-        <td><a href="#">{{request.book.title}}</a></td>
-        <td>{{request.actionDate}}</td>
-        <td><button (click)="this.status(request.books.id, 'IN_USE')" type="button" class="btn btn-dark">Allow</button>
-        </td>
-      </tr>
+        <tr *ngFor="let request of bookActionRequested">
+          <td>{{request.user.firstName}} {{request.user.firstName}}</td>
+          <td><a href="#">{{request.book.title}}</a></td>
+          <td>{{request.actionDate}}</td>
+          <td><button (click)="this.status(request.user.id, request.book.id, 'IN_USE')" type="button"
+              class="btn btn-dark">Allow</button>
+          </td>
+        </tr>
       </tbody>
     </table>
   </div>
@@ -48,27 +52,25 @@
     <h4>List of books submitted by me</h4>
     <table class="table">
       <thead>
-      <tr>
-        <th scope="col">Title</th>
-        <th scope="col">Authors</th>
-        <th scope="col">Categories</th>
-        <th scope="col">Votes</th>
-        <th scope="col">Status</th>
-        <th scope="col">Date</th>
-      </tr>
+        <tr>
+          <th scope="col">Title</th>
+          <th scope="col">Authors</th>
+          <th scope="col">Categories</th>
+          <th scope="col">Votes</th>
+          <th scope="col">Status</th>
+          <th scope="col">Date</th>
+        </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let data of this.bookAction">
-        <td><a href="#">{{data.book.title}}</a></td>
-        <td>{{data.book.authors}}</td>
-        <td>{{data.book.categories}}</td>
-        <td>{{data.book.votes ? data.book.votes : '0'}}</td>
-        <td>{{data.book.status}}</td>
-        <td>{{data.actionDate}}</td>
-      </tr>
+        <tr *ngFor="let data of this.bookAction">
+          <td><a href="#">{{data.book.title}}</a></td>
+          <td>{{data.book.authors}}</td>
+          <td>{{data.book.categories}}</td>
+          <td>{{data.book.votes ? data.book.votes : '0'}}</td>
+          <td>{{data.book.status}}</td>
+          <td>{{data.actionDate}}</td>
+        </tr>
       </tbody>
     </table>
   </div>
 </div>
-
-
