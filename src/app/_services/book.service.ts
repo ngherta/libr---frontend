@@ -120,7 +120,7 @@ export class BookService {
     return this.http.get(`${environment.apiUrl}/actuator/health`);
   }
 
-  getActuatorMetrics() {
-    return this.http.get(`${environment.apiUrl}/actuator/metrics/`);
+  getActuatorMetrics(url) {
+    return this.http.get(`${environment.apiUrl}/actuator/metrics/${url}`);
   }
 }

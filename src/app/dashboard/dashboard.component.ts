@@ -75,7 +75,8 @@ export class DashboardComponent implements OnInit {
 
   actuatorInfo: any;
   actuatorHealth: any;
-  actuatorMetrics: any;
+  actuatorMetrics: Array<{ [key: string]: string; }> = [];
+  actuatorMetricsTmp: any;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -296,15 +297,54 @@ export class DashboardComponent implements OnInit {
     this.fetchAllDashboard();
     this.getActuatorInfo();
     this.getActuatorHealth();
+    this.getActuatorMetrics();
   }
 
   getActuatorMetrics() {
-    this.bookService.getActuatorMetrics()
+    this.bookService.getActuatorMetrics('jvm.buffer.memory.used')
       .pipe(first())
       .subscribe(
         data => {
-          this.actuatorMetrics = data;
+          this.actuatorMetrics[0] = [{'MemoryUsed' : data.measurements[0].value}];
         });
+
+    this.bookService.getActuatorMetrics('system.cpu.count')
+      .pipe(first())
+      .subscribe(
+        data => {
+          this.actuatorMetrics[1] = [{'NumberOfProcessors' : data.measurements[0].value}];
+        });
+
+    this.bookService.getActuatorMetrics('http.server.requests')
+      .pipe(first())
+      .subscribe(
+        data => {
+          this.actuatorMetrics[2] = [{'HttpRequest' : data.measurements[0].value}];
+          this.actuatorMetrics[3] = [{'HttpRequestTotal' : data.measurements[1].value}];
+          this.actuatorMetrics[4] = [{'HttpRequestMax' : data.measurements[2].value}];
+        });
+
+    this.bookService.getActuatorMetrics('jvm.memory.used')
+      .pipe(first())
+      .subscribe(
+        data => {
+          this.actuatorMetrics[5] = [{'UsedMemory' : data.measurements[0].value}];
+        });
+
+    this.bookService.getActuatorMetrics('process.uptime')
+      .pipe(first())
+      .subscribe(
+        data => {
+          this.actuatorMetrics[6] = [{'UpTime' : data.measurements[0].value}];
+        });
+
+    // this.bookService.getActuatorMetrics('system.cpu.count')
+    //   .pipe(first())
+    //   .subscribe(
+    //     data => {
+    //       this.actuatorMetrics[2] = [{'NumberOfProcessors' : data.measurements[0].value}];
+    //       console.log(this.actuatorMetrics);
+    //     });
   }
 
   getActuatorHealth() {
