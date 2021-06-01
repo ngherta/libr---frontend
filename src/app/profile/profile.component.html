@@ -37,11 +37,11 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let request of bookActionRequested">
+        <tr id="test" *ngFor="let request of bookActionRequested">
           <td>{{request.user.firstName}} {{request.user.firstName}}</td>
           <td><a href="#">{{request.book.title}}</a></td>
           <td>{{request.actionDate}}</td>
-          <td><button (click)="this.status(request.user.id, request.book.id, 'IN_USE')" type="button"
+          <td><button (click)="this.status(request.user.id, request.book.id, 'IN_USE');" type="button"
               class="btn btn-dark">Allow</button>
           </td>
         </tr>

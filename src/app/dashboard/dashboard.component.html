@@ -35,7 +35,7 @@
     </div>
 
     <div class="emotion-statistic-container">
-      <h2 class="text-center">Total reactions per books</h2>
+      <h3 class="text-center">Total reactions per books</h3>
       <div class = "d-flex justify-content-around">
         <div>
           <p class="emoji">😍</p>
@@ -86,7 +86,7 @@
 
   <div class="d-flex justify-content-between" style="margin-top: 20px">
     <div class="categories-statistic-container">
-      <h2 class="text-center">Number of books by category</h2>
+      <h3 class="text-center">Number of books by category</h3>
       <div id="chart" style="max-width: 650px;">
         <apx-chart
           [series]="ChartOptionsTopCategories.series"
@@ -103,7 +103,7 @@
     </div>
 
     <div class="container-categories-sub-lib" style="height: 418px">
-      <h2 class="text-center">Total submitted and in_library books</h2>
+      <h3 class="text-center">Total SUBMITTED and IN_LIBRARY books</h3>
       <div id="chart2" style="margin: auto;">
         <apx-chart
           [series]="[this.countOfSubmittedBooks, this.countOfInlibraryBooks]"
@@ -117,7 +117,7 @@
 
   <div class="d-flex justify-content-between" style="margin-top: 20px">
     <div class="categories-statistic-container">
-      <h2 class="text-center">Total submitted and in_library books</h2>
+      <h3 class="text-center">Total SUBMITTED and IN_LIBRARY books per week</h3>
       <div id="chart" style="max-width: 650px;">
 
         <apx-chart
@@ -140,7 +140,7 @@
 
     </div>
     <div class="container-up-down-vote">
-      <h2 class="text-center">Total reactions per books</h2>
+      <h3 class="text-center">Total reactions per books</h3>
       <div class="d-flex justify-content-between">
         <div class="up-vote-container">
           <a href="books/{{this.dashboard.mostUpVotedBook.id}}">

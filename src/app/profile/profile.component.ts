@@ -55,11 +55,11 @@ export class ProfileComponent implements OnInit {
     this.bookService.updateStatus(userId, bookId, bookStatus)
       .pipe(first())
       .subscribe(data => {
-        this.fetchBookActionByStatusSubmitted();
-        this.fetchBookActionByStatusRequested();
+          this.fetchBookActionByStatusRequested();
         if (bookStatus === 'REQUESTED') {
           this.alertService.success('Book requested successfully', { keepAfterRouteChange: false });
         }
+
       },
         error => {
           this.alertService.error(error.error.errorMessage);

@@ -40,7 +40,7 @@ export class EditProfileComponent implements OnInit {
       email: ['', Validators.email],
       age: ['', Validators.required],
       phone: ['', Validators.required],
-      role: [this.userRole],
+      role: ['', Validators.required],
     });
 
     if (!this.isAddMode) {
