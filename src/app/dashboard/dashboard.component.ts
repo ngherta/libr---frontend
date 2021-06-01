@@ -67,6 +67,9 @@ export class DashboardComponent implements OnInit {
 
   countOfSubmittedBooks: number;
   countOfInlibraryBooks: number;
+
+  submittedPerWeek: [any];
+
   actuatorInfo: any;
   actuatorHealth: any;
   actuatorMetrics: any;
@@ -272,6 +275,11 @@ export class DashboardComponent implements OnInit {
 
         this.countOfSubmittedBooks = this.dashboard.allSubmittedAndInLibraryBooks.SUBMITTED;
         this.countOfInlibraryBooks = this.dashboard.allSubmittedAndInLibraryBooks.IN_LIBRARY;
+
+        // for (const dataWeek of this.dashboard.submittedPerWeek) {
+        //   this.submittedPerWeek.push(dataWeek);
+        // }
+        // console.log(this.dashboard.submittedPerWeek);
      });
   }
 }

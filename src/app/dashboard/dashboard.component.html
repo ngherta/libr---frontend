@@ -16,21 +16,21 @@
 </svg>
         </div>
         <h5 class = "round-statistic-title">Users</h5>
-        <p class = "round-statistic-info">{{dashboard.usersCount}}</p>
+        <p class = "round-statistic-info"><strong>{{dashboard.usersCount}}</strong></p>
       </div>
       <div class = "rounded-circle">
         <div class="round-statistic-img">
           <img width="auto" height="62px" src="../../assets/like_PNG13.png" alt="">
         </div>
         <h5 class = "round-statistic-title">Votes</h5>
-        <p class = "round-statistic-info">{{dashboard.votesCount}}</p>
+        <p class = "round-statistic-info"><strong>{{dashboard.votesCount}}</strong></p>
       </div>
       <div class = "rounded-circle">
         <div class="round-statistic-img" style="padding-top: 7px;">
           <img width="auto" height="56px" src="../../assets/toppng.com-open-book-icon-png-download-book-black-and-white-2316x1469.png" alt="">
         </div>
         <h5 class = "round-statistic-title">Books</h5>
-        <p class = "round-statistic-info">{{dashboard.booksCount}}</p>
+        <p class = "round-statistic-info"><strong>{{dashboard.booksCount}}</strong></p>
       </div>
     </div>
 
@@ -137,13 +137,26 @@
           <h6>{{this.dashboard.mostUpVotedBook.title}}</h6>
         </a>
         <a href="books/{{this.dashboard.mostUpVotedBook.id}}"><img src="{{this.dashboard.mostUpVotedBook.imageLinks.thumbnail}}" alt=""></a>
+        <div ng-disabled="buttonClicked" class="btn btn-success btn-vote" >
+          <svg xmlns="http://www.w3.org/2000/svg" width="50px" height="50px" fill="currentColor" class="bi bi-arrow-up" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5z"/>
+          </svg>
+        </div>
         <p style="margin-top:auto"><strong>Vote: </strong> {{this.dashboard.mostUpVotedBook.vote}}</p>
+      </div>
+      <div class="vs d-flex align-items-center">
+        <p>VS</p>
       </div>
       <div class="down-vote-container">
         <a href="books/{{this.dashboard.mostDownVotedBook.id}}">
           <h6>{{this.dashboard.mostDownVotedBook.title}}</h6>
         </a>
         <a href="books/{{this.dashboard.mostDownVotedBook.id}}"><img src="{{this.dashboard.mostDownVotedBook.imageLinks.thumbnail}}" alt=""></a>
+        <div type="button" class="btn btn-danger btn-vote">
+          <svg xmlns="http://www.w3.org/2000/svg" width="50px" height="50px" fill="currentColor" class="bi bi-arrow-down" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1z"/>
+          </svg>
+        </div>
         <p style="margin-top:auto"><strong>Vote: </strong> {{this.dashboard.mostDownVotedBook.vote}}</p>
       </div>
     </div>
