@@ -18,7 +18,7 @@ export class AccountService {
     private http: HttpClient
   ) {
     console.log(localStorage.getItem('user'));
-    // this.userId = JSON.parse(localStorage.getItem('user')).id;
+    this.userId = JSON.parse(localStorage.getItem('user')).id;
     this.userSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('user')));
     this.user = this.userSubject.asObservable();
   }
@@ -78,7 +78,7 @@ export class AccountService {
       }));
   }
 
-  editUserFromProfile(id, params){
+  editUserFromProfile(id, params) {
     return this.http.put(`${environment.apiUrl}/users/${id}`, params)
       .pipe(map(x => {
         // update stored user if the logged in user updated their own record

@@ -66,14 +66,10 @@ export class BookService {
       }));
   }
 
-  register(book: Book, userId: number) {
+  register(book: Book, userId: number, isManuallyAdded: boolean) {
     book.userId = userId;
-    console.log(book.userId);
+    book.isManuallyAdded = isManuallyAdded;
     return this.http.post(`${environment.apiUrl}/books`, book);
-  }
-
-  createBook(book: Book) {
-    return this.http.post(`${environment.apiUrl}/books/manually`, book);
   }
 
   vote(userId: string, bookId: number, vote: number) {
