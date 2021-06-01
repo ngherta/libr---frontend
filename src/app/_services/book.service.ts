@@ -1,14 +1,14 @@
-﻿import {Injectable} from '@angular/core';
-import {Router} from '@angular/router';
-import {HttpClient} from '@angular/common/http';
-import {BehaviorSubject, Observable} from 'rxjs';
+﻿import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+import { BehaviorSubject, Observable } from 'rxjs';
 
-import {environment} from '@environments/environment';
-import {Book} from '@app/_models/book';
-import {map} from "rxjs/operators";
-import {Categories} from '@app/_models/Categories';
+import { environment } from '@environments/environment';
+import { Book } from '@app/_models/book';
+import { map } from "rxjs/operators";
+import { Categories } from '@app/_models/Categories';
 
-@Injectable({providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 export class BookService {
   private bookSubject: BehaviorSubject<Book>;
   public book: Observable<Book>;
@@ -109,19 +109,7 @@ export class BookService {
   }
 
   update(id, params) {
-    return this.http.put(`${environment.apiUrl}/books/${id}`, params)
-      .pipe(map(x => {
-        // update stored user if the logged in user updated their own record
-        if (id === this.bookValue.id) {
-          // update local storage
-          const book = { ...this.bookValue, ...params };
-          localStorage.setItem('book', JSON.stringify(book));
-
-          // publish updated user to subscribers
-          this.bookSubject.next(book);
-        }
-        return x;
-      }));
+    return this.http.put(`${environment.apiUrl}/books/${id}`, params);
   }
 
   getActuatorInfo() {

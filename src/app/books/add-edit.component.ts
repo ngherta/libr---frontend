@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {ActivatedRoute, Router} from '@angular/router';
-import {AlertService} from '@app/_services';
-import {BookService} from '@app/_services/book.service';
-import {AccountService} from '@app/_services';
-import {first} from 'rxjs/operators';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AlertService } from '@app/_services';
+import { BookService } from '@app/_services/book.service';
+import { AccountService } from '@app/_services';
+import { first } from 'rxjs/operators';
 
 @Component({
   selector: 'app-add-edit',
@@ -17,6 +17,8 @@ export class AddEditComponent implements OnInit {
   loading = false;
   submitted = false;
   userId: number;
+  authors: Array<string>
+  categories: Array<string>
 
   constructor(
     private formBuilder: FormBuilder,
@@ -33,26 +35,28 @@ export class AddEditComponent implements OnInit {
     this.isAddMode = !this.id;
 
     this.form = this.formBuilder.group({
-        title: ['', Validators.required],
-        authors: ['', Validators.required],
-        publisher: ['', Validators.required],
-        publishedDate: ['', Validators.required],
-        description: ['', Validators.required],
-        industryIdentifiers: ['', Validators.required],
-        pageCount: ['', Validators.required],
-        categories: ['', Validators.required],
-        averageRating: ['', Validators.required],
-        ratingsCount: ['', Validators.required],
-        maturityRating: ['', Validators.required],
-        imageLinks: ['', Validators.required],
-        language: ['', Validators.required],
-        previewLink: ['', Validators.required]
+      title: ['', Validators.required],
+      authors: ['', Validators.required],
+      publisher: ['', Validators.required],
+      publishedDate: ['', Validators.required],
+      description: ['', Validators.required],
+      industryIdentifiers: ['', Validators.required],
+      pageCount: ['', Validators.required],
+      categories: ['', Validators.required],
+      averageRating: ['', Validators.required],
+      ratingsCount: ['', Validators.required],
+      maturityRating: ['', Validators.required],
+      imageLinks: ['', Validators.required],
+      language: ['', Validators.required],
+      previewLink: ['', Validators.required]
     });
 
     if (!this.isAddMode) {
       this.bookService.getById(this.id)
         .pipe(first())
         .subscribe(x => {
+          this.authors = x.authors;
+          this.categories = x.categories;
           this.f.title.setValue(x.title);
           this.f.authors.setValue(x.authors);
           this.f.publisher.setValue(x.publisher);
@@ -97,8 +101,8 @@ export class AddEditComponent implements OnInit {
   private createBook() {
     this.form.value.authors = this.form.value.authors.split(',');
     this.form.value.categories = this.form.value.categories.split(',');
-    this.form.value.industryIdentifiers = [{'isbn': this.form.value.industryIdentifiers.split(',')[0]}];
-    this.form.value.imageLinks = {'thumbnail': this.form.value.imageLinks.split(',')[0]};
+    this.form.value.industryIdentifiers = [{ 'isbn': this.form.value.industryIdentifiers.split(',')[0] }];
+    this.form.value.imageLinks = { 'thumbnail': this.form.value.imageLinks.split(',')[0] };
     this.bookService.createBook(this.form.value)
       .pipe(first())
       .subscribe(
@@ -113,6 +117,13 @@ export class AddEditComponent implements OnInit {
   }
 
   private updateBook() {
+    if (!(this.form.value.authors == this.authors)) {
+      this.form.value.authors = this.form.value.authors.split(',');
+    }
+    if (!(this.form.value.categories == this.categories)) {
+      this.form.value.categories = this.form.value.categories.split(',');
+    }
+
     this.bookService.update(this.id, this.form.value)
       .pipe(first())
       .subscribe(
@@ -121,7 +132,7 @@ export class AddEditComponent implements OnInit {
           this.router.navigate(['..', { relativeTo: this.route }]);
         },
         error => {
-          this.alertService.error(error.error.errorMessage);
+          this.alertService.error(error.error);
           this.loading = false;
         });
   }
