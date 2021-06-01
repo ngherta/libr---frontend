@@ -1,6 +1,6 @@
 <div class="dashboard-container">
   <div class="d-flex justify-content-between">
-    <div>
+    <div style="width: 49%">
       <div class = "d-flex container-round-statistic">
       <div class = "rounded-circle">
         <div class="round-statistic-img">
@@ -58,26 +58,26 @@
       <h4>Info</h4>
       <ul>
         <li><strong>Application name: </strong> {{this.actuatorInfo.app.name}}</li>
-        <li>Description: {{this.actuatorInfo.app.description}}</li>
-        <li>Application version: {{this.actuatorInfo.app.version}}</li>
-        <li>Java version: {{this.actuatorInfo.app.java.version}}</li>
+        <li><strong>Description:</strong> {{this.actuatorInfo.app.description}}</li>
+        <li><strong>Application version: </strong>{{this.actuatorInfo.app.version}}</li>
+        <li><strong>Java version:</strong> {{this.actuatorInfo.app.java.version}}</li>
       </ul>
       <h4>Health</h4>
       <ul>
-        <li>The state of application: {{this.actuatorHealth.status}}</li>
-        <li>Database: {{this.actuatorHealth.components.db.details.database}}</li>
-        <li>Total diskspace: {{this.actuatorHealth.components.diskSpace.details.total}}</li>
-        <li>Free diskspace: {{this.actuatorHealth.components.diskSpace.details.free}}</li>
+        <li><strong>The state of application:</strong> {{this.actuatorHealth.status}}</li>
+        <li><strong>Database:</strong> {{this.actuatorHealth.components.db.details.database}}</li>
+        <li><strong>Total diskspace: </strong>{{this.actuatorHealth.components.diskSpace.details.total}}</li>
+        <li><strong>Free diskspace: </strong>{{this.actuatorHealth.components.diskSpace.details.free}}</li>
       </ul>
       <h4>Metrics</h4>
       <ul>
-        <li>The number of processors available:</li>
-        <li>The uptime:</li>
-        <li>text</li>
-        <li>text</li>
-        <li>text</li>
-        <li>text</li>
-        <li>text</li>
+        <li><strong>The number of processors available:</strong></li>
+        <li><strong>The uptime:</strong></li>
+        <li><strong>text</strong></li>
+        <li><strong>text</strong></li>
+        <li><strong>text</strong></li>
+        <li><strong>text</strong></li>
+        <li><strong>text </strong></li>
       </ul>
 
     </div>
@@ -86,6 +86,7 @@
 
   <div class="d-flex justify-content-between" style="margin-top: 20px">
     <div class="categories-statistic-container">
+      <h2 class="text-center">Number of books by category</h2>
       <div id="chart" style="max-width: 650px;">
         <apx-chart
           [series]="ChartOptionsTopCategories.series"
@@ -99,11 +100,11 @@
           [grid]="ChartOptionsTopCategories.grid"
         ></apx-chart>
       </div>
-
     </div>
 
-    <div class="container-categories-sub-lib" style="height: 372px">
-      <div id="chart2">
+    <div class="container-categories-sub-lib" style="height: 418px">
+      <h2 class="text-center">Total submitted and in_library books</h2>
+      <div id="chart2" style="margin: auto;">
         <apx-chart
           [series]="[this.countOfSubmittedBooks, this.countOfInlibraryBooks]"
           [chart]="chartOptions.chart"
@@ -116,17 +117,24 @@
 
   <div class="d-flex justify-content-between">
     <div class="categories-statistic-container">
+      <h2 class="text-center">Total submitted and in_library books</h2>
       <div id="chart" style="max-width: 650px;">
+
         <apx-chart
-          [series]="ChartOptionsTopCategories.series"
-          [chart]="ChartOptionsTopCategories.chart"
-          [dataLabels]="ChartOptionsTopCategories.dataLabels"
-          [plotOptions]="ChartOptionsTopCategories.plotOptions"
-          [yaxis]="ChartOptionsTopCategories.yaxis"
-          [xaxis]="ChartOptionsTopCategories.xaxis"
-          [legend]="ChartOptionsTopCategories.legend"
-          [colors]="ChartOptionsTopCategories.colors"
-          [grid]="ChartOptionsTopCategories.grid"
+          [series]="[
+        {
+          name: 'books',
+          data: this.submittedPerWeekCount
+        }
+      ]"
+          [chart]="ChartOptionsSubmittedPerWeek.chart"
+          [dataLabels]="ChartOptionsSubmittedPerWeek.dataLabels"
+          [plotOptions]="ChartOptionsSubmittedPerWeek.plotOptions"
+          [yaxis]="ChartOptionsSubmittedPerWeek.yaxis"
+          [xaxis]="ChartOptionsSubmittedPerWeek.xaxis"
+          [legend]="ChartOptionsSubmittedPerWeek.legend"
+          [colors]="ChartOptionsSubmittedPerWeek.colors"
+          [grid]="ChartOptionsSubmittedPerWeek.grid"
         ></apx-chart>
       </div>
 
@@ -137,27 +145,31 @@
           <h6>{{this.dashboard.mostUpVotedBook.title}}</h6>
         </a>
         <a href="books/{{this.dashboard.mostUpVotedBook.id}}"><img src="{{this.dashboard.mostUpVotedBook.imageLinks.thumbnail}}" alt=""></a>
-        <div ng-disabled="buttonClicked" class="btn btn-success btn-vote" >
+        <div class="down-vote-count">
+        <div ng-disabled="buttonClicked" class="btn-success btn-vote" >
           <svg xmlns="http://www.w3.org/2000/svg" width="50px" height="50px" fill="currentColor" class="bi bi-arrow-up" viewBox="0 0 16 16">
             <path fill-rule="evenodd" d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5z"/>
           </svg>
         </div>
-        <p style="margin-top:auto"><strong>Vote: </strong> {{this.dashboard.mostUpVotedBook.vote}}</p>
+        <span class="up-vs-down-vote">{{this.dashboard.mostUpVotedBook.vote}}</span>
+        </div>
       </div>
       <div class="vs d-flex align-items-center">
-        <p>VS</p>
+        <p style="font-size: 4rem;">VS</p>
       </div>
       <div class="down-vote-container">
         <a href="books/{{this.dashboard.mostDownVotedBook.id}}">
           <h6>{{this.dashboard.mostDownVotedBook.title}}</h6>
         </a>
         <a href="books/{{this.dashboard.mostDownVotedBook.id}}"><img src="{{this.dashboard.mostDownVotedBook.imageLinks.thumbnail}}" alt=""></a>
-        <div type="button" class="btn btn-danger btn-vote">
-          <svg xmlns="http://www.w3.org/2000/svg" width="50px" height="50px" fill="currentColor" class="bi bi-arrow-down" viewBox="0 0 16 16">
-            <path fill-rule="evenodd" d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1z"/>
-          </svg>
+        <div class="down-vote-count">
+          <div class="btn-danger btn-vote">
+            <svg xmlns="http://www.w3.org/2000/svg" width="50px" height="50px" fill="currentColor" class="bi bi-arrow-down" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1z"/>
+            </svg>
+          </div>
+          <span class="up-vs-down-vote">{{this.dashboard.mostDownVotedBook.vote}}</span>
         </div>
-        <p style="margin-top:auto"><strong>Vote: </strong> {{this.dashboard.mostDownVotedBook.vote}}</p>
       </div>
     </div>
   </div>

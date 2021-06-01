@@ -85,18 +85,20 @@
       </div>
     </div>
 
-    <div class="btn-group">
-      <button (click)="this.fetchAllCategories()" type="button" class="btn btn-primary dropdown-toggle" style="border-radius: 1.25em;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Category: <span class="badge bg-secondary">{{this.orderCategory}}</span>
-      </button>
-      <div class="dropdown-menu categories-dropdown">
-        <a (click)="filterCategoryValue('All')" class="dropdown-item">All
-          <span class="badge bg-secondary">{{this.countOfAllCategories}}</span></a>
-        <span *ngFor= "let category of this.categories">
+    <div class="d-flex flex-row-reverse" style="padding-top: 5px; padding-bottom: 5px">
+      <div class="btn-group">
+        <button (click)="this.fetchAllCategories()" type="button" class="btn btn-primary dropdown-toggle" style="border-radius: 1.25em;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Category: <span class="badge bg-secondary">{{this.orderCategory}}</span>
+        </button>
+        <div class="dropdown-menu categories-dropdown">
+          <a (click)="filterCategoryValue('All')" class="dropdown-item">All
+            <span class="badge bg-secondary">{{this.countOfAllCategories}}</span></a>
+          <span *ngFor= "let category of this.categories">
           <a (click)="filterCategoryValue(category.category.toString())" class="dropdown-item">{{category.category.toString()}}
             <span class="badge bg-secondary">{{category.count}}</span></a>
         </span>
-<!--        <div class="dropdown-divider"></div>-->
+          <!--        <div class="dropdown-divider"></div>-->
+        </div>
       </div>
     </div>
 
@@ -137,8 +139,7 @@
 
     <div *ngFor="let book of booksData">
       <div [ngClass]="{'d-none': (book.status !== this.orderStatus && !this.orderByCategory(book.categories)),
-      'd-block' : (this.orderStatus === ''
-      && (this.orderCategory === 'All' || this.orderByCategory(book.categories)) )}"
+      'd-block' : (this.orderStatus === '')}"
            class="container-max-width" style="padding: 10px">
         <div *ngIf="(this.orderByCategory(book.categories) || this.orderCategory === 'All') &&
          (book.status === this.orderStatus || this.orderStatus === '')" class="card">

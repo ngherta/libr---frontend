@@ -10,10 +10,15 @@ import { User } from './_models';
 export class AppComponent {
     user: User;
     userId: number;
+    roleOfUser: string;
 
     constructor(private accountService: AccountService) {
-      // this.userId = accountService.userId;
+      // this.statusOfUser = accountService
       this.accountService.user.subscribe(x => this.user = x);
+      if (this.user !== null) {
+        this.userId = accountService.userId;
+        console.log(this.user);
+      }
     }
 
     logout() {

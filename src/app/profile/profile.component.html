@@ -59,11 +59,11 @@
       </thead>
       <tbody>
       <tr *ngFor="let data of this.bookAction">
-        <td><a href="#">{{data.books.title}}</a></td>
-        <td>{{data.books.authors}}</td>
-        <td>{{data.books.categories}}</td>
-        <td>{{data.books.vote}}</td>
-        <td>{{data.books.status}}</td>
+        <td><a href="#">{{data.book.title}}</a></td>
+        <td>{{data.book.authors}}</td>
+        <td>{{data.book.categories}}</td>
+        <td>{{data.book.votes ? data.book.votes : '0'}}</td>
+        <td>{{data.book.status}}</td>
         <td>{{data.actionDate}}</td>
       </tr>
       </tbody>

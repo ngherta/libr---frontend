@@ -57,9 +57,11 @@ export type ChartOptions = {
 export class DashboardComponent implements OnInit {
   @ViewChild('chart1') chart1: ChartComponent;
   @ViewChild('chartCategory') chart: ChartComponent;
+  @ViewChild('chart3') chart3: ChartComponent;
   public chartOptions: Partial<ChartOptions>;
   public ChartOptionsTopCategories: Partial<ChartOptions>;
   public ChartOptionsSubmittedBook: Partial<ChartOptions>;
+  public ChartOptionsSubmittedPerWeek: Partial<ChartOptions>;
 
   dashboard: any;
   categoriesName: Array<string> = [];
@@ -68,7 +70,8 @@ export class DashboardComponent implements OnInit {
   countOfSubmittedBooks: number;
   countOfInlibraryBooks: number;
 
-  submittedPerWeek: [any];
+  submittedPerWeekName: Array<string> = [];
+  submittedPerWeekCount: Array<number> = [];
 
   actuatorInfo: any;
   actuatorHealth: any;
@@ -123,6 +126,67 @@ export class DashboardComponent implements OnInit {
       },
       xaxis: {
         categories: this.categoriesName,
+        labels: {
+          style: {
+            colors: [
+              '#008FFB',
+              '#00E396',
+              '#FEB019',
+              '#FF4560',
+              '#775DD0',
+              '#546E7A',
+              '#26a69a',
+              '#D10CE8'
+            ],
+            fontSize: '12px'
+          }
+        }
+      }
+    };
+
+    this.ChartOptionsSubmittedPerWeek = {
+      series: [
+        {
+          name: 'books',
+          data: this.submittedPerWeekName,
+        }
+      ],
+      chart: {
+        height: 350,
+        type: 'bar',
+        events: {
+          click(chart, w, e) {
+            // console.log(chart, w, e)
+          }
+        }
+      },
+      colors: [
+        '#008FFB',
+        '#00E396',
+        '#FEB019',
+        '#FF4560',
+        '#775DD0',
+        '#546E7A',
+        '#26a69a',
+        '#D10CE8'
+      ],
+      plotOptions: {
+        bar: {
+          columnWidth: '45%',
+          distributed: true
+        }
+      },
+      dataLabels: {
+        enabled: false
+      },
+      legend: {
+        show: false
+      },
+      grid: {
+        show: false
+      },
+      xaxis: {
+        categories: this.submittedPerWeekName,
         labels: {
           style: {
             colors: [
@@ -276,10 +340,16 @@ export class DashboardComponent implements OnInit {
         this.countOfSubmittedBooks = this.dashboard.allSubmittedAndInLibraryBooks.SUBMITTED;
         this.countOfInlibraryBooks = this.dashboard.allSubmittedAndInLibraryBooks.IN_LIBRARY;
 
-        // for (const dataWeek of this.dashboard.submittedPerWeek) {
-        //   this.submittedPerWeek.push(dataWeek);
-        // }
-        // console.log(this.dashboard.submittedPerWeek);
+        Object.entries(this.dashboard.submittedPerWeek);
+        console.log(Object.entries(this.dashboard.submittedPerWeek)[0][0]);
+        for (let i = 0; i < 4; i++) {
+          this.submittedPerWeekName.push(Object.entries(this.dashboard.submittedPerWeek)[i][0].toString());
+          this.submittedPerWeekCount.push(Number.parseInt(Object.entries(this.dashboard.submittedPerWeek)[i][1].toString()));
+        }
+
+        console.log(this.submittedPerWeekName);
+        console.log(this.submittedPerWeekCount);
+        console.log(this.submittedPerWeekCount[0] + this.submittedPerWeekCount[1]);
      });
   }
 }
