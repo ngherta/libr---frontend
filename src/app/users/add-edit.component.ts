@@ -1,4 +1,4 @@
-﻿  import { Component, OnInit } from '@angular/core';
+﻿import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgForm } from '@angular/forms';
@@ -20,7 +20,7 @@ export class AddEditComponent implements OnInit {
         private router: Router,
         private accountService: AccountService,
         private alertService: AlertService
-    ) {}
+    ) { }
 
     ngOnInit() {
         this.id = this.route.snapshot.params['id'];
@@ -38,7 +38,8 @@ export class AddEditComponent implements OnInit {
             email: ['', Validators.email],
             age: ['', Validators.required],
             phone: ['', Validators.required],
-            password: ['', passwordValidators]
+            password: ['', passwordValidators],
+            role: ['', Validators.required]
         });
 
         if (!this.isAddMode) {
