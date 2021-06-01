@@ -62,8 +62,8 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let data of this.bookAction">
-          <td><a href="#">{{data.book.title}}</a></td>
+        <tr *ngFor="let data of filterItemsOfType(this.user.id)">
+          <td><a href="book/{{data.book.id}}">{{data.book.title}}</a></td>
           <td>{{data.book.authors}}</td>
           <td>{{data.book.categories}}</td>
           <td>{{data.book.votes ? data.book.votes : '0'}}</td>

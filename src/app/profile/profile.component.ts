@@ -84,4 +84,8 @@ export class ProfileComponent implements OnInit {
       }
     );
   }
+
+  filterItemsOfType(userId){
+    return this.bookAction.filter(x => x.user.id === userId);
+  }
 }
