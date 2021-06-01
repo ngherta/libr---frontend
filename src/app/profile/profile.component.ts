@@ -18,6 +18,7 @@ export class ProfileComponent implements OnInit {
   isAddMode: boolean;
   loading = false;
   submitted = false;
+  bookActionRequested: any;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -35,6 +36,7 @@ export class ProfileComponent implements OnInit {
     ).subscribe();
 
     this.fetchBookActionByStatusSubmitted();
+    this.fetchBookActionByStatusRequested();
   }
 
   public status(bookId, bookStatus) {
@@ -62,11 +64,7 @@ export class ProfileComponent implements OnInit {
   fetchBookActionByStatusRequested(){
     this.bookService.getBookActionByStatus('REQUESTED').subscribe(
       dataResponse => {
-        this.bookAction = dataResponse;
-        // for (const actionInfo of dataResponse.items) {
-        //   this.bookAction.push(actionInfo);
-        //   console.log(actionInfo);
-        // }
+        this.bookActionRequested = dataResponse;
       }
     );
   }
