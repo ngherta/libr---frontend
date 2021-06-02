@@ -85,6 +85,14 @@ export class DashboardComponent implements OnInit {
   actuatorMetrics: Array<{ [key: string]: string; }> = [];
   actuatorMetricsTmp: any;
 
+  NumberOfProcessors: string;
+  MemoryUsed: string;
+  HttpRequest: string;
+  HttpRequestTotal: string;
+  HttpRequestMax: string;
+  UsedMemory: string;
+  UpTime: string;
+
   constructor(
     private activatedRoute: ActivatedRoute,
     private userService: AccountService,
@@ -315,37 +323,38 @@ export class DashboardComponent implements OnInit {
       .pipe(first())
       .subscribe(
         data => {
-          this.actuatorMetrics[0] = [{ 'MemoryUsed': data.measurements[0].value }];
+          this.MemoryUsed = data.measurements[0].value;
         });
 
     this.bookService.getActuatorMetrics('system.cpu.count')
       .pipe(first())
       .subscribe(
         data => {
-          this.actuatorMetrics[1] = [{ 'NumberOfProcessors': data.measurements[0].value }];
+          this.NumberOfProcessors = data.measurements[0].value
         });
 
     this.bookService.getActuatorMetrics('http.server.requests')
       .pipe(first())
       .subscribe(
         data => {
-          this.actuatorMetrics[2] = [{ 'HttpRequest': data.measurements[0].value }];
-          this.actuatorMetrics[3] = [{ 'HttpRequestTotal': data.measurements[1].value }];
-          this.actuatorMetrics[4] = [{ 'HttpRequestMax': data.measurements[2].value }];
+
+          this.HttpRequest = data.measurements[0].value;
+          this.HttpRequestMax = data.measurements[1].value;
+          this.HttpRequestTotal = data.measurements[2].value;
         });
 
     this.bookService.getActuatorMetrics('jvm.memory.used')
       .pipe(first())
       .subscribe(
         data => {
-          this.actuatorMetrics[5] = [{ 'UsedMemory': data.measurements[0].value }];
+          this.UsedMemory = data.measurements[0].value;
         });
 
     this.bookService.getActuatorMetrics('process.uptime')
       .pipe(first())
       .subscribe(
         data => {
-          this.actuatorMetrics[6] = [{ 'UpTime': data.measurements[0].value }];
+          this.UpTime = data.measurements[0].value;
         });
 
     // this.bookService.getActuatorMetrics('system.cpu.count')

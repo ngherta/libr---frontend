@@ -20,7 +20,7 @@ export class Book {
   userId: number;
   status: string;
   reactions: { [key: string]: string; } = {};
-  isManuallyAdded: booleans
+  isManuallyAdded: boolean;
 
 
 }
