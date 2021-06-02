@@ -83,7 +83,7 @@ export class HomeComponent implements OnInit {
   }
 
   public saveBook(book: Book) {
-    // $('#confirmationRequestModal-' + book.apiId).modal('hide');
+    $('#confirmationRequestModal-' + book.apiId).modal('hide');
     this.clearArray();
     book.userId = Number.parseInt(this.userId);
     book.isManuallyAdded = false;
