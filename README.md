@@ -1,4 +1,4 @@
-# angular-9-registration-login-example
+# libr
 
 Angular 9 - User Registration and Login Example
 
