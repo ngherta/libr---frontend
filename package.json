@@ -14,8 +14,10 @@
   "dependencies": {
     "@angular/animations": "~9.1.1",
     "@angular/cdk": "^12.0.1",
+    "@angular/cli": "~12.0.2",
     "@angular/common": "~9.1.1",
     "@angular/compiler": "~9.1.1",
+    "@angular/compiler-cli": "~9.1.13",
     "@angular/core": "~9.1.1",
     "@angular/forms": "~9.1.1",
     "@angular/localize": "~9.1.1",
@@ -41,8 +43,6 @@
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^0.901.15",
-    "@angular/cli": "^12.0.2",
-    "@angular/compiler-cli": "~9.1.1",
     "@angular/language-service": "~9.1.1",
     "@types/datatables.net": "^1.10.19",
     "@types/jasmine": "~3.5.0",
@@ -60,8 +60,7 @@
     "karma-jasmine-html-reporter": "^1.4.2",
     "protractor": "~5.4.3",
     "ts-node": "~8.3.0",
-    "tslint": "~6.1.0",
-    "typescript": "~3.8.3"
+    "tslint": "~6.1.0"
   },
   "engines": {
     "node": "16.1.0",
