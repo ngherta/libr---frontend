@@ -1,13 +1,14 @@
 {
-  "name": "angular-9-registration-login-example",
+  "name": "libr",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --open",
+    "start": "node server.js",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "heroku-postbuild": "ng build --prod"
   },
   "private": true,
   "dependencies": {
@@ -28,16 +29,19 @@
     "bootstrap": "^4.6.0",
     "datatables.net": "^1.10.24",
     "datatables.net-dt": "^1.10.24",
+    "express": "^4.17.1",
     "jquery": "^3.6.0",
     "ng-apexcharts": "^1.5.10",
+    "path": "^0.12.7",
     "popper.js": "^1.16.1",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
+    "typescript": "~3.8.3",
     "zone.js": "~0.10.2"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^0.901.15",
-    "@angular/cli": "~9.1.1",
+    "@angular/cli": "^12.0.2",
     "@angular/compiler-cli": "~9.1.1",
     "@angular/language-service": "~9.1.1",
     "@types/datatables.net": "^1.10.19",
@@ -46,6 +50,7 @@
     "@types/jquery": "^3.5.5",
     "@types/node": "^12.11.1",
     "codelyzer": "^5.1.2",
+    "enhanced-resolve": "^3.3.0",
     "jasmine-core": "~3.5.0",
     "jasmine-spec-reporter": "~4.2.1",
     "karma": "~4.4.1",
@@ -57,5 +62,9 @@
     "ts-node": "~8.3.0",
     "tslint": "~6.1.0",
     "typescript": "~3.8.3"
+  },
+  "engines": {
+    "node": "16.1.0",
+    "npm": "7.13.0"
   }
 }
