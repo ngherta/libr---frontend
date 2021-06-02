@@ -1,11 +1,9 @@
 ﻿import { Component, OnInit } from '@angular/core';
 
 import { BookService } from '@app/_services/book.service';
-import { debounceTime, first, map } from 'rxjs/operators';
+import { first} from 'rxjs/operators';
 import { AccountService, AlertService } from '@app/_services';
 import { Book } from '@app/_models/book';
-import { Categories } from '@app/_models/categories';
-import { Observable, OperatorFunction } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup } from '@angular/forms';
 

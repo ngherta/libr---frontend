@@ -52,8 +52,8 @@ export type ChartOptions = {
   grid: ApexGrid;
   colors: string[];
   legend: ApexLegend;
-  labels: String[];
-  responsive: Object[]
+  labels: string[];
+  responsive: object[]
 };
 
 @Component({
@@ -61,6 +61,7 @@ export type ChartOptions = {
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.less']
 })
+
 export class DashboardComponent implements OnInit {
   @ViewChild('chart1') chart1: ChartComponent;
   @ViewChild('chartCategory') chart: ChartComponent;
@@ -70,12 +71,15 @@ export class DashboardComponent implements OnInit {
   public ChartOptionsSubmittedBook: Partial<ChartOptions>;
   public ChartOptionsSubmittedPerWeek: Partial<ChartOptions>;
 
+
   dashboard: any;
   categoriesName: Array<string> = [];
   categoriesCount: Array<number> = [];
 
   countOfSubmittedBooks: number;
   countOfInlibraryBooks: number;
+
+  measurements: any;
 
   submittedPerWeekName: Array<string> = [];
   submittedPerWeekCount: Array<number> = [];
@@ -315,6 +319,7 @@ export class DashboardComponent implements OnInit {
     this.getActuatorMetrics();
   }
 
+
   getActuatorMetrics() {
     this.bookService.getActuatorMetrics('jvm.buffer.memory.used')
       .pipe(first())
@@ -359,7 +364,7 @@ export class DashboardComponent implements OnInit {
     //   .subscribe(
     //     data => {
     //       this.actuatorMetrics[2] = [{'NumberOfProcessors' : data.measurements[0].value}];
-    //       
+    //
     //     });
   }
 
