@@ -15,10 +15,10 @@ export class AppComponent {
     constructor(private accountService: AccountService) {
       // this.statusOfUser = accountService
       this.accountService.user.subscribe(x => this.user = x);
-      if (this.user !== null) {
-        this.userId = accountService.userId;
-        console.log(this.user);
-      }
+      // if (this.user !== null) {
+      //   this.userId = accountService.userId;
+      //   console.log(this.user);
+      // }
     }
 
     logout() {
