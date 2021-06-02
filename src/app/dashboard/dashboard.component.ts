@@ -323,14 +323,14 @@ export class DashboardComponent implements OnInit {
       .pipe(first())
       .subscribe(
         data => {
-          this.MemoryUsed = data.measurements[0].value;
+          this.MemoryUsed = data["measurements"][0].value;
         });
 
     this.bookService.getActuatorMetrics('system.cpu.count')
       .pipe(first())
       .subscribe(
         data => {
-          this.NumberOfProcessors = data.measurements[0].value
+          this.NumberOfProcessors = data["measurements"][0].value
         });
 
     this.bookService.getActuatorMetrics('http.server.requests')
@@ -338,23 +338,23 @@ export class DashboardComponent implements OnInit {
       .subscribe(
         data => {
 
-          this.HttpRequest = data.measurements[0].value;
-          this.HttpRequestMax = data.measurements[1].value;
-          this.HttpRequestTotal = data.measurements[2].value;
+          this.HttpRequest = data["measurements"][0].value;
+          this.HttpRequestMax = data["measurements"][1].value;
+          this.HttpRequestTotal = data["measurements"][2].value;
         });
 
     this.bookService.getActuatorMetrics('jvm.memory.used')
       .pipe(first())
       .subscribe(
         data => {
-          this.UsedMemory = data.measurements[0].value;
+          this.UsedMemory = data["measurements"][0].value;
         });
 
     this.bookService.getActuatorMetrics('process.uptime')
       .pipe(first())
       .subscribe(
         data => {
-          this.UpTime = data.measurements[0].value;
+          this.UpTime = data["measurements"][0].value;
         });
 
     // this.bookService.getActuatorMetrics('system.cpu.count')

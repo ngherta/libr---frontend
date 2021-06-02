@@ -71,10 +71,10 @@ export class HomeComponent implements OnInit {
       .subscribe(dataResponse => {
 
         console.log(dataResponse);
-        for (let i = 0; i < dataResponse.items.length; i++) {
+        for (let i = 0; i < dataResponse["items"].length; i++) {
           if (i === 5) { break; }
-          const b = dataResponse.items[i].volumeInfo;
-          b.apiId = dataResponse.items[i].id;
+          const b = dataResponse["items"][i].volumeInfo;
+          b.apiId = dataResponse["items"][i].id;
           this.books.push(b);
         }
         this.condition = true;
@@ -176,7 +176,7 @@ export class HomeComponent implements OnInit {
   }
 
   clearArray() {
-    document.getElementById('myInput').value = '';
+    document.getElementById('myInput')["value"] = '';
     this.condition = false;
   }
 
