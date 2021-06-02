@@ -69,8 +69,6 @@ export class HomeComponent implements OnInit {
     this.condition = false;
     this.bookService.findInGoogleApi(data)
       .subscribe(dataResponse => {
-
-        console.log(dataResponse);
         for (let i = 0; i < dataResponse["items"].length; i++) {
           if (i === 5) { break; }
           const b = dataResponse["items"][i].volumeInfo;
@@ -116,12 +114,10 @@ export class HomeComponent implements OnInit {
 
   filterCategoryValue(category) {
     this.orderCategory = category;
-    console.log(this.orderCategory);
   }
 
   filterStatusValue(status) {
     this.orderStatus = status;
-    console.log(this.orderStatus);
   }
 
   public upVote(bookId) {

@@ -17,7 +17,6 @@ export class AccountService {
     private router: Router,
     private http: HttpClient
   ) {
-    console.log(localStorage.getItem('user'));
     // this.userId = JSON.parse(localStorage.getItem('user')).id;
     this.userSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('user')));
     this.user = this.userSubject.asObservable();
@@ -33,7 +32,6 @@ export class AccountService {
         // store user details and jwt token in local storage to keep user logged in between page refreshes
         localStorage.setItem('user', JSON.stringify(user));
         this.userSubject.next(user);
-        console.log(this.userSubject.value);
         return user;
       }));
   }

@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import {Book} from '@app/_models/book';
-import {Subject} from 'rxjs';
-import {BookService} from '@app/_services/book.service';
-import {ActivatedRoute, Router} from '@angular/router';
-import {first, map} from 'rxjs/operators';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {AccountService, AlertService} from "@app/_services";
+import { Book } from '@app/_models/book';
+import { Subject } from 'rxjs';
+import { BookService } from '@app/_services/book.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { first, map } from 'rxjs/operators';
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { AccountService, AlertService } from "@app/_services";
 
 @Component({
   selector: 'app-inside-book',
@@ -26,17 +26,17 @@ export class InsideBookComponent implements OnInit {
   dtTrigger: Subject<any> = new Subject<any>();
 
   constructor(private bookService: BookService,
-              private activatedRoute: ActivatedRoute,
-              private formBuilder: FormBuilder,
-              private route: ActivatedRoute,
-              private router: Router,
-              private accountService: AccountService,
-              private alertService: AlertService) {
+    private activatedRoute: ActivatedRoute,
+    private formBuilder: FormBuilder,
+    private route: ActivatedRoute,
+    private router: Router,
+    private accountService: AccountService,
+    private alertService: AlertService) {
   }
 
   ngOnInit() {
     this.formComments = this.formBuilder.group({
-        comment: ['', Validators.required]
+      comment: ['', Validators.required]
     });
 
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
@@ -87,7 +87,6 @@ export class InsideBookComponent implements OnInit {
       .subscribe(
         data => {
           this.bookActionResponse = data;
-          console.log('work');
         }
       );
   }
@@ -95,8 +94,8 @@ export class InsideBookComponent implements OnInit {
   addCommentReaction(commentId, reaction) {
     this.bookService.addCommentReaction(this.userId, commentId, reaction)
       .subscribe(data => {
-          this.fetchBook();
-        },
+        this.fetchBook();
+      },
         error => {
           this.alertService.error(error.error.errorMessage);
           this.loading = false;

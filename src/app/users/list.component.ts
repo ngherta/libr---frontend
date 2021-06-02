@@ -1,4 +1,4 @@
-﻿import {Component, OnDestroy, OnInit} from '@angular/core';
+﻿import { Component, OnDestroy, OnInit } from '@angular/core';
 import { first } from 'rxjs/operators';
 
 import { AccountService } from '@app/_services';
@@ -53,7 +53,6 @@ export class ListComponent implements OnDestroy, OnInit {
   }
 
   public sendEmail(id: string, type: string) {
-    console.log("test");
 
     this.accountService.sendEmail(id, type);
   }

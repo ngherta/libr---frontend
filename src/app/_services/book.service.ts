@@ -73,7 +73,6 @@ export class BookService {
   }
 
   vote(userId: string, bookId: number, vote: number) {
-    console.log(userId, bookId, vote);
     return this.http.post(`${environment.apiUrl}/vote`, { "userId": userId, "bookId": bookId, "vote": vote });
   }
 
@@ -92,7 +91,6 @@ export class BookService {
   }
 
   comment(comment, userId, bookId) {
-    console.log(comment, userId, bookId);
     return this.http.post(`${environment.apiUrl}/comments/`, { "userId": userId, "bookId": bookId, "comment": comment });
   }
 

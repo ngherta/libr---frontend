@@ -111,7 +111,6 @@ export class DashboardComponent implements OnInit {
         type: 'bar',
         events: {
           click(chart, w, e) {
-            // console.log(chart, w, e)
           }
         }
       },
@@ -172,7 +171,6 @@ export class DashboardComponent implements OnInit {
         type: 'bar',
         events: {
           click(chart, w, e) {
-            // console.log(chart, w, e)
           }
         }
       },
@@ -233,7 +231,6 @@ export class DashboardComponent implements OnInit {
         type: 'bar',
         events: {
           click(chart, w, e) {
-            // console.log(chart, w, e)
           }
         }
       },
@@ -362,7 +359,7 @@ export class DashboardComponent implements OnInit {
     //   .subscribe(
     //     data => {
     //       this.actuatorMetrics[2] = [{'NumberOfProcessors' : data.measurements[0].value}];
-    //       console.log(this.actuatorMetrics);
+    //       
     //     });
   }
 
@@ -381,7 +378,6 @@ export class DashboardComponent implements OnInit {
       .subscribe(
         data => {
           this.actuatorInfo = data;
-          console.log(this.actuatorInfo);
         });
   }
 
@@ -400,15 +396,11 @@ export class DashboardComponent implements OnInit {
         this.countOfInlibraryBooks = this.dashboard.allSubmittedAndInLibraryBooks.IN_LIBRARY;
 
         Object.entries(this.dashboard.submittedPerWeek);
-        console.log(Object.entries(this.dashboard.submittedPerWeek)[0][0]);
         for (let i = 0; i < 4; i++) {
           this.submittedPerWeekName.push(Object.entries(this.dashboard.submittedPerWeek)[i][0].toString());
           this.submittedPerWeekCount.push(Number.parseInt(Object.entries(this.dashboard.submittedPerWeek)[i][1].toString()));
         }
 
-        console.log(this.submittedPerWeekName);
-        console.log(this.submittedPerWeekCount);
-        console.log(this.submittedPerWeekCount[0] + this.submittedPerWeekCount[1]);
       });
   }
 }

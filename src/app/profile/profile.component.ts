@@ -42,7 +42,6 @@ export class ProfileComponent implements OnInit {
       pageLength: 20
     };
     this.userId = this.activatedRoute.snapshot.params.id;
-    console.log(this.userId);
     this.userService.getById(this.userId).pipe(
       map((user: User) => this.user = user)
     ).subscribe();
@@ -55,7 +54,7 @@ export class ProfileComponent implements OnInit {
     this.bookService.updateStatus(userId, bookId, bookStatus)
       .pipe(first())
       .subscribe(data => {
-          this.fetchBookActionByStatusRequested();
+        this.fetchBookActionByStatusRequested();
         if (bookStatus === 'REQUESTED') {
           this.alertService.success('Book requested successfully', { keepAfterRouteChange: false });
         }
@@ -85,7 +84,7 @@ export class ProfileComponent implements OnInit {
     );
   }
 
-  filterItemsOfType(userId){
+  filterItemsOfType(userId) {
     return this.bookAction.filter(x => x.user.id === userId);
   }
 }
