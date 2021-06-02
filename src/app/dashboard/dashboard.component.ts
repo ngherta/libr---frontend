@@ -1,14 +1,14 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
 import {
   ApexNonAxisChartSeries,
   ApexResponsive,
   ApexChart, ChartComponent
 } from 'ng-apexcharts';
-import {count, first} from 'rxjs/operators';
-import {ActivatedRoute} from '@angular/router';
-import {AccountService, AlertService} from '@app/_services';
-import {BookService} from '@app/_services/book.service';
+import { count, first } from 'rxjs/operators';
+import { ActivatedRoute } from '@angular/router';
+import { AccountService, AlertService } from '@app/_services';
+import { BookService } from '@app/_services/book.service';
 
 import {
   ApexAxisChartSeries,
@@ -43,10 +43,17 @@ export type ChartOptionsTopCategories = {
 };
 
 export type ChartOptions = {
-  series: ApexNonAxisChartSeries;
+  series: ApexAxisChartSeries;
   chart: ApexChart;
-  responsive: ApexResponsive[];
-  labels: any;
+  dataLabels: ApexDataLabels;
+  plotOptions: ApexPlotOptions;
+  yaxis: ApexYAxis;
+  xaxis: ApexXAxis;
+  grid: ApexGrid;
+  colors: string[];
+  legend: ApexLegend;
+  labels: String[];
+  responsive: Object[]
 };
 
 @Component({
@@ -149,7 +156,7 @@ export class DashboardComponent implements OnInit {
       series: [
         {
           name: 'books',
-          data: this.submittedPerWeekName,
+          data: this.submittedPerWeekCount,
         }
       ],
       chart: {
@@ -308,37 +315,37 @@ export class DashboardComponent implements OnInit {
       .pipe(first())
       .subscribe(
         data => {
-          this.actuatorMetrics[0] = [{'MemoryUsed' : data.measurements[0].value}];
+          this.actuatorMetrics[0] = [{ 'MemoryUsed': data.measurements[0].value }];
         });
 
     this.bookService.getActuatorMetrics('system.cpu.count')
       .pipe(first())
       .subscribe(
         data => {
-          this.actuatorMetrics[1] = [{'NumberOfProcessors' : data.measurements[0].value}];
+          this.actuatorMetrics[1] = [{ 'NumberOfProcessors': data.measurements[0].value }];
         });
 
     this.bookService.getActuatorMetrics('http.server.requests')
       .pipe(first())
       .subscribe(
         data => {
-          this.actuatorMetrics[2] = [{'HttpRequest' : data.measurements[0].value}];
-          this.actuatorMetrics[3] = [{'HttpRequestTotal' : data.measurements[1].value}];
-          this.actuatorMetrics[4] = [{'HttpRequestMax' : data.measurements[2].value}];
+          this.actuatorMetrics[2] = [{ 'HttpRequest': data.measurements[0].value }];
+          this.actuatorMetrics[3] = [{ 'HttpRequestTotal': data.measurements[1].value }];
+          this.actuatorMetrics[4] = [{ 'HttpRequestMax': data.measurements[2].value }];
         });
 
     this.bookService.getActuatorMetrics('jvm.memory.used')
       .pipe(first())
       .subscribe(
         data => {
-          this.actuatorMetrics[5] = [{'UsedMemory' : data.measurements[0].value}];
+          this.actuatorMetrics[5] = [{ 'UsedMemory': data.measurements[0].value }];
         });
 
     this.bookService.getActuatorMetrics('process.uptime')
       .pipe(first())
       .subscribe(
         data => {
-          this.actuatorMetrics[6] = [{'UpTime' : data.measurements[0].value}];
+          this.actuatorMetrics[6] = [{ 'UpTime': data.measurements[0].value }];
         });
 
     // this.bookService.getActuatorMetrics('system.cpu.count')
@@ -393,6 +400,6 @@ export class DashboardComponent implements OnInit {
         console.log(this.submittedPerWeekName);
         console.log(this.submittedPerWeekCount);
         console.log(this.submittedPerWeekCount[0] + this.submittedPerWeekCount[1]);
-     });
+      });
   }
 }
