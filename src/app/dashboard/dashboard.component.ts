@@ -273,7 +273,7 @@ export class DashboardComponent implements OnInit {
       //   this.dashboard.allSubmittedAndInLibraryBooks.IN_LIBRARY],
       series: [],
       chart: {
-        width: 380,
+        width: 500,
         type: 'pie'
       },
       labels: ['Submitted', 'In_library'],
@@ -282,10 +282,13 @@ export class DashboardComponent implements OnInit {
           breakpoint: 480,
           options: {
             chart: {
-              width: 200
+              width: 200,
             },
             legend: {
-              position: 'bottom'
+              position: 'bottom',
+            },
+            labels: {
+              // fontSize: '2rem',
             }
           }
         }

@@ -192,11 +192,10 @@
                       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         <button *ngIf="book.status === 'SUBMITTED'" (click)="status(book.id, 'REJECTED')" class="dropdown-item">REJECTED</button>
                         <button *ngIf="book.status === 'SUBMITTED'" (click)="status(book.id, 'APPROVED')" class="dropdown-item">APPROVED</button>
-                        <button *ngIf="book.status === 'SUBMITTED'" (click)="status(book.id, 'ORDERED')" class="dropdown-item">ORDERED</button>
-                        <button *ngIf="book.status === 'ORDERED' || book.status === 'RETURNED'" (click)="status(book.id, 'IN_LIBRARY')" class="dropdown-item">IN_LIBRARY</button>
-                        <button (click)="status(book.id, 'REQUESTED')" class="dropdown-item">REQUESTED</button>
-                        <button (click)="status(book.id, 'IN_USE')" class="dropdown-item">IN_USE</button>
-                        <button (click)="status(book.id, 'RETURNED')" class="dropdown-item">RETURNED</button>
+                        <button *ngIf="book.status === 'APPROVED'" (click)="status(book.id, 'ORDERED')" class="dropdown-item">ORDERED</button>
+                        <button *ngIf="book.status === 'ORDERED' || book.status === 'RETURNED' || book.status === 'IN_USE'" (click)="status(book.id, 'IN_LIBRARY')" class="dropdown-item">IN_LIBRARY</button>
+                        <button *ngIf="book.status === 'IN_LIBRARY'" (click)="status(book.id, 'REQUESTED')" class="dropdown-item">REQUESTED</button>
+                        <button *ngIf="book.status === 'IN_LIBRARY'" (click)="status(book.id, 'IN_USE')" class="dropdown-item">IN_USE</button>
                       </div>
                     </div>
                   </div>
