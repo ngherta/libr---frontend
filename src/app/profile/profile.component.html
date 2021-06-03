@@ -20,8 +20,8 @@
       </span>
     </div>
     <div class="profile-button">
-      <div class="btn btn-info" routerLink="auth/password/{{user.id}}">Change password</div>
-      <div class="btn btn-primary" routerLink="profile/edit/{{user.id}}" style="margin-right: 15px;">Edit profile</div>
+      <a class="btn btn-info" href="password/{{user.id}}">Change password</a>
+      <a class="btn btn-primary" href="edit/{{user.id}}" style="margin-right: 15px;">Edit profile</a>
     </div>
   </div>
   <div *ngIf="user.role === 'ADMIN'" style="margin-top: 20px;" class="dashboard-container">
