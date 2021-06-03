@@ -66,8 +66,8 @@ export class BookService {
       }));
   }
 
-  register(book: Book, isManuallyAdded: boolean) {
-    book.userId = this.userId;
+  register(book: Book, userId: number, isManuallyAdded: boolean) {
+    book.userId = userId;
     book.isManuallyAdded = isManuallyAdded;
     return this.http.post(`${environment.apiUrl}/books`, book);
   }

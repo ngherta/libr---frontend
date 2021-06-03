@@ -30,7 +30,7 @@ export class AddEditComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.userId = this.accountService.userId;
+    this.userId = this.accountService.getId();
     this.id = this.route.snapshot.params['id'];
     this.isAddMode = !this.id;
 
@@ -103,7 +103,7 @@ export class AddEditComponent implements OnInit {
     this.form.value.categories = this.form.value.categories.split(',');
     this.form.value.industryIdentifiers = [{ 'isbn': this.form.value.industryIdentifiers.split(',')[0] }];
     this.form.value.imageLinks = { 'thumbnail': this.form.value.imageLinks.split(',')[0] };
-    this.bookService.register(this.form.value, true)
+    this.bookService.register(this.form.value, this.userId, true)
       .pipe(first())
       .subscribe(
         data => {
