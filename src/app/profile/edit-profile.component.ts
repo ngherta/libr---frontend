@@ -9,7 +9,8 @@ import { AccountService, AlertService } from '@app/_services';
 
 @Component({
   templateUrl: 'edit-profile.component.html',
-  styleUrls: ['edit-profile.component.less']})
+  styleUrls: ['edit-profile.component.less']
+})
 
 export class EditProfileComponent implements OnInit {
   form: FormGroup;
@@ -26,7 +27,7 @@ export class EditProfileComponent implements OnInit {
     private router: Router,
     private accountService: AccountService,
     private alertService: AlertService
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.userRole = this.route.snapshot.params['role'];
@@ -37,9 +38,9 @@ export class EditProfileComponent implements OnInit {
     this.form = this.formBuilder.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
-      email: ['', Validators.email],
+      email: ['', [Validators.required, Validators.email]],
       age: ['', Validators.required],
-      phone: ['', Validators.required],
+      phone: ['', [Validators.required, Validators.pattern('^((\\+91-?)|0)?[0-9]{9}$')]],
       role: ['', Validators.required],
     });
 
