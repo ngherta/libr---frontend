@@ -18,7 +18,7 @@ const routes: Routes = [
   { path: 'users', loadChildren: usersModule, canActivate: [AuthGuard] },
   { path: 'account', loadChildren: accountModule },
   { path: 'profile/:id', component: ProfileComponent },
-  { path: 'edit/:id', component: EditProfileComponent },
+  { path: 'profile/:id/edit/:id', component: EditProfileComponent },
   {
     path: 'books', children: [
       {
@@ -29,7 +29,7 @@ const routes: Routes = [
       }
     ]
   },
-  { path: 'password/:id', component: ChangePasswordComponent },
+  { path: 'profile/:id/password/:id', component: ChangePasswordComponent },
   { path: 'dashboard', component: DashboardComponent },
   // otherwise redirect to home
   { path: '**', redirectTo: '' },
