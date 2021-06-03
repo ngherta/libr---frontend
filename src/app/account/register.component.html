@@ -29,7 +29,6 @@
           [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
         <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
           <div *ngIf="f.email.errors.required">Email is required</div>
-          <div *ngIf="f.email.errors.email">Email is not valid</div>
         </div>
       </div>
 
@@ -45,12 +44,11 @@
 
       <!--          Telephone number-->
       <div class="form-group">
-        <label for="phone">Phone number</label>
+        <label for="phone">Telephone number</label>
         <input type="text" formControlName="phone" class="form-control"
           [ngClass]="{ 'is-invalid': submitted && f.phone.errors }" />
         <div *ngIf="submitted && f.phone.errors" class="invalid-feedback">
-          <div *ngIf="f.phone.errors.required">Phone is required</div>
-          <div *ngIf="f.phone.errors.pattern">Phone must have 9 digits</div>
+          <div *ngIf="f.phone.errors.required">Telephone is required</div>
         </div>
       </div>
 
