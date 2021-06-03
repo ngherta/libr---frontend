@@ -30,7 +30,6 @@ export class AccountService {
     return this.http.post<User>(`${environment.apiUrl}/auth/login`, { 'email': email, 'password': password })
       .pipe(map(user => {
         // store user details and jwt token in local storage to keep user logged in between page refreshes
-        this.userId = Number.parseInt(user.id);
         localStorage.setItem('user', JSON.stringify(user));
         this.userSubject.next(user);
         return user;
@@ -39,10 +38,6 @@ export class AccountService {
 
   getRole() {
     return JSON.parse(localStorage.getItem('user')).role;
-  }
-
-  getId() {
-    return JSON.parse(localStorage.getItem('user')).id
   }
 
   logout() {

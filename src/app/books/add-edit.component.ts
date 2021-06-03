@@ -30,7 +30,7 @@ export class AddEditComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.userId = this.accountService.getId();
+    this.userId = this.accountService.userId;
     this.id = this.route.snapshot.params['id'];
     this.isAddMode = !this.id;
 
